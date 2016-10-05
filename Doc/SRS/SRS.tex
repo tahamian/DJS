@@ -14,10 +14,10 @@
 
 \title{SE 3XA3: Development Plan\\Title of Project}
 
-\author{Team , Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12, DJS
+	\\ Victor Velenchovsky - velech
+	\\ Amandeep Panesar - panesas2
+	\\ Taha Mian - miantm
 }
 
 \date{\today}
@@ -58,17 +58,29 @@ to the template, you should explicity state what modifications were made.
 \subsection{The Purpose of the Project}
 The purpose of this project is to make it easier for people that attend socail gatherings or events to select a songs and form their own playlist according to the mood or perference of the attendees.
 
+Social gatherings are much more enjoyable when most of the attendee's enjoy
+the music that is being played. This project was inspired by
+
 \subsection{The Stakeholders}
 Stakeholders will be people who attend these social events or gatherings and people who host them.
 
+\textbf{Event Attendee's}
+If the system is working properly and attendee's are voting for songs, then
+the event will be more enjoyable for them.
+
+\textbf{Event Organizer(s)}
+Having users select music will put less stress on the event organizers, and
+allow them to focus on other aspects of the event, or let them enjoy
+themselves.
+
 \subsubsection{The Client}
-The client is the host of the social event or gathering, could also be a Dj whose not willing to put up with people fighting over what song to play next. Could also be the host whose trying to save money not hiring a Dj and just relying on this system that allows the attnedees to chose what song they want to play. 
+The client is the host of the social event or gathering, could also be a Dj whose not willing to put up with people fighting over what song to play next. Could also be the host whose trying to save money not hiring a Dj and just relying on this system that allows the attnedees to chose what song they want to play.
 
 \subsubsection{The Customers}
 Amandeeps Dad
 
 \subsubsection{Other Stakeholders}
-Other stakeholders could be music producers or licensors because music that is played should be legally attainted for the event, not pirated. 
+Other stakeholders could be music producers or licensors because music that is played should be legally attainted for the event, not pirated.
 
 \subsection{Mandated Constraints}
 
@@ -79,6 +91,15 @@ Other stakeholders could be music producers or licensors because music that is p
 User characteristics should go under assumptions.
 
 \section{Functional Requirements}
+
+- Allow users to vote on which song to play next at a social gathering
+- Users can select to vote for any of a pre-determined set of
+  approximately 10 songs.
+- The predetermined set of songs can be selected randomly from a larger pool
+  of songs
+- Queue up songs that have been voted on and automatically play them
+- Provide a simple web-app for users to vote with. The web-app has a list that
+  shows users what their options to pick from are
 
 \subsection{The Scope of the Work and the Product}
 
@@ -94,15 +115,28 @@ User characteristics should go under assumptions.
 
 \subsection{Look and Feel Requirements}
 
+- Visually pleasing web app interface
+
 \subsection{Usability and Humanity Requirements}
-
+\begin{itemize}
+\item Straight-forward web app (new users should be able to adopt it easily)
+\item No sign up required
+\item Automatically connects to server via WiFi with little to no input from user
+\end{itemize}
 \subsection{Performance Requirements}
-
+\begin{itemize}
+\item Songs should play one after another with small or no delay in between
+\item Server should have high uptime
+\end{itemize}
 \subsection{Operational and Environmental Requirements}
 
 \subsection{Maintainability and Support Requirements}
 
 \subsection{Security Requirements}
+
+- A user should only be allowed to vote once per \textit{'round'} of votes
+- Restarting the app/WiFi/phone should not change the fact that a user can only
+  vote once per \textit{'round'}
 
 \subsection{Cultural Requirements}
 
@@ -117,8 +151,22 @@ issues that should be considered for every engineering project.
 
 \subsection{Open Issues}
 
+- How exactly do we make sure that a user can only vote once per song?
+
 \subsection{Off-the-Shelf Solutions}
 
+The project that we are modelling (PlayMyWay) already does most of what our
+project will do.
+
+As for other solutions, there are various libraries that we will use in our
+development. These libraries will help with various functionality, and include
+(but are not limited to):
+\begin{itemize}
+\item Express.JS (Server framework for Node.JS)
+\item Angular.JS (Front-end framework for the web app)
+\item nodeunit (Unit testing package)
+\item Mocha (general testing package)
+\end{itemize}
 \subsection{New Problems}
 
 \subsection{Tasks}
