@@ -22,8 +22,6 @@
 
 \date{\today}
 
-
-
 \begin{document}
 
 \maketitle
@@ -38,8 +36,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Wed. Oct. 5 & 0.1 & Basic Outline\\
+Wed. Oct. 5 & 0.2 & Requirements added\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -56,13 +54,16 @@ to the template, you should explicity state what modifications were made.
 \section{Project Drivers}
 
 \subsection{The Purpose of the Project}
-The purpose of this project is to make it easier for people that attend socail gatherings or events to select a songs and form their own playlist according to the mood or perference of the attendees.
+The purpose of this project is to make it easier for people that attend social
+gatherings or events to select a songs and form their own playlist according to
+the mood or perference of the attendees. \\
 
 Social gatherings are much more enjoyable when most of the attendee's enjoy
-the music that is being played. This project was inspired by
+the music that is being played. This project was inspired by \\
 
 \subsection{The Stakeholders}
-Stakeholders will be people who attend these social events or gatherings and people who host them.
+Stakeholders will be people who attend these social events or gatherings and
+people who host them. \\
 
 \textbf{Event Attendee's}
 If the system is working properly and attendee's are voting for songs, then
@@ -74,15 +75,26 @@ allow them to focus on other aspects of the event, or let them enjoy
 themselves.
 
 \subsubsection{The Client}
-The client is the host of the social event or gathering, could also be a Dj whose not willing to put up with people fighting over what song to play next. Could also be the host whose trying to save money not hiring a Dj and just relying on this system that allows the attnedees to chose what song they want to play.
+The client is the host of the social event or gathering, could also be a DJ
+who's not willing to put up with people fighting over what song to play next.
+Could also be the host whose trying to save money not hiring a Dj and just
+relying on this system that allows the attnedees to chose what song they want
+to play.
 
 \subsubsection{The Customers}
 Amandeeps Dad
 
 \subsubsection{Other Stakeholders}
-Other stakeholders could be music producers or licensors because music that is played should be legally attainted for the event, not pirated.
+Other stakeholders could be music producers or licensors because music that is
+played should be legally attainted for the event, not pirated.
 
 \subsection{Mandated Constraints}
+
+\begin{list_type}
+\item The first item
+\item The second item
+\item The third etc \ldots
+\end{list_type}
 
 \subsection{Naming Conventions and Terminology}
 
@@ -92,14 +104,14 @@ User characteristics should go under assumptions.
 
 \section{Functional Requirements}
 
-- Allow users to vote on which song to play next at a social gathering
-- Users can select to vote for any of a pre-determined set of
-  approximately 10 songs.
-- The predetermined set of songs can be selected randomly from a larger pool
-  of songs
-- Queue up songs that have been voted on and automatically play them
+- Allow users to vote on which song to play next at a social gathering \\
+- Users can select to vote for any of a pre-determined set of \\
+  approximately 10 songs. \\
+- The predetermined set of songs can be selected randomly from a larger pool \\
+  of songs \\
+- Queue up songs that have been voted on and automatically play them \\
 - Provide a simple web-app for users to vote with. The web-app has a list that
-  shows users what their options to pick from are
+  shows users what their options to pick from are \\
 
 \subsection{The Scope of the Work and the Product}
 
@@ -116,17 +128,18 @@ User characteristics should go under assumptions.
 \subsection{Look and Feel Requirements}
 
 - Visually pleasing web app interface
+-
 
 \subsection{Usability and Humanity Requirements}
 
-- Straight-forward web app (new users should be able to adopt it easily)
-- No sign up required
-- Automatically connects to server via WiFi with little to no input from user
+- Straight-forward web app (new users should be able to adopt it easily) \\
+- No sign up required \\
+- Automatically connects to server via WiFi with little to no input from user \\
 
 \subsection{Performance Requirements}
 
-- Songs should play one after another with small or no delay in between
-- Server should have high uptime
+- Songs should play one after another with small or no delay in between \\
+- Server should have high uptime \\
 
 \subsection{Operational and Environmental Requirements}
 
@@ -134,13 +147,15 @@ User characteristics should go under assumptions.
 
 \subsection{Security Requirements}
 
-- A user should only be allowed to vote once per \textit{'round'} of votes
+- A user should only be allowed to vote once per \textit{'round'} of votes \\
 - Restarting the app/WiFi/phone should not change the fact that a user can only
-  vote once per \textit{'round'}
+  vote once per \textit{'round'} \\
 
 \subsection{Cultural Requirements}
 
 \subsection{Legal Requirements}
+
+- Music that is played should have legal rights to be played publically \\
 
 \subsection{Health and Safety Requirements}
 
@@ -151,7 +166,8 @@ issues that should be considered for every engineering project.
 
 \subsection{Open Issues}
 
-- How exactly do we make sure that a user can only vote once per song?
+- How exactly do we make sure that a user can only vote once per song, without
+  requiring people to sign up for an account \\
 
 \subsection{Off-the-Shelf Solutions}
 
@@ -162,10 +178,10 @@ As for other solutions, there are various libraries that we will use in our
 development. These libraries will help with various functionality, and include
 (but are not limited to):
 
-- Express.JS (Server framework for Node.JS)
-- Angular.JS (Front-end framework for the web app)
-- nodeunit (Unit testing package)
-- Mocha (general testing package)
+- Express.JS (Server framework for Node.JS) \\
+- Angular.JS (Front-end framework for the web app) \\
+- nodeunit (Unit testing package) \\
+- Mocha (general testing package) \\
 
 \subsection{New Problems}
 
@@ -174,6 +190,9 @@ development. These libraries will help with various functionality, and include
 \subsection{Migration to the New Product}
 
 \subsection{Risks}
+
+- Bugs or catastrophic errors in the server could cause the music to start
+  playing. \\
 
 \subsection{Costs}
 
