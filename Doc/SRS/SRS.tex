@@ -56,7 +56,11 @@ to the template, you should explicity state what modifications were made.
 \subsection{The Purpose of the Project}
 The purpose of this project is to make it easier for people that attend social
 gatherings or events to select a songs and form their own playlist according to
-the mood or perference of the attendees. \\
+the mood or perference of the attendees. The current implementation (PlayMyWay)
+has an unflattering and difficult to use UI, as well as no easy way for the
+average person to integrate the software into their party. We plan on making a
+revised version that has an elengant web app interface, and an easy to install
+server.
 
 Social gatherings are much more enjoyable when most of the attendee's enjoy
 the music that is being played. This project was inspired by \\
@@ -65,55 +69,64 @@ Social gatherings are much more enjoyable when most of the attendee's enjoy
 the music that is being played. This project was inspired by
 
 \subsection{The Stakeholders}
-Stakeholders will be people who attend these social events or gatherings and
-people who host them. \\
-
-\textbf{Event Attendee's}
-If the system is working properly and attendee's are voting for songs, then
-the event will be more enjoyable for them.
-
-\textbf{Event Organizer(s)}
-Having users select music will put less stress on the event organizers, and
-allow them to focus on other aspects of the event, or let them enjoy
-themselves.
-
-\textbf{Event Attendee's}
-If the system is working properly and attendee's are voting for songs, then
-the event will be more enjoyable for them.
-
-\textbf{Event Organizer(s)}
-Having users select music will put less stress on the event organizers, and
-allow them to focus on other aspects of the event, or let them enjoy
-themselves.
 
 \subsubsection{The Client}
 
-The client is the host of the social event or gathering, could also be a DJ
-who's not willing to put up with people fighting over what song to play next.
-Could also be the host whose trying to save money not hiring a Dj and just
-relying on this system that allows the attnedees to chose what song they want
-to play.
+\textbf{Event Organizer}\\
+The client is the host of the social event or gathering, who is trying to save
+money by not hiring a DJ and simply relying on this system, which allows the
+attendees to chose what songs they want to listen to. Having users select music
+will put less stress on the event organizers, and allow them to focus on other
+aspects of the event, or let them enjoy themselves.
+
+\textbf{DJ}\\
+The client can also be a DJ, hired by a party planner, who is not willing to put
+up with people fighting over what song to play next.
 
 \subsubsection{The Customers}
-Amandeeps Dad
+
+\textbf{Event Attendee's}\\
+If the system is working properly and attendee's are voting for songs, then
+the event will be more enjoyable for them.
 
 \subsubsection{Other Stakeholders}
-Other stakeholders could be music producers or licensors because music that is
-played should be legally attainted for the event, not pirated.
+
+No other stakeholders have been discovered.
 
 \subsection{Mandated Constraints}
 
-\begin{list_type}
-\item The first item
-\item The second item
-\item The third etc \ldots
-\end{list_type}
+\begin{itemize}
+\item The front-end of the product will take the form of a web-app that can
+run on any javascript-enabled browser. This means the app should be able to
+accomodate all common Operating Systems (phone and desktop) and all
+common Javascript-enabled browsers. Internet Explorer may be exempt\\
+\item The front-end web-app and server need to both be connected to the same
+WiFi network.\\
+\item The server needs to be stable with very low downtime, in order to prevent
+scenarios where the music stops playing accidentaly.\\
+\end{itemize}
 
 \subsection{Naming Conventions and Terminology}
 
+\begin{table}[bp]
+\caption{\bf Naming Conventions and Terminology}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Shorthand} & {\bf Explanation}\\
+\midrule
+JS & Javascript\\
+HTML & Hypertext Markup Language\\
+CSS & Cascading Style Sheets\\
+Event & Any event that includes shared music listening. Party, Wedding, etc.
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \subsection{Relevant Facts and Assumptions}
 
-User characteristics should go under assumptions.
+\begin{itemize}
+\item We assume that users of the app are mmpatient (they don't want to spend a
+long time learning the software) \\
+\end{itemize}
 
 \section{Functional Requirements}
 
@@ -141,21 +154,20 @@ User characteristics should go under assumptions.
 \subsection{Look and Feel Requirements}
 
 - Visually pleasing web app interface
-<<<<<<< HEAD
 
 \subsection{Usability and Humanity Requirements}
+
 \begin{itemize}
 \item Straight-forward web app (new users should be able to adopt it easily)
 \item No sign up required
 \item Automatically connects to server via WiFi with little to no input from user
 \end{itemize}
 \subsection{Performance Requirements}
+
 \begin{itemize}
 \item Songs should play one after another with small or no delay in between
 \item Server should have high uptime
 \end{itemize}
-=======
--
 
 \subsection{Usability and Humanity Requirements}
 
@@ -208,6 +220,7 @@ development. These libraries will help with various functionality, and include
 \item nodeunit (Unit testing package)
 \item Mocha (general testing package)
 \end{itemize}
+
 \subsection{New Problems}
 
 \subsection{Tasks}
