@@ -124,20 +124,24 @@ UI & User Interface\\
 \subsection{Relevant Facts and Assumptions}
 
 \begin{itemize}
-\item We assume that users of the app are mmpatient (they don't want to spend a
-long time learning the software) \\
+\item We assume that users of the app are impatient (they don't want to spend a
+long time learning the software)
 \end{itemize}
 
 \section{Functional Requirements}
-
-- Allow users to vote on which song to play next at a social gathering \\
-- Users can select to vote for any of a predetermined set of \\
-  approximately 10 songs. \\
-- The predetermined set of songs can be selected randomly from a larger pool \\
-  of songs \\
-- Queue up songs that have been voted on and automatically play them \\
-- Provide a simple web app for users to vote with. The web app has a list that
-  shows users what their options to pick from are \\
+ \begin{itemize}
+ \item The web page created in HTML and Javascript will display graphics and other information to user like title. 
+ \item The Javascript will fetch the five options for music playback and will display them on the user's browser.
+ \item The web page should also keep track of the number of votes for any song.
+ \item The html page should also include a graphic where the user can place their vote.
+ \item The html page should also only list valid options for music (should only list songs stored on the server).
+ \item Cookies will also be created to only allow one vote for the user.
+ \item After the song has been selected to play then the html page should update to only show songs that haven't been played and should reset votes.
+ \item The server should pick 5 random unique songs until no unique songs are left and repeat process. 
+ \item The server should total votes and share the information with the user through the html page.
+ \item The server should sort the songs after voting and play the most voted song.
+ \item The cookie should also remember what song the user picked and then reset after voting has reset.
+ \end{itemize}
 
 \subsection{The Scope of the Work and the Product}
 
@@ -148,6 +152,19 @@ long time learning the software) \\
 \subsubsection{Individual Product Use Cases}
 
 \subsection{Functional Requirements}
+\begin{itemize}
+\item The web page created in HTML and Javascript will display graphics and other information to user like title. 
+\item The Javascript will fetch the five options for music playback and will display them on the user's browser.
+\item The web page should also keep track of the number of votes for any song.
+\item The html page should also include a graphic where the user can place their vote.
+\item The html page should also only list valid options for music (should only list songs stored on the server).
+\item Cookies will also be created to only allow one vote for the user.
+\item After the song has been selected to play then the html page should update to only show songs that haven't been played and should reset votes.
+\item The server should pick 5 random unique songs until no unique songs are left and repeat process. 
+\item The server should total votes and share the information with the user through the html page.
+\item The server should sort the songs after voting and play the most voted song.
+\item The cookie should also remember what song the user picked and then reset after voting has reset.
+\end{itemize}
 
 \section{Non-functional Requirements}
 
