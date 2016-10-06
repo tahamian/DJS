@@ -106,7 +106,7 @@ common Javascript-enabled browsers. Internet Explorer may be exempt\\
 \item The front-end web-app and server need to both be connected to the same
 WiFi network.\\
 \item The server needs to be stable with very low downtime, in order to prevent
-scenarios where the music stops playing accidentaly.\\
+scenarios where the music stops playing accidentally.\\
 \end{itemize}
 
 \subsection{Naming Conventions and Terminology}
@@ -118,6 +118,7 @@ JS & Javascript\\
 HTML & Hypertext Markup Language\\ 
 CSS & Cascading Style Sheets\\ 
 Event & Any event that includes shared music listening. Party, Wedding, etc. \\ 
+UI & User Interface\\
 \end{tabular}
 \end{table}
 \subsection{Relevant Facts and Assumptions}
@@ -130,12 +131,12 @@ long time learning the software) \\
 \section{Functional Requirements}
 
 - Allow users to vote on which song to play next at a social gathering \\
-- Users can select to vote for any of a pre-determined set of \\
+- Users can select to vote for any of a predetermined set of \\
   approximately 10 songs. \\
 - The predetermined set of songs can be selected randomly from a larger pool \\
   of songs \\
 - Queue up songs that have been voted on and automatically play them \\
-- Provide a simple web-app for users to vote with. The web-app has a list that
+- Provide a simple web app for users to vote with. The web app has a list that
   shows users what their options to pick from are \\
 
 \subsection{The Scope of the Work and the Product}
@@ -204,10 +205,10 @@ issues that should be considered for every engineering project.
 
 - How exactly do we make sure that a user can only vote once per song, without
   requiring people to sign up for an account \\
-
+- 
 \subsection{Off-the-Shelf Solutions}
 
-The project that we are modelling (PlayMyWay) already does most of what our
+The project that we are modeling (PlayMyWay) already does most of what our
 project will do.
 
 As for other solutions, there are various libraries that we will use in our
@@ -219,28 +220,31 @@ development. These libraries will help with various functionality, and include
 \item nodeunit (Unit testing package)
 \item Mocha (general testing package)
 \end{itemize}
-
 \subsection{New Problems}
-DJ.Js is based off the open source project called \href{https://github.com/malithsen/playmyway}{playymway that can be found here.} We are going to recreate the project, in javascript. The original project was written in Jade, which is a Object Oriented programming language based on Java. Jade is kind of outdated and not as universal as javascript, which is the golden standard for web page applications.
+DJ.Js is based off the open source project called \href{https://github.com/malithsen/playmyway}{PlayMyWay that can be found here.} We are going to recreate the project, in javascript. The original project was written in Jade, which is a Object Oriented programming language based on Java. Jade is kind of outdated and not as universal as javascript, which is the golden standard for web page applications.
 \subsection{Tasks}
 The project requires many steps to complete but here is a list:
 \begin{enumerate}
-\item 
+\item Build a node.js sever using Amandeeps Raspberry Pi for the 
+\item Build the 
+\item Build the UI using javascript
+\item Testing using unit, 
 \end{enumerate}
 \subsection{Migration to the New Product}
-There is no transition needed because this is a webapp, and is the first iteration of the product.
+There is no transition needed because we are recreating the web app, that already exists.
 \subsection{Risks}
--The product is a webapp and therefore relies on an internet connection. \\
-- Bugs or catastrophic errors in the server could cause the music to start
-  playing sporadically \\
-- Only people with a device that can connect to the internet can use the webapp\\
-- 
+Many risks can occur while trying to implement our product which include:
+\begin{itemize}
+\item The product is a webapp and therefore relies on an internet connection
+\item Bugs or catastrophic errors in the server could cause the music to start playing sporadically
+\item Only people with a device that can connect to the internet can use the web app
+\end{itemize} 
 \subsection{Costs}
 
 \subsection{User Documentation and Training}
 
 \subsection{Waiting Room}
-Something that is part of our vision is having all genres of music having a diverse list of music so users can select songs that cater to their tastes.
+Something that is part of our vision is having all genres of music having a diverse list of music so users can select songs that cater to their tastes. We also want to add "moods" that correspond to certain event you are in, so a wedding would be more of a happy mood, where as a party will have a Festival will have a celebratory mood. 
 \subsection{Ideas for Solutions}
 
 \bibliographystyle{plainnat}
