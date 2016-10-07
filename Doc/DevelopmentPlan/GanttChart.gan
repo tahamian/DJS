@@ -39,11 +39,11 @@
         <task id="8" name="Project Approval" color="#ff3366" meeting="false" start="2016-09-19" duration="5" complete="0" expand="true"/>
         <task id="0" name="Problem Statement" color="#ff0066" meeting="false" start="2016-09-23" duration="1" complete="0" expand="true"/>
         <task id="4" name="Development Plan" color="#ff0033" meeting="false" start="2016-09-30" duration="1" complete="0" expand="true"/>
-        <task id="10" name="Requirements Document Revision 0" color="#ff0066" meeting="false" start="2016-10-03" duration="5" complete="0" expand="true"/>
-        <task id="12" name="Proof of Concept Demo" color="#8cb6ce" meeting="false" start="2016-09-30" duration="27" complete="0" expand="true">
-            <task id="37" name="Server" color="#6666ff" meeting="false" start="2016-09-30" duration="27" complete="0" expand="true"/>
-            <task id="38" name="Web-Interface" color="#6666ff" meeting="false" start="2016-09-30" duration="27" complete="0" expand="true"/>
-            <task id="39" name="Back-end algs" color="#6666ff" meeting="false" start="2016-09-30" duration="27" complete="0" expand="true"/>
+        <task id="10" name="Requirements Document Revision 0" color="#ff0066" meeting="false" start="2016-10-03" duration="9" complete="0" expand="true"/>
+        <task id="12" name="Proof of Concept Demo" color="#8cb6ce" meeting="false" start="2016-10-10" duration="17" complete="18" expand="true">
+            <task id="37" name="Server" color="#6666ff" meeting="false" start="2016-10-10" duration="17" complete="29" expand="true"/>
+            <task id="38" name="Web-Interface" color="#6666ff" meeting="false" start="2016-10-10" duration="17" complete="26" expand="true"/>
+            <task id="39" name="Back-end algs" color="#6666ff" meeting="false" start="2016-10-10" duration="17" complete="0" expand="true"/>
         </task>
         <task id="51" name="Test Plan" color="#66ff00" meeting="false" start="2016-10-07" duration="37" complete="0" expand="false">
             <task id="71" name="Rev 0" color="#8cb6ce" meeting="false" start="2016-10-07" duration="10" complete="0" expand="true"/>
@@ -51,15 +51,15 @@
             <task id="75" name="Rev 3" meeting="false" start="2016-10-29" duration="15" complete="0" expand="true"/>
         </task>
         <task id="19" name="Design Document" color="#8cb6ce" meeting="false" start="2016-10-10" duration="40" complete="0" expand="true"/>
-        <task id="215" name="Coding" color="#ffff33" meeting="false" start="2016-10-09" duration="63" complete="0" expand="true">
+        <task id="215" name="Coding" color="#ffff33" meeting="false" start="2016-10-09" duration="63" complete="1" expand="true">
             <task id="217" name="BackEnd" meeting="false" start="2016-10-09" duration="16" complete="0" expand="true"/>
             <task id="219" name="Server" meeting="false" start="2016-10-09" duration="16" complete="0" expand="true"/>
             <task id="223" name="Music Database" meeting="false" start="2016-10-09" duration="16" complete="0" expand="true"/>
             <task id="350" name="Refine code based on tests" meeting="false" start="2016-11-19" duration="22" complete="0" expand="true"/>
-            <task id="352" name="WebApp" meeting="false" start="2016-10-23" duration="27" complete="0" expand="true"/>
+            <task id="352" name="WebApp" meeting="false" start="2016-10-25" duration="25" complete="6" expand="true"/>
         </task>
-        <task id="21" name="Revision 0 Demo" color="#8cb6ce" meeting="false" start="2016-10-10" duration="40" complete="0" expand="true"/>
-        <task id="23" name="Final Demo Rev 1" color="#8cb6ce" meeting="false" start="2016-10-24" duration="40" complete="0" expand="true"/>
+        <task id="21" name="Revision 0 Demo" color="#8cb6ce" meeting="false" start="2016-10-18" duration="32" complete="0" expand="true"/>
+        <task id="23" name="Final Demo Rev 1" color="#8cb6ce" meeting="false" start="2016-10-26" duration="36" complete="0" expand="true"/>
         <task id="26" name="Peer Eval" color="#8cb6ce" meeting="false" start="2016-10-24" duration="40" complete="0" expand="true"/>
         <task id="27" name="Final Doc Rev 1" color="#8cb6ce" meeting="false" start="2016-10-29" duration="35" complete="0" expand="true"/>
         <task id="221" name="Testing" meeting="false" start="2016-10-10" duration="54" complete="33" expand="true">
