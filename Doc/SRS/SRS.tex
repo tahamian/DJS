@@ -113,10 +113,10 @@ scenarios where the music stops playing accidentally.
 \centering
 \begin{tabular}{ c | c }
 \textbf{Shorthand} & \textbf{Explanation}\\ \hline
-JS & Javascript\\ 
-HTML & Hypertext Markup Language\\ 
-CSS & Cascading Style Sheets\\ 
-Event & Any event that includes shared music listening. Party, Wedding, etc. \\ 
+JS & Javascript\\
+HTML & Hypertext Markup Language\\
+CSS & Cascading Style Sheets\\
+Event & Any event that includes shared music listening. Party, Wedding, etc. \\
 UI & User Interface\\
 \end{tabular}
 \end{table}
@@ -129,14 +129,14 @@ long time learning the software)
 
 \section{Functional Requirements}
  \begin{itemize}
- \item The web page created in HTML and Javascript will display graphics and other information to user like title. 
+ \item The web page created in HTML and Javascript will display graphics and other information to user like title.
  \item The Javascript will fetch the five options for music playback and will display them on the user's browser.
  \item The web page should also keep track of the number of votes for any song.
  \item The html page should also include a graphic where the user can place their vote.
  \item The html page should also only list valid options for music (should only list songs stored on the server).
  \item Cookies will also be created to only allow one vote for the user.
  \item After the song has been selected to play then the html page should update to only show songs that haven't been played and should reset votes.
- \item The server should pick 5 random unique songs until no unique songs are left and repeat process. 
+ \item The server should pick 5 random unique songs until no unique songs are left and repeat process.
  \item The server should total votes and share the information with the user through the html page.
  \item The server should sort the songs after voting and play the most voted song.
  \item The cookie should also remember what song the user picked and then reset after voting has reset.
@@ -156,14 +156,14 @@ long time learning the software)
 
 \subsection{Functional Requirements}
 \begin{itemize}
-\item The web page created in HTML and Javascript will display graphics and other information to user like title. 
+\item The web page created in HTML and Javascript will display graphics and other information to user like title.
 \item The Javascript will fetch the five options for music playback and will display them on the user's browser.
 \item The web page should also keep track of the number of votes for any song.
 \item The html page should also include a graphic where the user can place their vote.
 \item The html page should also only list valid options for music (should only list songs stored on the server).
 \item Cookies will also be created to only allow one vote for the user.
 \item After the song has been selected to play then the html page should update to only show songs that haven't been played and should reset votes.
-\item The server should pick 5 random unique songs until no unique songs are left and repeat process. 
+\item The server should pick 5 random unique songs until no unique songs are left and repeat process.
 \item The server should total votes and share the information with the user through the html page.
 \item The server should sort the songs after voting and play the most voted song.
 \item The cookie should also remember what song the user picked and then reset after voting has reset.
@@ -173,33 +173,56 @@ long time learning the software)
 
 \subsection{Look and Feel Requirements}
 
-We want to make a simple to use UI and one that is visually appealing.
+\begin{itemize}
+\item Visually appealing
+\item Webapp design conforms to material design standards
+\item No noticeable UI 'lag'
+\end{itemize}
 
 \subsection{Usability and Humanity Requirements}
 
 \begin{itemize}
-\item Straight-forward web app (new users should be able to adopt it easily)
+\item Straight-forward web app
+\item New users should be able to learn and adopt it easily
 \item No sign up required
-\item Automatically connects to server via WiFi with little to no input from user
+\item Automatically connects to server with little to no input from the user
 \end{itemize}
 
 \subsection{Performance Requirements}
 
 \begin{itemize}
-\item Songs should play one after another with small or no delay in between
-\item Server should have high uptime
+\item Songs should play one after another with little to no delay in between
+\item Server should have low downtime
+\item Robust error handling
 \end{itemize}
 
 \subsection{Operational and Environmental Requirements}
 
+\begin{itemize}
+\item Server runs on a Raspberry PI device
+\item Webapp runs on all javascript-enabled web browsers
+\item Emphasis placed on phone browsers
+\item System must be able to handle
+\end{itemize}
 
 \subsection{Maintainability and Support Requirements}
 
+\begin{itemize}
+\item Minimal required maintenance
+\item Automatically pushed security updates
+\end{itemize}
+
 \subsection{Security Requirements}
 
-- A user should only be allowed to vote once per \textit{'round'} of votes \\
-- Restarting the app/WiFi/phone should not change the fact that a user can only
-  vote once per \textit{'round'} \\
+\begin{itemize}
+\item A user should only be allowed to vote once per \textit{'round'} of votes
+\item Restarting the app/WiFi/phone should not change the fact that a user can
+only vote once.
+\item Only users attending the event should be allowed to vote
+\item No private server data should be visible to anyone but the administrator
+\item No private data about other users should be visible to anyone but the
+administrator
+\end{itemize}
 
 \subsection{Cultural Requirements}
 There are no cultural requirements for this project.
@@ -216,7 +239,7 @@ issues that should be considered for every engineering project.
 
 \subsection{Open Issues}
 
-The most important issue right now is how exactly do we make sure that a user can only vote once per song, without requiring people to sign up for an account. We also want the user to be able to change their vote multiple times when selecting the next song and it is in queue. 
+The most important issue right now is how exactly do we make sure that a user can only vote once per song, without requiring people to sign up for an account. We also want the user to be able to change their vote multiple times when selecting the next song and it is in queue.
 
 \subsection{Off-the-Shelf Solutions}
 
@@ -239,14 +262,14 @@ DJ.Js is based off the open source project called \href{https://github.com/malit
 
 We are given an outline of the things we need for this project which includes a proof of concept, testing plan, a design, and a final presentation. The proof of concept will be early in the project but will allow us to make a very basic outline of the project like be able to get requests from a device to a server vice versa. The test plan will tell us how we are going to test our product so we know whether or not the project has successfully fulfilled our requirements The design of the project will be more specific to coding and will come later but can be broken down in these simple steps:
 \begin{enumerate}
-\item Build a node.js sever using Amandeeps Raspberry Pi for the 
+\item Build a node.js sever using Amandeeps Raspberry Pi for the
 \item Build the UI using javascript
 \item Testing (unit,general testing)
 \end{enumerate}
 The Final Presentation will be the last step in the project when it is complete and fully functional.
 \subsection{Migration to the New Product}
 
-There is no transition needed because we are recreating a web app, that already exists. 
+There is no transition needed because we are recreating a web app, that already exists.
 
 \subsection{Risks}
 
@@ -255,7 +278,7 @@ Many risks can occur while trying to implement our product which include:
 \item The product is a webapp and therefore relies on an internet connection
 \item Bugs or catastrophic errors in the server could cause the music to start playing sporadically
 \item Only people with a device that can connect to the internet can use the web app
-\end{itemize} 
+\end{itemize}
 
 \subsection{Costs}
 
@@ -263,7 +286,7 @@ There will be no monetary costs, the music we are using to test our webapp will 
 
 \subsection{User Documentation and Training}
 
-We will integrate a small help button at the end of the webpage that will describe how the webpage works. After this short tutorial the user should know how the website works. 
+We will integrate a small help button at the end of the webpage that will describe how the webpage works. After this short tutorial the user should know how the website works.
 
 \subsection{Waiting Room}
 
