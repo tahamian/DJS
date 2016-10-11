@@ -42,6 +42,7 @@ Thurs. Oct. 6 & 0.3 & Section 1 added and formatting \\
 Thurs. Oct. 6 & 0.4 & First draft \\
 Thurs. Oct. 6 & 0.5 & Formatting and minor changes \\
 Fri. Oct. 7 & 0.6 & First Revision complete \\
+Sat. Oct. 8 & 0.7 & Section 4 Complete\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -81,18 +82,15 @@ The client is the host of the social event or gathering, who is trying to save
 money by not hiring a DJ and simply relying on this system, which allows the
 attendees to chose what songs they want to listen to. Having users select music
 will put less stress on the event organizers, and allow them to focus on other
-aspects of the event, or let them enjoy themselves.
-
-\textbf{DJ}\\
-The client can also be a DJ, hired by a party planner, who is not willing to put
-up with people fighting over what song to play next.
+aspects of the event, or let them enjoy themselves. \\ \textbf{DJ} \\ The client can also be a DJ, hired by a party planner, who is not willing to put up with people fighting over what song to play next.
 
 \subsubsection{The Customers}
 
 \textbf{Event Attendee's}\\
 If the system is working properly and attendee's are voting for songs, then
 the event will be more enjoyable for them.
-\subsubsection{Other Stakeholders}[1]
+\subsubsection{Other Stakeholders}
+
 
 No other stakeholders have been discovered.
 
@@ -101,16 +99,17 @@ No other stakeholders have been discovered.
 \begin{itemize}
 \item The front-end of the product will take the form of a web-app that can
 run on any javascript-enabled browser. This means the app should be able to
-accomodate all common Operating Systems (phone and desktop) and all
-common Javascript-enabled browsers. Internet Explorer may be exempt\\
-\item The front-end web-app and server need to both be connected to the same
-WiFi network.\\
+accommodate all common Operating Systems (phone and desktop) and all
+common Javascript-enabled browsers. Internet Explorer may be exempt
+\item The front-end webapp and server need to both be connected to the same
+WiFi network.
 \item The server needs to be stable with very low downtime, in order to prevent
-scenarios where the music stops playing accidentally.\\
+scenarios where the music stops playing accidentally.
 \end{itemize}
 
 \subsection{Naming Conventions and Terminology}
-\begin{table}
+
+\begin{table}[!h]
 \centering
 \begin{tabular}{ c | c }
 \textbf{Shorthand} & \textbf{Explanation}\\ \hline
@@ -183,6 +182,7 @@ We want to make a simple to use UI and one that is visually appealing.
 \item No sign up required
 \item Automatically connects to server via WiFi with little to no input from user
 \end{itemize}
+
 \subsection{Performance Requirements}
 
 \begin{itemize}
@@ -190,18 +190,8 @@ We want to make a simple to use UI and one that is visually appealing.
 \item Server should have high uptime
 \end{itemize}
 
-\subsection{Usability and Humanity Requirements}
-
-- Straight-forward web app (new users should be able to adopt it easily) \\
-- No sign up required \\
-- Automatically connects to server via WiFi with little to no input from user \\
-
-\subsection{Performance Requirements}
-
-- Songs should play one after another with small or no delay in between \\
-- Server should have high uptime \\
-
 \subsection{Operational and Environmental Requirements}
+
 
 \subsection{Maintainability and Support Requirements}
 
@@ -212,10 +202,12 @@ We want to make a simple to use UI and one that is visually appealing.
   vote once per \textit{'round'} \\
 
 \subsection{Cultural Requirements}
-
+There are no cultural requirements for this project.
 \subsection{Legal Requirements}
 - Music that is played should have legal rights to be played publically \\
+- The open project we are recreating has an open MIT license \href{LICENSE.txt} {that can be found here}\\
 \subsection{Health and Safety Requirements}
+
 
 This section is not in the original Volere template, but health and safety are
 issues that should be considered for every engineering project.
@@ -241,7 +233,7 @@ development. These libraries will help with various functionality, and include
 \end{itemize}
 \subsection{New Problems}
 
-DJ.Js is based off the open source project called \href{https://github.com/malithsen/playmyway}{PlayMyWay that can be found here.} We are going to recreate the project, in javascript. The original project was written in Jade, which is a Object Oriented programming language based on Java. Jade is kind of outdated and not as universal as javascript, which is the golden standard for web page applications.
+DJ.Js is based off the open source project called \href{https://github.com/malithsen/playmyway}{PlayMyWay that can be found here.} We are going to recreate the project, in javascript. The original project was written in Jade, which is a Object Oriented programming language based on Java. Jade is kind of outdated and not as universal as javascript, which is the golden standard for web page applications. We don't need any new installations just a device that can access the internet and has a internet browser that runs javascript.
 
 \subsection{Tasks}
 
@@ -278,6 +270,8 @@ We will integrate a small help button at the end of the webpage that will descri
 Something that is part of our vision is having all genres of music, having a diverse list of music so users can select songs that cater to their tastes. We also want to add "moods" that correspond to certain event you are in, so a wedding would be more of a happy mood, where as a party will have a Festival will have a celebratory mood.
 
 \subsection{Ideas for Solutions}
+
+\newpage
 
 \bibliographystyle{plainnat}
 
