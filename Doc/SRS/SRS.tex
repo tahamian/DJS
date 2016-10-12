@@ -110,7 +110,7 @@ scenarios where the music stops playing accidentally.
 
 \subsection{Naming Conventions and Terminology}
 
-\begin{table}[!h]
+\begin{table}[H]
 \centering
 \begin{tabular}{ c | c }
 \textbf{Shorthand} & \textbf{Explanation}\\ \hline
@@ -118,7 +118,8 @@ JS & Javascript\\
 HTML & Hypertext Markup Language\\
 CSS & Cascading Style Sheets\\
 Event & Any event that includes shared music listening. Party, Wedding, etc. \\
-UI & User Interface\\
+UI & Acronym for User Interface\\
+BUC & Acronym for Business Use Case
 \end{tabular}
 \end{table}
 \subsection{Relevant Facts and Assumptions}
@@ -153,6 +154,25 @@ long time learning the software)
 \end{figure}
 \subsubsection{Work Partitioning}
 
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| X | X | X |}
+\hline
+\textbf{Event Name} &\textbf{Input and Output} &\textbf{Summary of BUC}  \\
+\hline
+Front Facing Website Interaction such as Voting & User Interaction (in) & Record the user's interaction (voting) on the website counting up\\
+\hline
+Front Facing Website Displays Votes  & Total Votes (out) & Transmit Total Votes To Front Facing Website \\
+\hline
+ Calculate Most Votes and Select Song & Total Votes (in)
+Song Selected (out) & Get Total Votes and Show Song Selected On Front End\\
+\hline
+Reset Votes & Reset Votes (out) & Server should reset votes and counter \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Individual Product Use Cases}
 
 \subsection{Functional Requirements}
@@ -173,20 +193,135 @@ long time learning the software)
 \section{Non-functional Requirements}
 
 \subsection{Look and Feel Requirements}
+
 \subsubsection{Appearance Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & The product front end must be visually appealing and have no lag between interactions. \\
+\hline
+\textbf{Rationale : } & The user should not be frustrated because of poor design.\\
+\hline
+\textbf{Fit Criterion : } &  The user interface should be clean and simple. The buttons used must clearly be distinguishable and labels should be clear of spelling mistakes.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Style Requirements}
-\begin{itemize}
-\item Visually appealing
-\item Webapp design conforms to material design standards
-\item No noticeable UI 'lag'
-\end{itemize}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & The product should have a modern UI interface with bright colors. \\
+\hline
+\textbf{Rationale : } & The colors will add to features and buttons being distinguishable. Furthermore, the product will create a brand by introducing custom color ( Facebook Blue).\\
+\hline
+\textbf{Fit Criterion : } &  The product should look like something from 2016 and not look like something from the 1990s html era.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \subsection{Usability and Humanity Requirements}
+
 \subsubsection{Ease of Use Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & The product should be easy to use and not confuse users by having simple text describing how the product works.\\
+\hline
+\textbf{Rationale : } & Users might not know what or how to vote so a label or walkthrough might help them understand the uses and limitations of the product.\\
+\hline
+\textbf{Fit Criterion : } &  The product should have text explaining how voting works and how to vote for a certain song.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Personalization and Internationalization Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & Any type of genre and song can be preloaded to the server.Furthermore the user can vote for any song they prefer.\\
+\hline
+\textbf{Rationale : } &  Users can ask event planners to preload the server with songs to allow users to personalize the song list.\\
+\hline
+\textbf{Fit Criterion : } &   Check the type of songs preloaded on the server.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Learning Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & Should be easy to use.\\
+\hline
+\textbf{Rationale : } & All users should be able to easily vote for their favourite song.\\
+\hline
+\textbf{Fit Criterion : } & The product must show simple UI design to promote simplicity which allows for ease of use.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Understandability and Politeness Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & The concept should be explained in the tutorial or instructions page clearly to allow understandability for the user.\\
+\hline
+\textbf{Rationale : } & All users should understand how the product works.\\
+\hline
+\textbf{Fit Criterion : } & The product must include an instructions, help, or walk-through page.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Accessibility Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } & The product should be easily accessed by users through the local wifi.\\
+\hline
+\textbf{Rationale : } & The users should be able to know where to go for the application to be able to use it.\\
+\hline
+\textbf{Fit Criterion : } & The URL that lets users votes must be short and easy to remember.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \begin{itemize}
 \item Straight-forward web app
 \item New users should be able to learn and adopt it easily
@@ -196,8 +331,45 @@ long time learning the software)
 
 \subsection{Performance Requirements}
 \subsubsection{Speed and Latency Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } &The product should display and send votes the server quickly with no delay.\\
+\hline
+\textbf{Rationale : } & The users need to know if their song will be played next and the total amount of votes for the selected song.\\
+\hline
+\textbf{Fit Criterion : } & Product should show votes in real time with no delay or latency.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
 \subsubsection{Safety-Critical Requirements}
+
 \subsubsection{Precision or Accuracy Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } &The song selected with the most amount of votes should be played.\\
+\hline
+\textbf{Rationale : } & The user expects that the most voted song should be played.\\
+\hline
+\textbf{Fit Criterion : } & The server should check to see if the song playing is the same as the most voted song.\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
 \subsubsection{Reliability and Availability Requirements}
 \subsubsection{Robustness or Fault-Tolerance Requirements}
 \subsubsection{Capacity Requirements}
