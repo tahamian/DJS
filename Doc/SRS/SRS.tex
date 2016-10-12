@@ -130,19 +130,6 @@ long time learning the software)
 \end{itemize}
 
 \section{Functional Requirements}
- \begin{itemize}
- \item The web page created in HTML and Javascript will display graphics and other information to user like title.
- \item The Javascript will fetch the five options for music playback and will display them on the user's browser.
- \item The web page should also keep track of the number of votes for any song.
- \item The html page should also include a graphic where the user can place their vote.
- \item The html page should also only list valid options for music (should only list songs stored on the server).
- \item Cookies will also be created to only allow one vote for the user.
- \item After the song has been selected to play then the html page should update to only show songs that haven't been played and should reset votes.
- \item The server should pick 5 random unique songs until no unique songs are left and repeat process.
- \item The server should total votes and share the information with the user through the html page.
- \item The server should sort the songs after voting and play the most voted song.
- \item The cookie should also remember what song the user picked and then reset after voting has reset.
- \end{itemize}
 
 \subsection{The Scope of the Work and the Product}
 
@@ -322,12 +309,7 @@ Reset Votes & Reset Votes (out) & Server should reset votes and counter \\
 \end{table}
 \end{center}
 
-\begin{itemize}
-\item Straight-forward web app
-\item New users should be able to learn and adopt it easily
-\item No sign up required
-\item Automatically connects to server with little to no input from the user
-\end{itemize}
+
 
 \subsection{Performance Requirements}
 \subsubsection{Speed and Latency Requirements}
@@ -350,7 +332,7 @@ Reset Votes & Reset Votes (out) & Server should reset votes and counter \\
 
 
 \subsubsection{Safety-Critical Requirements}
-
+Not Applicable
 \subsubsection{Precision or Accuracy Requirements}
 
 \begin{center}
@@ -371,28 +353,127 @@ Reset Votes & Reset Votes (out) & Server should reset votes and counter \\
 
 
 \subsubsection{Reliability and Availability Requirements}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline
+\textbf{Description : } &  The server should always be playing music and should never have any down time \\ 
+\hline 
+\textbf{Rationale : } & Users want to listen to music for the entire event or session. \\
+\hline
+\textbf{Fit Criterion : } & The product should record the uptime to see if the server ever goes down or resets. \\
+\hline
+%TABLE
+\end{tabularx}
+\end{table}
+\end{center}
 \subsubsection{Robustness or Fault-Tolerance Requirements}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline 
+\textbf{Description : } & The server should only play music that is available on the server.\\ 
+\hline 
+\textbf{Rationale : } & The users should only be able to pick from music that has been preloaded onto the server. \\
+\hline
+\textbf{Fit Criterion : } & The product should only show list of music that is readily available on the server. \\
+\hline
+%TABLE
+\end{tabularx}
+\end{table}
+\end{center}
 \subsubsection{Capacity Requirements}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline 
+\textbf{Description : } & The server should be able to store 32GB of music.\\ 
+\hline 
+\textbf{Rationale : } & The users want a wide variety of music. \\
+\hline
+\textbf{Fit Criterion : } & The product should have more then one song stored in the desginated folder. \\
+\hline
+%TABLE
+\end{tabularx}
+\end{table}
+\end{center}
 \subsubsection{Scalability or Extensibility Requirements}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline 
+\textbf{Description : } &The server should allow for atleast 300 users.\\ 
+\hline 
+\textbf{Rationale : } &The events users will attend will consist of hundreds of guests and can reach into the thousands. \\
+\hline
+\textbf{Fit Criterion : } & The product should have more then one song stored in the desginated folder. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 \subsubsection{Longevity Requirements}
-\begin{itemize}
-\item Songs should play one after another with little to no delay in between
-\item Server should have low downtime
-\item Robust error handling
-\end{itemize}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline 
+\textbf{Description : } &The web interface and server should always be up until the event coordinator manually turns off each service.\\ 
+\hline 
+\textbf{Rationale : } & The user should be able to vote for songs until the event the user is attending is over. \\
+\hline
+\textbf{Fit Criterion : } & The product should not turn off until event coordinator specifies. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \subsection{Operational and Environmental Requirements}
 \subsubsection{Expected Physical Environment}
+The physical environment does not effect non functional requirements
 \subsubsection{Requirements for Interfacing with Adjacent Systems}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline 
+\textbf{Description : } &The web browser should fluently communicate with the server and record user interaction.\\ 
+\hline 
+\textbf{Rationale : } & The web browser should let the server know what the user wants a certain song to be played. \\
+\hline
+\textbf{Fit Criterion : } & The server should show and log each interaction with the web browser. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 \subsubsection{Productization Requirements}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
+\hline 
+\textbf{Description : } &The product should have a runnable install script for easy distrubtion.\\ 
+\hline 
+\textbf{Rationale : } & The admin should be able to install the product quickly \\
+\hline
+\textbf{Fit Criterion : } & The install script should install the product with no errors. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 \subsubsection{Release Requirements}
+The product will only be released once unless an OS update corrupts the product
 
-\begin{itemize}
-\item Server runs on a Raspberry PI device
-\item Webapp runs on all javascript-enabled web browsers
-\item Emphasis placed on phone browsers
-\item System must be able to handle
-\end{itemize}
 
 \subsection{Maintainability and Support Requirements}
 \subsubsection{Maintenance Requirements}
