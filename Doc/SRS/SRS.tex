@@ -233,46 +233,133 @@ long time learning the software)
 
 \subsection{Security Requirements}
 \subsubsection{Access Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Only one vote}}\\
+\hline
+\textbf{Description : } & A user should only be allowed to vote once per 'round'
+of votes.\\
+\hline
+\textbf{Rationale : } & A single user should only be able to vote once since
+that's how democracy works\\
+\hline
+\textbf{Fit Criterion : } & Try and vote multiple times to check that it's not
+possible\\
+safeguards\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Restarting phone/WiFi cannot bypass voting}}\\
+\hline
+\textbf{Description : } & Restarting the phone or the WiFi should not allow
+the user to vote multiple times\\
+\hline
+\textbf{Rationale : } & A single user should only be able to vote once since
+that's how democracy works\\
+\hline
+\textbf{Fit Criterion : } & Try and vote multiple times by restarting phone,
+logging out, restarting WiFi and see if any of these methods break the
+safeguards\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{User access}}\\
+\hline
+\textbf{Description : } & Only users attending the event should be able to vote\\
+\hline
+\textbf{Rationale : } & External actors should not influence the election\\
+\hline
+\textbf{Fit Criterion : } & Try to access the event without being connected to
+the WiFi\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Integrity Requirements}
 \subsubsection{Privacy Requirements}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Private server data}}\\
+\hline
+\textbf{Description : } & No private server data should be visible to anyone
+but the administrator\\
+\hline
+\textbf{Rationale : } & Server data should not be compromised\\
+\hline
+\textbf{Fit Criterion : } & Penetration testing\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Other user's data}}\\
+\hline
+\textbf{Description : } & No private data about other users should be visible
+to anyone but the administrator\\
+\hline
+\textbf{Rationale : } & User's sensitive data should not be compromised\\
+\hline
+\textbf{Fit Criterion : } & Penetration testing\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
 \subsubsection{Audit Requirements}
 \subsubsection{Immunity Requirements}
-\begin{itemize}
-\item A user should only be allowed to vote once per \textit{'round'} of votes
-\item Restarting the app/WiFi/phone should not change the fact that a user can
-only vote once.
-\item Only users attending the event should be allowed to vote
-\item No private server data should be visible to anyone but the administrator
-\item No private data about other users should be visible to anyone but the
-administrator
-\end{itemize}
 
 \subsection{Cultural Requirements}
 There are no cultural requirements for this project.
 \subsection{Legal Requirements}
 \subsubsection{Compliance Requirements}
+
 \begin{center}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
 \multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
 \hline
-\textbf{Description : } &  Music that is played by someone should have legal rights to be played publicly \\ 
-\hline 
+\textbf{Description : } &  Music that is played by someone should have legal rights to be played publicly \\
+\hline
 \textbf{Rationale : } & It is illegal to play music that you do not own the rights to play \\
 \hline
 \textbf{Fit Criterion : } & We use a website that offers Royalty free music for the testing \href{http://www.bensound.com/}{that can found here} \\
 \hline
 \end{tabularx}
 \end{table}
+\end{center}
 
+\begin{center}
 \begin{table} [H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
 \multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
 \hline
-\textbf{Description : } & Make sure that the original project we are trying to recreate allows us to look at the original project and take some things from their project. \\ 
-\hline 
+\textbf{Description : } & Make sure that the original project we are trying to recreate allows us to look at the original project and take some things from their project. \\
+\hline
 \textbf{Rationale : } & We have to make sure we do not copy someone else's idea because it is illegal to copy work that you do not have the rights to. \\
 \hline
 \textbf{Fit Criterion : } & The open project we are recreating has an open MIT license \href{LICENSE.txt} {that can be found here.} We are allowed to use their project in any way we like.\\
@@ -354,8 +441,8 @@ Something that is part of our vision is having all genres of music, having a div
 \hline
 \multicolumn{2}{|c|}{\textbf{Non-Functional requirement}}\\
 \hline
-\textbf{Description : } & Make sure that the original project we are trying to recreate allows us to look at the original project and take some things from their project. \\ 
-\hline 
+\textbf{Description : } & Make sure that the original project we are trying to recreate allows us to look at the original project and take some things from their project. \\
+\hline
 \textbf{Rationale : } & We have to make sure we do not copy someone else's idea because it is illegal to copy work that you do not have the rights to. \\
 \hline
 \textbf{Fit Criterion : } & The open project we are recreating has an open MIT license \href{LICENSE.txt} {that can be found here.} We are allowed to use their project in any way we like.\\
