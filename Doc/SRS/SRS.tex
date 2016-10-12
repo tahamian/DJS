@@ -61,17 +61,17 @@ to the template, you should explicity state what modifications were made.
 
 \subsection{The Purpose of the Project}
 The purpose of this project is to make it easier for people that attend social
-gatherings or events to select a songs and form their own playlist according to
-the mood or perference of the attendees. The current implementation (PlayMyWay)
+gatherings or events, to select songs and form their own playlist according to
+the mood or preference of the attendees. The current implementation (PlayMyWay)
 has an unflattering and difficult to use UI, as well as no easy way for the
 average person to integrate the software into their party. We plan on making a
-revised version that has an elengant web app interface, and an easy to install
+revised version that has an elegant web app interface, and an easy to install
 server.
 
-Social gatherings are much more enjoyable when most of the attendee's enjoy
+Social gatherings are much more enjoyable when most of the attendees enjoy
 the music that is being played. This project was inspired by \\
 
-Social gatherings are much more enjoyable when most of the attendee's enjoy
+Social gatherings are much more enjoyable when most of the attendees enjoy
 the music that is being played. This project was inspired by
 
 \subsection{The Stakeholders}
@@ -81,7 +81,7 @@ the music that is being played. This project was inspired by
 \textbf{Event Organizer}\\
 The client is the host of the social event or gathering, who is trying to save
 money by not hiring a DJ and simply relying on this system, which allows the
-attendees to chose what songs they want to listen to. Having users select music
+attendees to chose what songs they would like to hear. Having users select music
 will put less stress on the event organizers, and allow them to focus on other
 aspects of the event, or let them enjoy themselves. \\ \textbf{DJ} \\ The client can also be a DJ, hired by a party planner, who is not willing to put up with people fighting over what song to play next.
 
@@ -100,9 +100,9 @@ No other stakeholders have been discovered.
 \begin{itemize}
 \item The front-end of the product will take the form of a web-app that can
 run on any javascript-enabled browser. This means the app should be able to
-accommodate all common Operating Systems (phone and desktop) and all
+accommodate all common operating Systems (mobile and desktop) and all
 common Javascript-enabled browsers. Internet Explorer may be exempt
-\item The front-end webapp and server need to both be connected to the same
+\item The front-end web-app and server need to both be connected to the same
 WiFi network.
 \item The server needs to be stable with very low downtime, in order to prevent
 scenarios where the music stops playing accidentally.
@@ -131,14 +131,14 @@ long time learning the software)
 
 \section{Functional Requirements}
  \begin{itemize}
- \item The web page created in HTML and Javascript will display graphics and other information to user like title.
+ \item The web page created in HTML and Javascript will display graphics and other information to user like a title.
  \item The Javascript will fetch the five options for music playback and will display them on the user's browser.
  \item The web page should also keep track of the number of votes for any song.
  \item The html page should also include a graphic where the user can place their vote.
  \item The html page should also only list valid options for music (should only list songs stored on the server).
  \item Cookies will also be created to only allow one vote for the user.
  \item After the song has been selected to play then the html page should update to only show songs that haven't been played and should reset votes.
- \item The server should pick 5 random unique songs until no unique songs are left and repeat process.
+ \item The server should pick 5 random unique songs until no unique songs are left and repeat the process.
  \item The server should total votes and share the information with the user through the html page.
  \item The server should sort the songs after voting and play the most voted song.
  \item The cookie should also remember what song the user picked and then reset after voting has reset.
