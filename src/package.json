@@ -1,11 +1,16 @@
 {
   "name": "djs",
   "version": "1.0.0",
-  "description": "",
+  "description": "THIS IS SOME COOL ASS *&^%",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "handlebars": "^4.0.5",
+    "play-sound": "^1.0.0"
+  }
 }
