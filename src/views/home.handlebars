@@ -1,38 +1,13 @@
+<script src="home.js"></script>
+
 <div class="page-header">
   <h3> DJS </h3>
-  <body>
-
-<script>
-$(function() {
-  var id = Cookies.get('id')
-  var socket = io.connect()
-  if (!id)
-    socket.emit('connect-request', null)
-  else
-    socket.emit('connect-request', id)
-
-  socket.on('connect-response', (data) => {
-      Cookies.remove('id')
-      console.log('mdata: ' + data)
-      Cookies.set('id', data)
-  })
-})
-</script>
-
-    <p>SONG LIST</p>
-      
-      <form action="/vote" method="post">
-        <div class="list-group">
-        <button type="input" name="song"class="list-group-item" value="upvote">Upvote</button>
-        </div>
-      </form>
-     
-   
-  </body>
 </div>
 
+<p>SONG LIST</p>
 
-
-
-
-
+<form action="/vote" method="post">
+  <div class="list-group">
+  <button type="input" name="song"class="list-group-item" value="upvote">Upvote</button>
+  </div>
+</form>

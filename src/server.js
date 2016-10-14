@@ -3,50 +3,48 @@ var express = require('express'),
 		server = require('http').createServer(app),
 		io = require('socket.io').listen(server),
 		handlebars = require('express-handlebars'),
-		fs = require('fs')
+		fs = require('fs'),
+		path = require('path');
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
-// List of Songs in /music 
-
-var array = []
-var fs = require("fs"),
-    path = require("path");
+// List of Songs in /music
+var array = [];
 
 var p = "../src/music"
 
 fs.readdir(p, function (err, files) {
-    if (err) {
-        throw err;
-    }
-    console.log("List of Files in /music");
-    files.map(function (file) {
-        return path.join(p, file);
-    }).filter(function (file) {
-        return fs.statSync(file).isFile();
-    }).forEach(function (file) {
-    	// add to array variable
-    	array.push(path.basename(file));
-    	console.log(array[0]);
-    });
+
+	if (err) {
+      throw err
+  }
+
+  console.log("List of Files in /music");
+
+  files.map(function (file) {
+      return path.join(p, file);
+  }).filter(function (file) {
+      return fs.statSync(file).isFile();
+  }).forEach(function (file) {
+  	// add to array variable
+  	array.push(path.basename(file));
+  	console.log(array[0]);
+  });
+
 });
 
-
-
-
-
-
-
 var vote = 0;
+
 app.post('/vote', function(req,res){
   vote+=1;
   console.log('Vote Total= ' + vote);
+
   res.redirect(303, '/');
 });
 
-var users
+var users;
+
 fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
 })
@@ -56,25 +54,31 @@ server.listen(port)
 console.log('Server running on port: ' + port)
 
 app.get('/', (req, res) => {
-	
 	res.render('home')
 })
 
+// Allows users to load resources in the '/public' folder
 app.use('/public', express.static(__dirname + '/public'));
 
 io.sockets.on('connection', function(socket) {
+
 	socket.on('connect-request', function(data) {
+		// If the user does not have an ID cookie set, create one
 		if (!data) {
 			var newID = generateNewID()
 			socket.emit('connect-response', newID)
 			fs.writeFile('users.db', users)
 			console.log('New connection with ID: ' + newID)
+		// Otherwise just use the existing ID
 		} else {
 			console.log('User: ' + data + ' reconnected.')
 		}
+
 	})
+
 	socket.on('disconnect', function(data) {
 	})
+
 })
 
 function generateNewID() {
