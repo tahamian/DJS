@@ -1,11 +1,11 @@
 /*
 	Return the next n song choices
 
-	@param {Number} n - how many songs should be picked
-	@return {Songs} - a list of n songs that will be the new voting options
+	@param n - how many songs should be picked
+	@return - a list of n songs that will be the new voting options
 */
 function getSongs(n) {
-
+	return ['a', 'b', 'c', 'd', 'jj']
 }
 
 /*
@@ -13,8 +13,11 @@ function getSongs(n) {
 	has been picked so that it will not be chosen again (we don't want songs to
 	be repeated!)
 
-	@param {Song} song - song that has been voted on
+	@param song - song that has been voted on
 */
 function updateCurrentSong(song) {
 
 }
+
+exports.getSongs = getSongs
+exports.updateCurrentSong = updateCurrentSong

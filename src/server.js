@@ -4,13 +4,15 @@ var express = require('express'),
 		io = require('socket.io').listen(server),
 		handlebars = require('express-handlebars'),
 		fs = require('fs'),
-		path = require('path');
+		path = require('path'),
+		player = require('./player.js'),
+		library = require('./library.js')
 
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
 
 // List of Songs in /music
-var array = [];
+var array = []
 
 var p = "../src/music"
 
@@ -20,30 +22,30 @@ fs.readdir(p, function (err, files) {
       throw err
   }
 
-  console.log("List of Files in /music");
+  console.log("List of Files in /music")
 
   files.map(function (file) {
-      return path.join(p, file);
+      return path.join(p, file)
   }).filter(function (file) {
-      return fs.statSync(file).isFile();
+      return fs.statSync(file).isFile()
   }).forEach(function (file) {
   	// add to array variable
-  	array.push(path.basename(file));
-  	console.log(array[0]);
-  });
+  	array.push(path.basename(file))
+  	console.log(array[0])
+  })
 
-});
+})
 
-var vote = 0;
+var vote = 0
 
 app.post('/vote', function(req,res){
-  vote+=1;
-  console.log('Vote Total= ' + vote);
+  vote+=1
+  console.log('Vote Total= ' + vote)
 
-  res.redirect(303, '/');
-});
+  res.redirect(303, '/')
+})
 
-var users;
+var users
 
 fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
@@ -58,7 +60,7 @@ app.get('/', (req, res) => {
 })
 
 // Allows users to load resources in the '/public' folder
-app.use('/public', express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'))
 
 io.sockets.on('connection', function(socket) {
 
@@ -75,7 +77,7 @@ io.sockets.on('connection', function(socket) {
 		}
 
 		// Obviously needs to be replaced with real data
-		songlist = ['a', 'b', 'c', 'd', 'jj']
+		songlist = library.getSongs(5)
 		socket.emit('update-songs', songlist)
 	})
 
@@ -99,4 +101,13 @@ io.sockets.on('connection', function(socket) {
 
 function generateNewID() {
 	return users++
+}
+
+/*
+	Called by the player when the song is done playing. Determines what the next
+	song should be, tells the player what new song to play, and prepare the new
+	vote
+*/
+function songDone() {
+
 }
