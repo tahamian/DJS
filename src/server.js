@@ -74,6 +74,22 @@ io.sockets.on('connection', function(socket) {
 			console.log('User: ' + data + ' reconnected.')
 		}
 
+		// Obviously needs to be replaced with real data
+		songlist = ['a', 'b', 'c', 'd', 'jj']
+		socket.emit('update-songs', songlist)
+	})
+
+	/*
+		A user has voted for a song. We have to first make sure that this user
+		hasn't voted yet!!
+
+		@param data - Contains the userID and the name of the song
+	*/
+	socket.on('vote', function(data) {
+		var id = data.id,
+				song = data.song
+
+		console.log('Vote clicked for: ' + song)
 	})
 
 	socket.on('disconnect', function(data) {
