@@ -22,8 +22,6 @@ fs.readdir(p, function (err, files) {
       throw err
   }
 
-  console.log("List of Files in /music")
-
   files.map(function (file) {
       return path.join(p, file)
   }).filter(function (file) {
@@ -61,6 +59,17 @@ app.get('/', (req, res) => {
 
 // Allows users to load resources in the '/public' folder
 app.use('/public', express.static(__dirname + '/public'))
+
+var currentSong = array[0]
+
+function done() {
+	// 1. Reset voting system
+	// 2. Update website
+	// 3. Set currentSong
+	player.play(currentSong, this)
+}
+
+player.play(currentSong, done())
 
 io.sockets.on('connection', function(socket) {
 
