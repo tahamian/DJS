@@ -30,14 +30,17 @@ $(function() {
     // For each new song, create a list element and append it
     $.each(data, function(i) {
 
-      var div = $('<div />')
-          .addClass('song-div')
+      var button = $('<button  />')
+          .addClass('list-group-item list-group-item-action')
+
           .appendTo($('#list-div'))
           .text(data[i])
           .click(function() {
+            
             socket.emit('vote', {
-              'ID': Cookies.get('id'),
+              'id': Cookies.get('id'),
               'song': data[i]
+
             })
           })
     })
