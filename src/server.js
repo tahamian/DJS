@@ -13,9 +13,9 @@ app.set('view engine', 'handlebars')
 
 // List of Songs in /music
 var array = []
-
 var p = "../src/music"
 
+var votes = [];
 fs.readdir(p, function (err, files) {
 
 	if (err) {
@@ -88,8 +88,16 @@ io.sockets.on('connection', function(socket) {
 		@param data - Contains the userID and the name of the song
 	*/
 	socket.on('vote', function(data) {
-		var id = data.id,
+		console.log('Vote incoming from: ' + data.id)
+		var id = data.id
 				song = data.song
+		votes.push({
+			'id': id,
+			'song': song
+
+		})
+
+		console.log('VOTES' + JSON.stringify(votes))
 
 		console.log('Vote clicked for: ' + song)
 	})
