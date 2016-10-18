@@ -96,6 +96,7 @@ io.sockets.on('connection', function(socket) {
 })
 
 function done() {
+	console.log('done function')
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 6)
 	socket.emit('update-songs', choices)

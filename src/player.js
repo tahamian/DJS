@@ -7,7 +7,9 @@ const exec = require('child_process').exec
 	@param done - callback function for when the song is done
 */
 function play(song, done) {
-	exec('omxplayer ' + song, (err, stdout, stderr) => {
+	var songPath = __dirname + '/music/' + song
+	exec('omxplayer \"' + songPath + '\"', (err, stdout, stderr) => {
+		console.log(stdout)
 		if (err) {
 			console.log('player.js: err\n' + err)
 			return
@@ -16,7 +18,7 @@ function play(song, done) {
 			console.log('player.js: stderr\n' + err)
 			return
 		}
-
+		console.log('song over')
 		done()
 	})
 }
