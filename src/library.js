@@ -1,23 +1,31 @@
+var fs = require('fs')
+var path = require('path')
+
 /*
 	Return the next n song choices
 
 	@param n - how many songs should be picked
 	@return - a list of n songs that will be the new voting options
 */
-function getSongs(n) {
-	return ['a', 'b', 'c', 'd', 'jj']
-}
+function getSongs(p) {
+	array = []
 
-/*
-	Once a song has been voted on, server.js should notify this module which song
-	has been picked so that it will not be chosen again (we don't want songs to
-	be repeated!)
+	fs.readdirSync(p, function (err, files) {
+		if (err) { console.log(err) }
 
-	@param song - song that has been voted on
-*/
-function updateCurrentSong(song) {
+	  files.map(function (file) {
+	      return path.join(p, file)
+	  }).filter(function (file) {
+	      return fs.statSync(file).isFile()
+	  }).forEach(function (file) {
+	  	// add to array variable
+	  	array.push(path.basename(file))
+	  	console.log(array[0])
+	  })
 
+	})
+
+	return ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't']
 }
 
 exports.getSongs = getSongs
-exports.updateCurrentSong = updateCurrentSong

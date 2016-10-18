@@ -5,46 +5,20 @@ var express = require('express'),
 		handlebars = require('express-handlebars'),
 		fs = require('fs'),
 		path = require('path'),
+		colors = require('colors'),
 		player = require('./player.js'),
 		library = require('./library.js')
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
-// List of Songs in /music
-var array = []
-var p = "../src/music"
+var musicPath = __dirname + '/music'
+var music = library.getSongs(musicPath)
+console.log('music: ' + JSON.stringify(music))
 
-var votes = [];
-fs.readdir(p, function (err, files) {
-
-	if (err) {
-      throw err
-  }
-
-  files.map(function (file) {
-      return path.join(p, file)
-  }).filter(function (file) {
-      return fs.statSync(file).isFile()
-  }).forEach(function (file) {
-  	// add to array variable
-  	array.push(path.basename(file))
-  	console.log(array[0])
-  })
-
-})
-
-var vote = 0
-
-app.post('/vote', function(req,res){
-  vote+=1
-  console.log('Vote Total= ' + vote)
-
-  res.redirect(303, '/')
-})
+var votes = []
 
 var users
-
 fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
 })
@@ -60,20 +34,15 @@ app.get('/', (req, res) => {
 // Allows users to load resources in the '/public' folder
 app.use('/public', express.static(__dirname + '/public'))
 
-var currentSong = array[0]
+var currentSong, musicIndex, choices
 
-function done() {
-	// 1. Reset voting system
-	// 2. Update website
-	// 3. Set currentSong
-	player.play(currentSong, this)
-}
-
-player.play(currentSong, done())
+var ioSocket = []
 
 io.sockets.on('connection', function(socket) {
+	ioSocket = socket
 
 	socket.on('connect-request', function(data) {
+
 		// If the user does not have an ID cookie set, create one
 		if (!data) {
 			var newID = generateNewID()
@@ -85,9 +54,11 @@ io.sockets.on('connection', function(socket) {
 			console.log('User: ' + data + ' reconnected.')
 		}
 
-		// Obviously needs to be replaced with real data
-		songlist = library.getSongs(5)
-		socket.emit('update-songs', songlist)
+		currentSong = music[0]
+		musicIndex = 1
+		choices = music.slice(musicIndex, musicIndex + 6)
+		player.play(currentSong, done)
+		socket.emit('update-songs', choices)
 	})
 
 	/*
@@ -100,13 +71,13 @@ io.sockets.on('connection', function(socket) {
 		console.log('Vote incoming from: ' + data.id)
 		var id = data.id
 				song = data.song
-		var idFound = false;
+		var idFound = false
 		for (var i = votes.length - 1; i >= 0; i--) {
 			if(id == votes[i].id){
 				votes[i].song = song
-				idFound = true;
+				idFound = true
 			}
-		};
+		}
 
 		if(idFound == false){
 
@@ -124,15 +95,43 @@ io.sockets.on('connection', function(socket) {
 
 })
 
-function generateNewID() {
-	return users++
+function done() {
+	musicIndex += 5
+	choices = music.slice(musicIndex, musicIndex + 6)
+	socket.emit('update-songs', choices)
+	currentSong = tallyVotes()
+	player.play(currentSong, this)
 }
 
-/*
-	Called by the player when the song is done playing. Determines what the next
-	song should be, tells the player what new song to play, and prepare the new
-	vote
-*/
-function songDone() {
+function tallyVotes() {
+	var tallies = []
+	for (var i = 0; i < choices.length; i++) {
+		tallies.push({
+			'song': choices[i],
+			'votes': 0
+		})
+	}
 
+	for (var i = 0; i < votes.length; i++) {
+		var song = votes[i].song
+
+		for (var j = 0; j < tallies.length; j++) {
+			if (tallies[i].song == song) tallies[i].votes++
+		}
+	}
+
+	var maxTally = -1
+	var maxSong
+	for (var i = 0; i < tallies.length; i++) {
+		if (tallies[i].votes > maxTally) {
+			maxSong = tallies[i].song
+			maxTally = tallies[i].votes
+		}
+	}
+
+	return maxSong
+}
+
+function generateNewID() {
+	return users++
 }
