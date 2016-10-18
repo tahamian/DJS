@@ -100,15 +100,23 @@ io.sockets.on('connection', function(socket) {
 		console.log('Vote incoming from: ' + data.id)
 		var id = data.id
 				song = data.song
-		votes.push({
+		var idFound = false;
+		for (var i = votes.length - 1; i >= 0; i--) {
+			if(id == votes[i].id){
+				votes[i].song = song
+				idFound = true;
+			}
+		};
+
+		if(idFound == false){
+
+			votes.push({
 			'id': id,
 			'song': song
 
-		})
-
-		console.log('VOTES' + JSON.stringify(votes))
-
-		console.log('Vote clicked for: ' + song)
+			})
+		}
+		console.log('Votes Array' + JSON.stringify(votes))
 	})
 
 	socket.on('disconnect', function(data) {
