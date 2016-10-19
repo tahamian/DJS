@@ -14,7 +14,6 @@ app.set('view engine', 'handlebars')
 
 var musicPath = __dirname + '/music'
 var music = library.getSongs(musicPath)
-console.log('music: ' + JSON.stringify(music))
 
 var votes = []
 
@@ -84,7 +83,6 @@ io.sockets.on('connection', function(socket) {
 
 			})
 		}
-		console.log('Votes Array' + JSON.stringify(votes))
 	})
 
 	socket.on('disconnect', function(data) {
@@ -106,20 +104,15 @@ function tallyVotes() {
 		})
 	}
 	
-	console.log('VOTES:\n' + JSON.stringify(votes))
-
 	for (var i = 0; i < votes.length; i++) {
 		var song = votes[i].song
 		
 		for (var j = 0; j < tallies.length; j++) {
 			if (tallies[j].song == song){
 				tallies[j].votes++
-				console.log('HIT!!!')
 			}
 		}
 	}
-
-	console.log('tallies:\n' + JSON.stringify(tallies))
 
 	var maxTally = -1
 	var maxSong
@@ -129,7 +122,6 @@ function tallyVotes() {
 			maxTally = tallies[i].votes
 		}
 	}
-	console.log('New max song: ' + maxSong)
 	player.play(maxSong, done)
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
