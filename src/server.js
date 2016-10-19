@@ -94,9 +94,6 @@ io.sockets.on('connection', function(socket) {
 
 function done() {
 	console.log('done function')
-	musicIndex += 5
-	choices = music.slice(musicIndex, musicIndex + 5)
-	io.sockets.emit('update-songs', choices)
 	currentSong = tallyVotes()
 }
 
@@ -108,14 +105,21 @@ function tallyVotes() {
 			'votes': 0
 		})
 	}
+	
+	console.log('VOTES:\n' + JSON.stringify(votes))
 
 	for (var i = 0; i < votes.length; i++) {
 		var song = votes[i].song
-
+		
 		for (var j = 0; j < tallies.length; j++) {
-			if (tallies[i].song == song) tallies[i].votes++
+			if (tallies[j].song == song){
+				tallies[j].votes++
+				console.log('HIT!!!')
+			}
 		}
 	}
+
+	console.log('tallies:\n' + JSON.stringify(tallies))
 
 	var maxTally = -1
 	var maxSong
@@ -127,6 +131,9 @@ function tallyVotes() {
 	}
 	console.log('New max song: ' + maxSong)
 	player.play(maxSong, done)
+	musicIndex += 5
+	choices = music.slice(musicIndex, musicIndex + 5)
+	io.sockets.emit('update-songs', choices)
 	return maxSong
 }
 

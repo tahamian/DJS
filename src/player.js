@@ -1,17 +1,11 @@
-const execSync = require('child_process').execSync
+var player = require('play-sound')(opts = {})
 
-/*
-	Stop any currently playing music, and play filename instead
-
-	@param song - the song to be played immediately
-	@param done - callback function for when the song is done
-*/
 function play(song, done) {
-	var songPath = __dirname + '/music/' + song
-	var cmd = 'omxplayer \"' + songPath + '\"'
-	console.log('About to execute cmd:' + cmd)
-	execSync(cmd)
-	console.log('song over')
+	songPath = __dirname + '/music/' + song
+	console.log('Playing:\n' + songPath)
+	player.play(songPath, {timeout: 10000}, function(err) {
+		done()
+	})
 }
 
 exports.play = play
