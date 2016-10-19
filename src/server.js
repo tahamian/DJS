@@ -36,11 +36,12 @@ app.use('/public', express.static(__dirname + '/public'))
 
 var currentSong, musicIndex, choices
 
-var ioSocket = []
+currentSong = music[0]
+musicIndex = 1
+choices = music.slice(musicIndex, musicIndex + 5)
+player.play(currentSong, done)
 
 io.sockets.on('connection', function(socket) {
-	ioSocket = socket
-
 	socket.on('connect-request', function(data) {
 
 		// If the user does not have an ID cookie set, create one
@@ -54,10 +55,6 @@ io.sockets.on('connection', function(socket) {
 			console.log('User: ' + data + ' reconnected.')
 		}
 
-		currentSong = music[0]
-		musicIndex = 1
-		choices = music.slice(musicIndex, musicIndex + 6)
-		player.play(currentSong, done)
 		socket.emit('update-songs', choices)
 	})
 
@@ -98,10 +95,9 @@ io.sockets.on('connection', function(socket) {
 function done() {
 	console.log('done function')
 	musicIndex += 5
-	choices = music.slice(musicIndex, musicIndex + 6)
-	socket.emit('update-songs', choices)
+	choices = music.slice(musicIndex, musicIndex + 5)
+	io.sockets.emit('update-songs', choices)
 	currentSong = tallyVotes()
-	player.play(currentSong, this)
 }
 
 function tallyVotes() {
@@ -129,7 +125,8 @@ function tallyVotes() {
 			maxTally = tallies[i].votes
 		}
 	}
-
+	console.log('New max song: ' + maxSong)
+	player.play(maxSong, done)
 	return maxSong
 }
 

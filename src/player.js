@@ -1,4 +1,4 @@
-const exec = require('child_process').exec
+const execSync = require('child_process').execSync
 
 /*
 	Stop any currently playing music, and play filename instead
@@ -8,19 +8,10 @@ const exec = require('child_process').exec
 */
 function play(song, done) {
 	var songPath = __dirname + '/music/' + song
-	exec('omxplayer \"' + songPath + '\"', (err, stdout, stderr) => {
-		console.log(stdout)
-		if (err) {
-			console.log('player.js: err\n' + err)
-			return
-		}
-		if (stderr) {
-			console.log('player.js: stderr\n' + err)
-			return
-		}
-		console.log('song over')
-		done()
-	})
+	var cmd = 'omxplayer \"' + songPath + '\"'
+	console.log('About to execute cmd:' + cmd)
+	execSync(cmd)
+	console.log('song over')
 }
 
 exports.play = play
