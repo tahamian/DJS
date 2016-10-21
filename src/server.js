@@ -83,6 +83,7 @@ io.sockets.on('connection', function(socket) {
 
 			})
 		}
+		console.log(JSON.stringify(votes))
 	})
 
 	socket.on('disconnect', function(data) {
