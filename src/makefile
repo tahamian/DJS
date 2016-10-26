@@ -1,2 +1,2 @@
 docs:
-	jsdoc player.js server.js -d '../Doc/Generated Docs'
+	./node_modules/.bin/jsdoc player.js server.js -d '../Doc/Generated Docs'
