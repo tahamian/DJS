@@ -1,4 +1,4 @@
-filename=hello
+filename=TestPlan
 
 pdf: ps
 	ps2pdf ${filename}.ps
@@ -20,3 +20,6 @@ clean:
 	rm ${filename}.dvi
 	rm ${filename}.bbl
 	rm ${filename}.blg
+cleanall:
+	rm !(TestPlan.tex|Makefile|README.md)
+
