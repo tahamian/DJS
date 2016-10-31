@@ -7,7 +7,8 @@ var express = require('express'),
 		path = require('path'),
 		colors = require('colors'),
 		player = require('./player.js'),
-		library = require('./library.js')
+		library = require('./library.js'),
+		voter = require('./voter.js')
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -93,41 +94,11 @@ io.sockets.on('connection', function(socket) {
 
 function done() {
 	console.log('done function')
-	currentSong = tallyVotes()
-}
-
-function tallyVotes() {
-	var tallies = []
-	for (var i = 0; i < choices.length; i++) {
-		tallies.push({
-			'song': choices[i],
-			'votes': 0
-		})
-	}
-	
-	for (var i = 0; i < votes.length; i++) {
-		var song = votes[i].song
-		
-		for (var j = 0; j < tallies.length; j++) {
-			if (tallies[j].song == song){
-				tallies[j].votes++
-			}
-		}
-	}
-
-	var maxTally = -1
-	var maxSong
-	for (var i = 0; i < tallies.length; i++) {
-		if (tallies[i].votes > maxTally) {
-			maxSong = tallies[i].song
-			maxTally = tallies[i].votes
-		}
-	}
+	currentSong = tallyVotes(choices, votes)
 	player.play(maxSong, done)
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
 	io.sockets.emit('update-songs', choices)
-	return maxSong
 }
 
 function generateNewID() {
