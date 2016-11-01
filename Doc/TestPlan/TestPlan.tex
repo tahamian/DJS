@@ -434,14 +434,14 @@ How test will be performed:
 	
 \section{Comparison to Existing Implementation}	
 The product DJS is a dynamic voting system which allows user to vote for certain songs. The previously implemented open source project called PlayMyWay lacked in well documented code. Comparing the two products is beneficial to DJS since it allows the product to evolve. The changes that might occur however are dependent on the project's progress and would require the scope to change. The modification to the scope would help develop and implement core features in DJS. The requirements that may add extra features will only be incorporated if time permits. The subsection of requirements such as look and feel, performance, security, and accuracy still need improvements. The section for look and feel for example is only partially implemented in the proof of concept. The requirement of displaying the total number of votes for each song will only be added if time permits. Another example, the performance requirement of loading buttons and quickly is still waiting to be implemented.  However, since most core requirements such as playing music and voting have been fulfilled most requirements suggested from before and others will be developed. Although most requirements are important  the list may also be narrowed down to help create more time for more ideal requirements such as total votes. Thus, after comparing DJS with the original implementation it demonstrates the similarities and the small differences still left to be negated  
-
 				
 \section{Unit Testing Plan}
 		
 \subsection{Unit testing of internal functions}
+The implemented unit tests will help examine the product and will allow for clarity. The automated tests will be used to test a multitude of functional and nonfunctional requirements.  Majority of these tests will use the internal functions and variables implemented in the product. All tests will be correlated to core functions utilized in the product to ensure predictable outputs and behaviours for normal, abnormal, and negative scenarios.
 		
 \subsection{Unit testing of output files}		
-
+The output for the DJS product will be the music playing and the client-side graphical interface. The unit testing for output will be done with the combination of both manual and automated testing. In addition, the testing of output will also include using an external library called selenium which helps javascript simulate clicks and other actions a user would commit. The tests will call functions that create the view and check if the view has appeared. An example would be is checking if the buttons have been loaded. The test for checking if buttons have appeared would involved the selenium library and would simulate buttons clicks. The unit tests will ensure that the proper methods are called and the output is the expected result. 
 \bibliographystyle{plainnat}
 
 \bibliography{SRS}
