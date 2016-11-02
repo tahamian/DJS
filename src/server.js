@@ -94,7 +94,7 @@ io.sockets.on('connection', function(socket) {
 
 function done() {
 	console.log('done function')
-	currentSong = tallyVotes(choices, votes)
+	currentSong = voter.tallyVotes(choices, votes)
 	player.play(maxSong, done)
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
