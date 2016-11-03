@@ -1,13 +1,17 @@
-var express = require('express'),
-    app = express(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
-    handlebars = require('express-handlebars'),
-    bodyParser = require('body-parser').urlencoded({ extended: true }),
-    passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
-    cookieParser = require('cookie-parser'),
-    authenticate = require('./authenticate.js').authenticate;
+
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+var handlebars = require('express-handlebars');
+var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var cookieParser = require('cookie-parser');
+var authenticate = require('./authenticate.js').authenticate;
+
+// Obviously this needs to be stored and configured somewhere else!
+var PASSWORD = "root";
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -22,7 +26,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser((user, done) => {
-    done(null, user.username);
+    done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
@@ -30,8 +34,8 @@ passport.deserializeUser((user, done) => {
 });
 
 app.use('/public', express.static(__dirname + '/public'));
-app.use(cookieParser);
-app.use(bodyParser);
+app.use(cookieParser());
+app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,8 +48,12 @@ app.get('/', (req, res) => {
     res.render('login');
 });
 
+app.get('/vote', (req, res) => {
+    res.render('vote');
+})
+
 app.post('/login', passport.authenticate('local'), (req, res) => {
-    res.redirect('/songs');
+    res.redirect('/vote');
 });
 
 io.sockets.on('connection', function(socket) {
