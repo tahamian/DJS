@@ -62,6 +62,7 @@ The project, "DJS",is a democratic voting system which allows users to vote for 
 N/A
 
 \subsection{Overview of Document}
+\textcolor{red}{Making an issue to href something MAY be a better idea - CM} \\
 	This is the test plan document for the project DJS, which is a reconstruction of the application PlayMyWay (href this).
 The test plan uses the functional and non-functional requirements to detect any errors in the project DJS.
 The document goes over various techniques for testing such as Manual and automated testing, structural and
@@ -70,17 +71,21 @@ functional testing, static and dynamic testing, fault testing.
 \section{Plan}
 	
 \subsection{Software Description}
+\textcolor{red}{WAY to low level when mentioned .js files. Speak more to modules for example - CM} \\
 The server running DJS is using nodejs with multiple libraries which includes : express, handlebars, express--handlebars, and socket.io. The implementation of DJS has been modularized into three aspects.The player.js file plays the music, server.js hosts the website, votes.js helps with voting, and library.js which returns list of songs. 
 
 \subsection{Test Team}
 All project members will participate and be responsible for writing and executing tests.
 
 \subsection{Automated Testing Approach}
+\textcolor{red}{Speak to the why, where and how you will run automatic tests - CM} \\
 The automated testing will be implemented by using javascript libaries and custom unit testing function created in javascript.
 \subsection{Testing Tools}
+\textcolor{red}{Should the reader know these? What are they for, purpose? I know Karma includes many features, which will you use? - CM} \\
 The following testing libraries will be use: Selenium, Mocha, Karma, and Protractor. 
 
 \subsection{Testing Schedule}
+\textcolor{red}{Poor formatting, poor use of Gantt charts - CM} \\
 Webpage should be operational by Oct 21/16
 Server should be able to handle multiple users Oct 28/16
 Voting system works by Oct 23/16
@@ -324,7 +329,7 @@ Songs in queue by Oct 25/16
 
 
 \subsection{Tests for Nonfunctional Requirements}
-
+\textcolor{red}{ I don't like how these are structured. For example, NF Test 1: Initial State: Webpage has not been loaded. Input: User opens the webpage by doing X. Output: Webpage is open. How Test is Preformed: The user will rate on a scale... That is a better test because it is specific and repeatable. Also, make a survey and use symbolic parameters for everything (e.g. stress testing)  - CM} \\
 \subsubsection{Look and Feel Requirements}
 		
 \paragraph{Appearance Tests}
@@ -764,6 +769,7 @@ How test will be performed: User will try and look at other user information on 
 
 	
 \section{Comparison to Existing Implementation}	
+\textcolor{red}{This is NOT just comparing the projects. It is detailing how to parallel test the two to be sure your project matches the other's (and subsequently your) requirements - CM} \\
 The product DJS is a dynamic voting system which allows user to vote for certain songs. The previously implemented open source project called PlayMyWay lacked in well documented code. Comparing the two products is beneficial to DJS since it allows the product to evolve. The changes that might occur however are dependent on the project's progress and would require the scope to change. The modification to the scope would help develop and implement core features in DJS. The requirements that may add extra features will only be incorporated if time permits. The subsection of requirements such as look and feel, performance, security, and accuracy still need improvements. The section for look and feel for example is only partially implemented in the proof of concept. The requirement of displaying the total number of votes for each song will only be added if time permits. Another example, the performance requirement of loading buttons and quickly is still waiting to be implemented.  However, since most core requirements such as playing music and voting have been fulfilled most requirements suggested from before and others will be developed. Although most requirements are important  the list may also be narrowed down to help create more time for more ideal requirements such as total votes. Thus, after comparing DJS with the original implementation it demonstrates the similarities and the small differences still left to be negated  
 				
 \section{Unit Testing Plan}
