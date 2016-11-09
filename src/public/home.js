@@ -30,19 +30,50 @@ $(function() {
     // For each new song, create a list element and append it
     $.each(data, function(i) {
 
+			var container = $('<div />')
+					.addClass('list-item-div')
+					
       var button = $('<button  />')
           .addClass('list-group-item list-group-item-action')
+          .appendTo(container)
+					.text(data[i])
+					.click(function() {
+						socket.emit('vote', {
+							'id': Cookies.get('id'),
+							'song': data[i]
+						})
+					})
 
-          .appendTo($('#list-div'))
-          .text(data[i])
-          .click(function() {
-            
-            socket.emit('vote', {
-              'id': Cookies.get('id'),
-              'song': data[i]
+      var brk = $('<br />')
+          .appendTo(container)
 
-            })
-          })
+			var count = $('<p />')
+					.text('0')
+					.appendTo(container)
+
+			container.appendTo($('#list-div'))
+
     })
+
+  })
+
+  socket.on('update-votes', (data) => {
+
+		var listItems = document.getElementById('list-div').childNodes
+
+		for (var i = 0; i < listItems.length; i++) {
+			listItems[i].childNodes[2].innerHTML = '0'
+		}
+
+		for(var i = 0; i < data.length; i++) {
+			var currentSong = data[i]
+
+			for (var j = 0; j < listItems.length; j++) {
+				if (listItems[j].childNodes[0].innerHTML == data[i]) {
+					listItems[j].childNodes[2].innerHTML = parseInt(listItems[j].childNodes[2].innerHTML) + 1
+				}
+			}
+		}
+
   })
 })

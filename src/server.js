@@ -65,8 +65,9 @@ io.sockets.on('connection', function(socket) {
 	socket.on('vote', function(data) {
 		console.log('Vote incoming from: ' + data.id)
 		var id = data.id
-				song = data.song
+		var song = data.song
 		var idFound = false
+
 		for (var i = votes.length - 1; i >= 0; i--) {
 			if(id == votes[i].id){
 				votes[i].song = song
@@ -81,6 +82,14 @@ io.sockets.on('connection', function(socket) {
 			})
 		}
 		console.log(JSON.stringify(votes))
+
+		var voteData = []
+
+		for (var i = 0; i < votes.length; i++) {
+			voteData.push(votes[i].song)
+		}
+
+		socket.emit('update-votes', voteData)
 	})
 
 	socket.on('disconnect', function(data) {
@@ -91,6 +100,7 @@ io.sockets.on('connection', function(socket) {
 function done() {
 	console.log('done function')
 	currentSong = tallyVotes()
+	votes = []
 }
 
 function tallyVotes() {
