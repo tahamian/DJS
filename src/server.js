@@ -5,13 +5,18 @@ var express = require('express'),
 		handlebars = require('express-handlebars'),
 		fs = require('fs'),
 		path = require('path'),
+		commandLineArgs = require('command-line-args'),
 		player = require('./player.js'),
-		library = require('./library.js')
+		library = require('./library.js'),
+		args = require('./args.js')
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
+var options = commandLineArgs(args.options)
+
 var musicPath = __dirname + '/music'
+if (options.musicDir) musicPath = options.musicDir
 var music = library.getSongs(musicPath)
 
 var votes = []
