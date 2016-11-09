@@ -5,7 +5,6 @@ var express = require('express'),
 		handlebars = require('express-handlebars'),
 		fs = require('fs'),
 		path = require('path'),
-		colors = require('colors'),
 		player = require('./player.js'),
 		library = require('./library.js')
 
@@ -76,11 +75,9 @@ io.sockets.on('connection', function(socket) {
 		}
 
 		if(idFound == false){
-
 			votes.push({
 			'id': id,
 			'song': song
-
 			})
 		}
 		console.log(JSON.stringify(votes))
