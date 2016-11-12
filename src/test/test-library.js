@@ -8,7 +8,7 @@ describe('Read songs from music folder', function() {
 
         var result = library.getSongs(__dirname + '/music')
 
-        expect(correct).to.equal(result)
+        expect(JSON.stringify(correct)).to.equal(JSON.stringify(result))
     })
 
 })

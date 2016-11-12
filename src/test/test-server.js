@@ -10,7 +10,7 @@ var driver = new webdriver.Builder()
 var MUSIC = "02 Let Em' Know.mp3\n03 Exchange.mp3\n04 For However Long.mp3\n05 Don't.mp3\n06 Open Interlude.mp3"
 
 describe('Client Side Graphical Interface', () => {
-
+/*
     it('Wepage Title Loaded', (done) => {
         driver.get('localhost:3000')
         driver.getTitle().then((title) => {
@@ -22,6 +22,7 @@ describe('Client Side Graphical Interface', () => {
     it('Buttons Loaded', (done) => {
         var list = driver.findElement(By.id('list-div'))
         list.getText().then(text => {
+            console.log('list.getText(): ' + list.getText())
             expect(text).to.equal(MUSIC)
             done()
         })
@@ -41,5 +42,5 @@ describe('Client Side Graphical Interface', () => {
         console.log(children [0])
         done()
     })
-    
+    */
 })

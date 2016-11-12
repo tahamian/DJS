@@ -23,6 +23,8 @@
     "passport": "^0.3.2",
     "play-sound": "^1.0.0",
     "player": "^0.6.1",
+    "selenium-webdriver": "^3.0.1",
+    "socket.io": "^1.5.1",
     "ws": "^1.1.1"
   }
 }
