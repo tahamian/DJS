@@ -1,7 +1,7 @@
 {
   "name": "djs",
   "version": "1.0.0",
-  "description": "THIS IS SOME COOL ASS *&^%",
+  "description": "This is some cool fizz",
   "main": "server.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",

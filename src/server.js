@@ -4,7 +4,7 @@
  */
 
 /**
- *
+ * Library Imports
  * @type {*}
  */
 var express = require('express'),
@@ -26,6 +26,7 @@ app.set('view engine', 'handlebars')
  * @type {}
  */
 var options = commandLineArgs(args.options)
+
 /**
  * @type {String} musicPath - This is a varaible that sets the pathname
  * 
@@ -49,16 +50,21 @@ var users
 fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
 })
-/**
- *This sets the location of the webserver (right now set to port 3000)
- * @type {Object}
- */
+
+
+ 
+//This sets the location of the webserver (right now set to port 3000)
 var port = process.env.PORT || 3000
 server.listen(port)
 console.log('Server running on port: ' + port)
 
 /**
+ * @function get
  * Default routing function - returns the home page
+ * 
+ * @param {String} - Endpoint (/)
+ * @param req - HTML Request object
+ * @param res - HTML Response object
  */
 app.get('/', (req, res) => {
 	res.render('home')
