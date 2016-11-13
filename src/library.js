@@ -4,18 +4,19 @@
  */
 /**
  *Varaible sets the path
- * @type {String} fs
+ * @member {String} fs
  */
 var fs = require('fs')
 /**
  * Variable gets the path
- * @type {String} path
+ * @member {String} path
  */
 var path = require('path')
 
 /**
-	*Return the next n song choices
-	*@param (String) - how many songs should be picked
+	*@function getSongs
+	*Return the next n song choices (the number n of song choices is set in server.js)
+	*@param (String) - the pathname of where the music is
 	*@return (Array) - a list of n songs that will be the new voting options
 */
 function getSongs(p) {
@@ -23,6 +24,6 @@ function getSongs(p) {
 }
 /**
  * @exports server
- * @type {getSongs} getsongs - function that gets the songs in an array
+ *  {getSongs} getsongs - function that gets the songs in an array
  */
 exports.getSongs = getSongs
