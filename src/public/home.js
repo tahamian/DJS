@@ -1,14 +1,18 @@
 /**
+*@file This module is for the UI
+*<p> Assumptions
+* <ul style="list-style: none;">
+*  <li>
+*  <li>
+* </ul>
  * @module home
  * @version 1.0
- *@requires socket.io
+ * @summary A concise summary.
  */
-
-
 
 $(function() {
 /**
-*{String} id - is the value of the user id that will be used to store cookie information
+*@member {String} id - is the value of the user id that will be used to store cookie information
 */
 var id = Cookies.get('id')
 
@@ -45,13 +49,12 @@ var id = Cookies.get('id')
 
     // For each new song, create a list element and append it
     $.each(data, function(i) {
-        /**
-         * @member {any}
-         */
+
             var container = $('<div />')
                     .addClass('list-item-div')
         /**
-         * @member {jQuery}
+         * @member {jQuery} - varaible to hold the number of votes
+         *This is a state varaible, when a user clicks the number of votes go up
          */
         var button = $('<button  />')
           .addClass('list-group-item list-group-item-action')
@@ -63,9 +66,6 @@ var id = Cookies.get('id')
                             'song': data[i]
                         })
                     })
-        /**
-         * @member {any}
-         */
       var brk = $('<br />')
           .appendTo(container)
         /**

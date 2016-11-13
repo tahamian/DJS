@@ -1,13 +1,16 @@
 /**
+*@file This is the file that sets up the server and is to be run in nodejs
+*<p> Assumptions:
+* <ul style="list-style: none;">
+*  <li>
+*  <li>
+* </ul>
  * @module server
-
  * @version 1.0
+ * @summary A concise summary.
  */
 
-/**
- *
- * @type {*}
- */
+
 var express = require('express'),
 		app = express(),
 		server = require('http').createServer(app),
@@ -23,25 +26,27 @@ var express = require('express'),
 app.engine('handlebars', handlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 /**
- * @type {}
+ * @member {commandLineArgs}optins - variable that takes in the command line arugment
  */
 var options = commandLineArgs(args.options)
 /**
- * @type {String} musicPath - This is a varaible that sets the pathname
+ * @member {String} musicPath - This is a varaible that sets the pathname
  */
 var musicPath = __dirname + '/music'
 if (options.musicDir) musicPath = options.musicDir
 /**
- * @type {String} musicPath - This is a varaible that sets the pathname
+ * @member {String} music - This is a varaible that gets the pathname
  */
 var music = library.getSongs(musicPath)
 /**
  *
- * @type {Array} votes - an array for the number of votes per song
+ * @member {Array} votes - an array for the number of votes per song
+ *This is also a state variable because the highest number of votes in the array is the next song
  */
 var votes = []
 /**
- * @type {number} users - this variable reads the file users.db and retrves the user list
+ * @member {number} users - this variable reads the file users.db and retrves the user list
+*This is also a state varaible the users can chose a song but can change their decsion until the song is finished
  */
 var users
 fs.readFile('users.db', (err, data) => {
@@ -59,7 +64,13 @@ app.get('/', (req, res) => {
 	res.render('home')
 })
 
-// Allows users to load resources in the '/public' folder
+/**
+*@method app,use()
+* Allows users to load resources in the '/public' folder
+*@param {String} '/public' - the location of home.js
+*@param (express) - this for the express library for static files like home.js
+*@param {String} '/public' - the location of home.js
+*/
 app.use('/public', express.static(__dirname + '/public'))
 
 var currentSong, musicIndex, choices
@@ -87,6 +98,7 @@ io.sockets.on('connection', function(socket) {
 	})
 
 	/**
+	*@function soocket()
 	*A user has voted for a song. We have to first make sure that this user
 	*hasn't voted yet!!
 	*@param {Array} - Contains the array of votes per song
@@ -112,7 +124,9 @@ io.sockets.on('connection', function(socket) {
 			})
 		}
 		console.log(JSON.stringify(votes))
-
+		/**
+		*@member {Array} voterData - holds the amount of votes per song
+		*/
 		var voteData = []
 
 		for (var i = 0; i < votes.length; i++) {
@@ -122,15 +136,16 @@ io.sockets.on('connection', function(socket) {
 		socket.emit('update-votes', voteData)
 	})
 	/**
-	*@type {boolean}
-	 *@param {String} - String parameter for the socket library
-	*@param {function} - Contains the userID and the name of the song
+	*@function soocket.on()
+	*@param {String} 'disconnect' - String parameter for the socket library that disconnects the server so it can be updated
+	*@param {function} data - Contains the userID and the name of the song
 	**/
 	socket.on('disconnect', function(data) {
 	})
 
 })
 /**
+*@function done()
  * when a song is finished the function is called
  * calls function to call the tallyvote method and resets the votes
  */
@@ -140,6 +155,7 @@ function done() {
 	votes = []
 }
 /**
+*@function tallyVotes()
  *This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
  * Then it gets the title of the song with the most votes and returns that value
  * @returns {String} maxsong - Retruns the title of the song
@@ -179,7 +195,7 @@ function tallyVotes() {
 }
 /**
  * This is a function that generates a unique user ID for every new user
- *@returns {Number} users - Returns the user plus one
+ *@returns {number} users - Returns the user plus one
  */
 function generateNewID() {
 	return users++

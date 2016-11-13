@@ -1,14 +1,23 @@
 /**
+*@file Used to get the playlist of music
+*<p> Assumptions
+* <ul style="list-style: none;">
+*  <li>
+*  <li>
+* </ul>
  * @module library
  * @version 1.0
+ * @summary A concise summary.
+
  */
+
 /**
- *Varaible sets the path
+ *Varaible sets the path using the require()
  * @member {String} fs
  */
 var fs = require('fs')
 /**
- * Variable gets the path
+ * Variable gets the path using the require()
  * @member {String} path
  */
 var path = require('path')

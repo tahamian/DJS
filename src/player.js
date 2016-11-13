@@ -1,10 +1,18 @@
 /**
+*@file Used to play the next song
+*<p> Assumptions
+* <ul style="list-style: none;">
+*  <li>
+*  <li>
+* </ul>
  * @module player
  * @version 1.0
+ * @summary A concise summary.
+ *
 */
 
 /**
- *@type {Object} 
+ *@member {Object}
  */
 var player = require('play-sound')(opts = {})
 
@@ -22,6 +30,6 @@ function play(song, done) {
 }
 /**
  * @exports server
- * @type {play} - export the function play
+ *
  */
 exports.play = play
