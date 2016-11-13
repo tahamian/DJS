@@ -1,6 +1,5 @@
 /**
  * @module server
-
  * @version 1.0
  */
 
@@ -9,25 +8,28 @@
  * @type {*}
  */
 var express = require('express'),
-		app = express(),
-		server = require('http').createServer(app),
-		io = require('socket.io').listen(server),
-		handlebars = require('express-handlebars'),
-		fs = require('fs'),
-		path = require('path'),
-		commandLineArgs = require('command-line-args'),
-		player = require('./player.js'),
-		library = require('./library.js'),
-		args = require('./args.js')
+	app = express(),
+	server = require('http').createServer(app),
+	io = require('socket.io').listen(server),
+	handlebars = require('express-handlebars'),
+	fs = require('fs'),
+	path = require('path'),
+	commandLineArgs = require('command-line-args'),
+	player = require('./player.js'),
+	library = require('./library.js'),
+	args = require('./args.js')
 
-app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
 /**
  * @type {}
  */
 var options = commandLineArgs(args.options)
 /**
  * @type {String} musicPath - This is a varaible that sets the pathname
+ * 
+ * Set the music directory as either the default, or the -m flag, if applicable
  */
 var musicPath = __dirname + '/music'
 if (options.musicDir) musicPath = options.musicDir
@@ -55,6 +57,9 @@ var port = process.env.PORT || 3000
 server.listen(port)
 console.log('Server running on port: ' + port)
 
+/**
+ * Default routing function - returns the home page
+ */
 app.get('/', (req, res) => {
 	res.render('home')
 })
@@ -62,15 +67,18 @@ app.get('/', (req, res) => {
 // Allows users to load resources in the '/public' folder
 app.use('/public', express.static(__dirname + '/public'))
 
-var currentSong, musicIndex, choices
 
+// Initialize the first set of song choices and the first song
+var currentSong, musicIndex, choices
 currentSong = music[0]
 musicIndex = 1
 choices = music.slice(musicIndex, musicIndex + 5)
+
+// Start playing the first song
 player.play(currentSong, done)
 
-io.sockets.on('connection', function(socket) {
-	socket.on('connect-request', function(data) {
+io.sockets.on('connection', function (socket) {
+	socket.on('connect-request', function (data) {
 
 		// If the user does not have an ID cookie set, create one
 		if (!data) {
@@ -78,7 +86,7 @@ io.sockets.on('connection', function(socket) {
 			socket.emit('connect-response', newID)
 			fs.writeFile('users.db', users)
 			console.log('New connection with ID: ' + newID)
-		// Otherwise just use the existing ID
+			// Otherwise just use the existing ID
 		} else {
 			console.log('User: ' + data + ' reconnected.')
 		}
@@ -92,23 +100,23 @@ io.sockets.on('connection', function(socket) {
 	*@param {Array} - Contains the array of votes per song
 	*@param {function} - Contains the userID and the name of the song
 	**/
-	socket.on('vote', function(data) {
+	socket.on('vote', function (data) {
 		console.log('Vote incoming from: ' + data.id)
 		var id = data.id
 		var song = data.song
 		var idFound = false
 
 		for (var i = votes.length - 1; i >= 0; i--) {
-			if(id == votes[i].id){
+			if (id == votes[i].id) {
 				votes[i].song = song
 				idFound = true
 			}
 		}
 
-		if(idFound == false){
+		if (idFound == false) {
 			votes.push({
-			'id': id,
-			'song': song
+				'id': id,
+				'song': song
 			})
 		}
 		console.log(JSON.stringify(votes))
@@ -126,7 +134,7 @@ io.sockets.on('connection', function(socket) {
 	 *@param {String} - String parameter for the socket library
 	*@param {function} - Contains the userID and the name of the song
 	**/
-	socket.on('disconnect', function(data) {
+	socket.on('disconnect', function (data) {
 	})
 
 })
@@ -139,13 +147,17 @@ function done() {
 	currentSong = tallyVotes()
 	votes = []
 }
+
 /**
  *This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
  * Then it gets the title of the song with the most votes and returns that value
  * @returns {String} maxsong - Retruns the title of the song
  */
 function tallyVotes() {
+
+	// Array to keep track of running totals
 	var tallies = []
+	//Initialize it to 0's'
 	for (var i = 0; i < choices.length; i++) {
 		tallies.push({
 			'song': choices[i],
@@ -153,16 +165,19 @@ function tallyVotes() {
 		})
 	}
 
+	// For each vote
 	for (var i = 0; i < votes.length; i++) {
 		var song = votes[i].song
-
+		// Scan the tallies array until the right song is found
+		// and increment the total
 		for (var j = 0; j < tallies.length; j++) {
-			if (tallies[j].song == song){
+			if (tallies[j].song == song) {
 				tallies[j].votes++
 			}
 		}
 	}
 
+	// Scan the tallies array and pick the maximum value
 	var maxTally = -1
 	var maxSong
 	for (var i = 0; i < tallies.length; i++) {
@@ -171,10 +186,15 @@ function tallyVotes() {
 			maxTally = tallies[i].votes
 		}
 	}
+
+	// Play the highest-voted song
 	player.play(maxSong, done)
+
+	// Pick the next 5 choices to vote on
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
 	io.sockets.emit('update-songs', choices)
+
 	return maxSong
 }
 /**
