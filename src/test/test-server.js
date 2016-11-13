@@ -1,4 +1,5 @@
 var expect = require('chai').expect,
+    async = require('async'),
     webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until
@@ -75,7 +76,9 @@ describe('Client Side Graphical Interface', function() {
                             if (text != '0') flag = false
                         })
 
+
                         buttons[0].click()
+
 
                         counts[0].getText().then(function(text) {
                             if (text != '1') flag = false

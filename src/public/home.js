@@ -49,6 +49,7 @@ $(function() {
 
 			var count = $('<p />')
 					.text('0')
+          .addClass('vote-count')
 					.appendTo(container)
 
 			container.appendTo($('#list-div'))
