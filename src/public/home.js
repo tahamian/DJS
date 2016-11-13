@@ -71,10 +71,6 @@ var id = Cookies.get('id')
         /**
          * @var {any}
          */
-            var count = $('<p />')
-                    .text('0')
-                    .appendTo(container)
-
 			var count = $('<p />')
 					.text('0')
           .addClass('vote-count')
