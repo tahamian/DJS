@@ -2,8 +2,7 @@
 *@file Used to play the next song
 *<p> Assumptions
 * <ul style="list-style: none;">
-*  <li>
-*  <li>
+*  <li>There has to be a media player installed on the server
 * </ul>
  * @module player
  * @version 1.0

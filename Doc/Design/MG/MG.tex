@@ -1,171 +1,182 @@
 \documentclass[12pt, titlepage]{article}
 
+
 \usepackage{fullpage}
 \usepackage[round]{natbib}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\graphicspath{ {images/} }
 \usepackage{float}
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=red,
-    urlcolor=blue
+   colorlinks,
+   citecolor=black,
+   filecolor=black,
+   linkcolor=red,
+   urlcolor=blue
 }
 \usepackage[round]{natbib}
+
 
 \newcounter{acnum}
 \newcommand{\actheacnum}{AC\theacnum}
 \newcommand{\acref}[1]{AC\ref{#1}}
 
+
 \newcounter{ucnum}
 \newcommand{\uctheucnum}{UC\theucnum}
 \newcommand{\uref}[1]{UC\ref{#1}}
+
 
 \newcounter{mnum}
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
-\title{SE 3XA3: Software Requirements Specification\\Title of Project}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\title{SE 3XA3: Software Requirements Specification\\DJ NODE}
+
+
+\author{Team 12, DJS
+		\\ Amandeep Panesar - panesas2
+		\\ Victor Velenchovsky - velech
+		\\ Taha Mian - miantm
 }
+
 
 \date{\today}
 
+
 \input{../../Comments}
+
 
 \begin{document}
 
+
 \maketitle
+
 
 \pagenumbering{roman}
 \tableofcontents
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+
+\begin{table}[h]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+9/11/16 & 1.0 & Started Sections 1,3,7\\
+11/11/16 & 1.1 & Finsihed Sections 1,3,7 Starting Sections 2,5,6\\
+12/11/16 & 1.2 & Finished All Sections\\ 
+13/11/16 & 1.3 & Review \\
+
 \bottomrule
+
 \end{tabularx}
 \end{table}
 
-\newpage
+
+\clearpage
+
 
 \pagenumbering{arabic}
 
+
 \section{Introduction}
+\subsection{Overview}
+The world in today's day and age is evolving at an exponential pace. Both the automotive and retail industry have adapted and are becoming more and more technologically advanced. However, the entertainment sector and more specifically the playlist sub-sector of the entertainment industry has been struggling to keep up with technology. The DJS dynamic playlist system was designed to create a more modern approach to the music and entertainment industry. The DJS application allows the users to vote for specific songs through a fair and democratic voting system.
+\subsection{Context}
+This Module Guide (MG) document will provide a modular decomposition of the system and show the structure of the application. This document will also provide how the system meets functional and nonfunctional requirements described in the Software Requirements Specifications (SRS) document. In addition, the Module Interface Specification (MIS) will explain semantics of the system. The separate document follows the MG document and provides syntax,variables, and functions for each module.
+\subsection{Design Principle}
+The design principles employed in DJS are Information Hiding and Encapsulation. The use of both these development guidelines help each module hide secrets from the entire system. Encapsulation also allows data and functions to be accessed by certain modules and keeps the data and implementation safe from misuse or interference.
+\subsection{MIS Module}
+It is important to mention that the modules described in MIS are more generalized but refer to the same modules in this document. The Server module mentioned in the MIS document is the Hardware Hiding module in the MG document. Furthermore, the Home module is the combination of Display Options Module and Display Total Votes. In addition, the Args module refers to the Input and Tally modules in this document. Finally, the other modules mentioned in the MIS remain the same and are equal to the ones mentioned in this document.
 
-Decomposing a system into modules is a commonly accepted approach to developing
-software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
-based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC,
-where modifications are frequent, especially during initial development as the
-solution space is explored.  
-
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+\subsection{Structure}
+This MG document is organized in the following manner:
+\renewcommand\labelitemii{$\square$}
 \begin{itemize}
-\item System details that are likely to change independently should be the
-  secrets of separate modules.
-\item Each data structure is used in only one module.
-\item Any other program that requires information stored in a module's data
-  structures must obtain it by calling access programs belonging to that module.
+
+
+\item Section 2 Anticipated and Unlikely Changes
+\item Section 3 Module Hierarchy
+
+
+\item Section 4 Connection Between Requirements and Design
+
+
+\item Section 5 Module Decomposition
+
+
+\item Section 6 Traceability Matrix
+
+
+\item Section 7 Use Hierarchy Between Modules
+
+
+
+
 \end{itemize}
 
-After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
-specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
 
-\begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
-\end{itemize}
 
-The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
-requirements. Section \ref{SecMH} summarizes the module decomposition that
-was constructed according to the likely changes. Section \ref{SecConnection}
-specifies the connections between the software requirements and the
-modules. Section \ref{SecMD} gives a detailed description of the
-modules. Section \ref{SecTM} includes two traceability matrices. One checks
-the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
+
 
 This section lists possible changes to the system. According to the likeliness
 of the change, the possible changes are classified into two
 categories. Anticipated changes are listed in Section \ref{SecAchange}, and
 unlikely changes are listed in Section \ref{SecUchange}.
 
+
 \subsection{Anticipated Changes} \label{SecAchange}
 
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+
+The items listed below are the anticipated changes to occur in the design of DJS. The modularized design of DJS however allows only certain aspects of the implementation to be altered.
+
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{ac1}:] The specific hardware on which the server is running.
+\item[\refstepcounter{acnum} \actheacnum \label{ac2}:] The function which tallies votes for each individual song is hidden.
+\item[\refstepcounter{acnum} \actheacnum \label{ac3}:] The function which lists all songs in the music folder is hidden.
+\item[\refstepcounter{acnum} \actheacnum \label{ac4}:] The votes functions which increments the votes.  
+\item[\refstepcounter{acnum} \actheacnum \label{ac5}:] The server function which hosts the home website should be hidden.
+\item[\refstepcounter{acnum} \actheacnum \label{ac6}:] The socket.io emit function that allows the server and home page to communicate will be hidden.
+\item[\refstepcounter{acnum} \actheacnum \label{ac7}:] A user's casted vote on a particular song should be hidden.
 \end{description}
 
-\subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
+\subsection{Unlikely Changes} \label{SecUchange}
+The following items are unlikely to change even after implementing the anticipated changes.
+
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item ...
+ (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be a static source for music.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The format of the media will stay consistent.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The location where the server is hosted.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The number of songs that are allowed for voting (5 songs can be shown as options for the user to vote for).
 \end{description}
 
-\section{Module Hierarchy} \label{SecMH}
 
-This section provides an overview of the module design. Modules are summarized
-in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+\section{Module Hierarchy} \label{SecMH}
+The following are modules implemented in DJS. The modules are placed into a hierarchy based on decomposed secrets as displayed in the table below. The leaves listed below make up the hierarchy tree and are implemented in the system.
+
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Server
+\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Args 
+\item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Home
+\item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Library
+\item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Player
+\item [\refstepcounter{mnum} \mthemnum \label{mIV}:] Voter
+
 \end{description}
 
 
@@ -176,107 +187,129 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+
+{Hardware-Hiding Module} & M1 \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+& M3\\
+& M4 \\
+& M5 \\
+& M6 \\
+& M7 \\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+
+\multirow{3}{0.3\textwidth}{Software Decision Module}
+& \\
+& M2 \\
 \bottomrule
+
 
 \end{tabular}
 \caption{Module Hierarchy}
 \label{TblMH}
 \end{table}
 
-\section{Connection Between Requirements and Design} \label{SecConnection}
 
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+\section{Connection Between Requirements and Design} \label{SecConnection}
+The system was built to fulfill the requirements created during the design process. The server class in the DJS system calls and connects all components of the program which are then served to the end user. The requirements pertaining to appearance and usability are fulfilled by the home class which deals with creating the outline for the client side. The Library Module however does the background task of creating a list of five options the user can pick from. The result is then parsed into the Home Module which formats and places the five options as specified. In addition, while the options are being generated the user is assigned a unique identifier which is then saved on the users browser using cookies and is implemented in the Home Module and Server Module. The user will then cast a vote for their favourite song which is sent to the server using the Home Module. This input module allows the server class to then initiate the Voter Module which totals all votes for every distinct option. After tallying the votes the software then decides on what song was voted the most and instantiates the Player Module. The server class allows the Player Module to execute if there is no song currently being played which in turn plays the option with the most votes. While those modules are running in the background the Server Module is updating the counter in the home class to provide the user feedback on which song is the most voted and will most likely be played. The client side will also have a user help page which can provide instructions for the user if necessary. However, since the options are listed and are buttons the operation of the system should be intuitive and will only have static input (vote for song 1,2,3,4,or 5 no user text input). In addition, in order to satisfy the requirement of a song should always be played the project has set some defaults. The defaults are required when all options have equal or no votes since no clear majority exists. The default when this situation occurs is to pick a random song instead. Another requirement that is satisfied is keeping the graphical interface clean and simple which allows for intuitive control. The result of this allows only song titles to be shown which also helps avoid contradiction in cultural and political requirements.
+
 
 \section{Module Decomposition} \label{SecMD}
 
-Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  Also indicate if the
-module will be implemented specifically for the software.
-
-Only the leaf modules in the
-hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means
-that the module is not a leaf and will not have to be implemented. Whether or
-not this module is implemented depends on the programming language
-selected.
 
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
+
 \begin{description}
 \item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
+ hardware.
 \item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+ system. This module provides the interface between the hardware and the
+ software. So, the system can use it to display outputs or to accept inputs.
+\item[Implemented By:] node.js
 \end{description}
+
 
 \subsection{Behaviour-Hiding Module}
 
-\begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
+\subsubsection{Args(\mref{mAS})}
 
-\subsubsection{Input Format Module (\mref{mInput})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Secrets:]Allows music to be located by the server and invloves user input.
+\item[Services:]From user input the directory is specified and all music located in the folder will be available to play on the system.
+\item[Implemented By:] args.js
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Home(\mref{mDO})}
+
+
+\begin{description}
+\item[Secrets:]Song options are displayed to the user. Total Votes for each indivdual song is displayed.Updates client UI when needed and assigns a cookie to connected user.
+\item[Services:]Uses an array passed from the library module to display the five options on the client side. Cookies is set and a unique identifer is used to distinguish votes from each user.
+\item[Implemented By:] home.js
+\end{description}
+
+
+
+\subsubsection{Library(\mref{mLM})} 
+\begin{description} 
+\item[Secrets:] Reads music folder directory specified from the user. \item[Services:]The module reads from the music directory and picks five songs which are then placed into an array for other modules to manipulate. \item[Implemented By:] library.js 
+\end{description} 
+
+\subsubsection{Player(\mref{mPM})}
+
+
+\begin{description}
+\item[Secrets:] Plays the music from input.
+\item[Services:]Uses the input parameter and plays the associated music with the default os sound player.
+\item[Implemented By:]player.js
+\end{description}
+
+
+
+\subsubsection{Voter(\mref{mIV})}
+
+
+\begin{description}
+\item[Secrets:]Tallys the votes casted for each individual song.
+\item[Services:]Counts the number of votes from an array and returns the song with the maxmium amount of votes.
+\item[Implemented By:] voter.js
+\end{description}
+
+
+
+
+
+
+
+
 
 
 \subsection{Software Decision Module}
 
+\subsubsection{Server (\mref{mSR})}
+
+
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Secrets:] Initiates all other modules and creates important variables which are manipulated by the system during the routine process.Also determines what song to play when no votes are given and creates unique user id's. 
+\item[Services:]Calls all modules and keeps the server runing using the express library. The unique id's are created using a counter and if no songs are picked the default song at index 0 is picked.
+\item[Implemented By:] server.js
 \end{description}
 
-\subsubsection{Etc.}
+
+
+
 
 \section{Traceability Matrix} \label{SecTM}
 
+
 This section shows two traceability matrices: between the modules and the
 requirements and between the modules and the anticipated changes.
+
 
 % the table should use mref, the requirements should be named, use something
 % like fref
@@ -286,22 +319,23 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & \mref{mSR}, \mref{mAS}, \mref{mDO}, \mref{mLM}\\
+R2 & \mref{mLM}, \mref{mDO}\\
+R3 & \mref{mDO},\mref{mSR},\mref{mLM}\\
+R4 & \mref{mDO}\\
+R5 & \mref{mLM}, \mref{mDO}\\
+R6 & \mref{mSR}, \mref{mDO}\\
+R7 & \mref{mDO}, \mref{mLM}, \mref{mPM}, \mref{mSR}\\
+R8 & \mref{mLM}, \mref{mSR}\\
+R9 & \mref{mIV}, \mref{mDO}, \mref{mSR}\\
+R10 & \mref{mIV}, \mref{mPM}, \mref{mSR}\\
+R11 & \mref{mSR}, \mref{mDO}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
 \label{TblRT}
 \end{table}
+
 
 \begin{table}[H]
 \centering
@@ -309,47 +343,41 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{ac1} & \mref{mHH}\\
+\acref{ac2} & \mref{mIV}\\
+\acref{ac3} & \mref{mLM}\\
+\acref{ac4} & \mref{mDO}\\
+\acref{ac5} & \mref{mSR}\\
+\acref{ac6} & \mref{mDO},\mref{mSR}\\
+\acref{ac7} & \mref{mIV}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
 \label{TblACT}
 \end{table}
 
+
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
-correct execution of B may be necessary for A to complete the task described in
-its specification. That is, A {\em uses} B if there exist situations in which
-the correct functioning of A depends upon the availability of a correct
-implementation of B.  Figure \ref{FigUH} illustrates the use relation between
-the modules. It can be seen that the graph is a directed acyclic graph
-(DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
 
+The DJS system was design to adhere to the principle of all Use Hierarchies having directed acyclic graphs (DAGS) which avoids cyclic dependencies. In addition, since all modules are connected to the Hardware-Hiding Module which interfaces with system hardware it has been shown separately.
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
-\caption{Use hierarchy among modules}
+\includegraphics[width=1.0\textwidth]{MG7}
+\caption{Use Hierarchy Between Modules}
 \label{FigUH}
 \end{figure}
 
+
 %\section*{References}
+
 
 \bibliographystyle {plainnat}
 \bibliography {MG}
 
+
 \end{document}
+
+
+
+

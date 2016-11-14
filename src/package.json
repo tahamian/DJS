@@ -1,7 +1,7 @@
 {
   "name": "djs",
   "version": "1.0.0",
-  "description": "THIS IS SOME COOL ASS *&^%",
+  "description": "This is some cool fizz",
   "main": "server.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "args": "^2.1.0",
+    "async": "^2.1.2",
     "chai": "^3.5.0",
     "colors": "^1.1.2",
     "command-line-args": "^3.0.3",
@@ -18,6 +19,7 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.5",
+    "jsdoc": "^3.4.3",
     "mocha": "^3.1.2",
     "omxdirector": "^0.1.2",
     "passport": "^0.3.2",

@@ -2,8 +2,8 @@
 *@file Used to get the playlist of music
 *<p> Assumptions
 * <ul style="list-style: none;">
-*  <li>
-*  <li>
+*  <li>The music files are audio files
+*  <li>the music files are in the src
 * </ul>
  * @module library
  * @version 1.0

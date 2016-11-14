@@ -1,3 +1,13 @@
+/**
+ * @module voter
+ * @version 1.0
+ */
+
+/**
+ *This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
+ * Then it gets the title of the song with the most votes and returns that value
+ * @returns {String} maxsong - Retruns the title of the song
+ */
 function tallyVotes(choices, votes) {
 	var tallies = []
 	for (var i = 0; i < choices.length; i++) {
