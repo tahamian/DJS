@@ -92,6 +92,9 @@ The world in today's day and age is evolving at an exponential pace. Both the au
 This Module Guide (MG) document will provide a modular decomposition of the system and show the structure of the application. This document will also provide how the system meets functional and nonfunctional requirements described in the Software Requirements Specifications (SRS) document. In addition, the Module Interface Specification (MIS) will explain semantics of the system. The separate document follows the MG document and provides syntax,variables, and functions for each module.
 \subsection{Design Principle}
 The design principles employed in DJS are Information Hiding and Encapsulation. The use of both these development guidelines help each module hide secrets from the entire system. Encapsulation also allows data and functions to be accessed by certain modules and keeps the data and implementation safe from misuse or interference.
+\subsection{MIS Module}
+It is important to mention that the modules described in MIS are more generalized but refer to the same modules in this document. The Server module mentioned in the MIS document is the Hardware Hiding module in the MG document. Furthermore, the Home module is the combination of Display Options Module and Display Total Votes. In addition, the Args module refers to the Input and Tally modules in this document. Finally, the other modules mentioned in the MIS remain the same and are equal to the ones mentioned in this document.
+
 \subsection{Structure}
 This MG document is organized in the following manner:
 \renewcommand\labelitemii{$\square$}
@@ -167,13 +170,13 @@ The following are modules implemented in DJS. The modules are placed into a hier
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Get Library
-\item [\refstepcounter{mnum} \mthemnum \label{mCI}:] Create User ID 
-\item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Displays Options
-\item [\refstepcounter{mnum} \mthemnum \label{mIV}:] Input Vote
-\item [\refstepcounter{mnum} \mthemnum \label{mTV}:] Tally Vote
-\item [\refstepcounter{mnum} \mthemnum \label{mDT}:] Display Total Votes
-\item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Play Music
+\item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Server
+\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Args 
+\item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Home
+\item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Library
+\item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Player
+\item [\refstepcounter{mnum} \mthemnum \label{mIV}:] Voter
+
 \end{description}
 
 
@@ -193,13 +196,13 @@ The following are modules implemented in DJS. The modules are placed into a hier
 & M3\\
 & M4 \\
 & M5 \\
+& M6 \\
 & M7 \\
-& M8 \\
 \midrule
 
 
 \multirow{3}{0.3\textwidth}{Software Decision Module}
-& M6\\
+& \\
 & M2 \\
 \bottomrule
 
@@ -211,7 +214,7 @@ The following are modules implemented in DJS. The modules are placed into a hier
 
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
-The system was built to fulfill the requirements created during the design process. The server class in the DJS system calls and connects all components of the program which are then served to the end user. The requirements pertaining to appearance and usability are fulfilled by the home class which deals with creating the outline for the client side. The Get Library Module however does the background task of creating a list of five options the user can pick from. The result is then parsed into the Display Options Module which formats and places the five options as specified in the home class. In addition, while the options are being generated the user is assigned a unique identifier which is then saved on the users browser using cookies and is implemented in the Create User ID Module. The user will then cast a vote for their favourite song which is sent to the server using the Input Vote Module. This input module allows the server class to then initiate the Tally Votes Module which totals all votes for every distinct option. After tallying the votes the software then decides on what song was voted the most and instantiates the Play Music Module. The server class allows the Play Music Module to execute if there is no song currently being played which in turn plays the option with the most votes. While those modules are running in the background the Display Total Votes Module is updating the counter in the home class to provide the user feedback on which song is the most voted and will most likely be played. The client side will also have a user help page which can provide instructions for the user if necessary. However, since the options are listed and are buttons the operation of the system should be intuitive and will only have static input (vote for song 1,2,3,4,or 5 no user text input). In addition, in order to satisfy the requirement of a song should always be played the project has set some defaults. The defaults are required when all options have equal or no votes since no clear majority exists. The default when this situation occurs is to pick a random song instead. Another requirement that is satisfied is keeping the graphical interface clean and simple which allows for intuitive control. The result of this allows only song titles to be shown which also helps avoid contradiction in cultural and political requirements.
+The system was built to fulfill the requirements created during the design process. The server class in the DJS system calls and connects all components of the program which are then served to the end user. The requirements pertaining to appearance and usability are fulfilled by the home class which deals with creating the outline for the client side. The Library Module however does the background task of creating a list of five options the user can pick from. The result is then parsed into the Home Module which formats and places the five options as specified. In addition, while the options are being generated the user is assigned a unique identifier which is then saved on the users browser using cookies and is implemented in the Home Module and Server Module. The user will then cast a vote for their favourite song which is sent to the server using the Home Module. This input module allows the server class to then initiate the Voter Module which totals all votes for every distinct option. After tallying the votes the software then decides on what song was voted the most and instantiates the Player Module. The server class allows the Player Module to execute if there is no song currently being played which in turn plays the option with the most votes. While those modules are running in the background the Server Module is updating the counter in the home class to provide the user feedback on which song is the most voted and will most likely be played. The client side will also have a user help page which can provide instructions for the user if necessary. However, since the options are listed and are buttons the operation of the system should be intuitive and will only have static input (vote for song 1,2,3,4,or 5 no user text input). In addition, in order to satisfy the requirement of a song should always be played the project has set some defaults. The defaults are required when all options have equal or no votes since no clear majority exists. The default when this situation occurs is to pick a random song instead. Another requirement that is satisfied is keeping the graphical interface clean and simple which allows for intuitive control. The result of this allows only song titles to be shown which also helps avoid contradiction in cultural and political requirements.
 
 
 \section{Module Decomposition} \label{SecMD}
@@ -226,87 +229,76 @@ The system was built to fulfill the requirements created during the design proce
 \item[Services:]Serves as a virtual hardware used by the rest of the
  system. This module provides the interface between the hardware and the
  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+\item[Implemented By:] node.js
 \end{description}
 
 
 \subsection{Behaviour-Hiding Module}
 
-
-\subsubsection{Create User ID (\mref{mCI})}
-
-
-\begin{description}
-\item[Secrets:] The creation and assigning of a unique identifier for any given connected user.
-\item[Services:]Creates a cookie which is stored on the connected users browser to uniquely identify the user quickly.
-\item[Implemented By:] socket.io
-\end{description}
-
-
-\subsubsection{Displays Options(\mref{mDO})}
+\subsubsection{Args(\mref{mAS})}
 
 
 \begin{description}
-\item[Secrets:]The song options which are displayed to the user.
-\item[Services:]Uses an array passed from the library module to display the five options on the client side.
-\item[Implemented By:] DJS
+\item[Secrets:]Allows music to be located by the server and invloves user input.
+\item[Services:]From user input the directory is specified and all music located in the folder will be available to play on the system.
+\item[Implemented By:] args.js
 \end{description}
 
-
-\subsubsection{Input Vote(\mref{mIV})}
+\subsubsection{Home(\mref{mDO})}
 
 
 \begin{description}
-\item[Secrets:]The option picked by a connected user.
-\item[Services:]Using the cookies set by another module the user is identified and the vote is recorded for other modules to manipulate.
-\item[Implemented By:] DJS
+\item[Secrets:]Song options are displayed to the user. Total Votes for each indivdual song is displayed.Updates client UI when needed and assigns a cookie to connected user.
+\item[Services:]Uses an array passed from the library module to display the five options on the client side. Cookies is set and a unique identifer is used to distinguish votes from each user.
+\item[Implemented By:] home.js
 \end{description}
 
 
-\subsubsection{Display Total Votes(\mref{mTV})}
 
+\subsubsection{Library(\mref{mLM})} 
+\begin{description} 
+\item[Secrets:] Reads music folder directory specified from the user. \item[Services:]The module reads from the music directory and picks five songs which are then placed into an array for other modules to manipulate. \item[Implemented By:] library.js 
+\end{description} 
 
-\begin{description}
-\item[Secrets:]The total votes for each option is displayed.
-\item[Services:]Gets the total from tally votes and displays them to the client side aspect of the system.
-\item[Implemented By:] DJS
-\end{description}
-
-
-\subsubsection{Play Music(\mref{mPM})}
+\subsubsection{Player(\mref{mPM})}
 
 
 \begin{description}
 \item[Secrets:] Plays the music from input.
 \item[Services:]Uses the input parameter and plays the associated music with the default os sound player.
-\item[Implemented By:] play-sound
+\item[Implemented By:]player.js
 \end{description}
+
+
+
+\subsubsection{Voter(\mref{mIV})}
+
+
+\begin{description}
+\item[Secrets:]Tallys the votes casted for each individual song.
+\item[Services:]Counts the number of votes from an array and returns the song with the maxmium amount of votes.
+\item[Implemented By:] voter.js
+\end{description}
+
+
+
+
+
+
 
 
 
 
 \subsection{Software Decision Module}
 
-
-\subsubsection{Get Library(\mref{mLM})}
-
-
-\begin{description}
-\item[Secrets:] Sets the five song options for the user.
-\item[Services:]The module reads from the music directory and picks five songs which are then placed into an array for other modules to manipulate.
-\item[Implemented By:] DJS
-\end{description}
-
-
-\subsubsection{Tally Votes(\mref{mLM})}
+\subsubsection{Server (\mref{mSR})}
 
 
 \begin{description}
-\item[Secrets:] Tally votes for all five options and play the most voted song else pick a random song.
-\item[Services:]The module takes in user data and counts the votes for each song. Afterwards, the votes are compared with one another and the highest voted option is played. Otherwise if all songs have the same amount of votes (no votes or tied votes) it will pick a random song.
-\item[Implemented By:] DJS
+\item[Secrets:] Initiates all other modules and creates important variables which are manipulated by the system during the routine process.Also determines what song to play when no votes are given and creates unique user id's. 
+\item[Services:]Calls all modules and keeps the server runing using the express library. The unique id's are created using a counter and if no songs are picked the default song at index 0 is picked.
+\item[Implemented By:] server.js
 \end{description}
-
 
 
 
@@ -327,17 +319,17 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mLM}, \mref{mDO}, \mref{mDT}, \mref{mIV}\\
+R1 & \mref{mSR}, \mref{mAS}, \mref{mDO}, \mref{mLM}\\
 R2 & \mref{mLM}, \mref{mDO}\\
-R3 & \mref{mDO},\mref{mDT},\mref{mTV}\\
-R4 & \mref{mIV},\mref{mCI},\mref{mLM}, \mref{mDO}\\
+R3 & \mref{mDO},\mref{mSR},\mref{mLM}\\
+R4 & \mref{mDO}\\
 R5 & \mref{mLM}, \mref{mDO}\\
-R6 & \mref{mCI}\\
-R7 & \mref{mLM}, \mref{mDO}, \mref{mDT}, \mref{mTV}, \mref{mIV}\\
-R8 & \mref{mLM}, \mref{mDO}, \mref{mDT}\\
-R9 & \mref{mDO}, \mref{mTV}, \mref{mIV}, \mref{mDT}\\
-R10 & \mref{mPM}, \mref{mLM}, \mref{mTV}\\
-R11 & \mref{mCI}, \mref{mIV}, \mref{mTV}, \mref{mDO}\\
+R6 & \mref{mSR}, \mref{mDO}\\
+R7 & \mref{mDO}, \mref{mLM}, \mref{mPM}, \mref{mSR}\\
+R8 & \mref{mLM}, \mref{mSR}\\
+R9 & \mref{mIV}, \mref{mDO}, \mref{mSR}\\
+R10 & \mref{mIV}, \mref{mPM}, \mref{mSR}\\
+R11 & \mref{mSR}, \mref{mDO}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -352,11 +344,11 @@ R11 & \mref{mCI}, \mref{mIV}, \mref{mTV}, \mref{mDO}\\
 \textbf{AC} & \textbf{Modules}\\
 \midrule
 \acref{ac1} & \mref{mHH}\\
-\acref{ac2} & \mref{mTV}\\
+\acref{ac2} & \mref{mIV}\\
 \acref{ac3} & \mref{mLM}\\
-\acref{ac4} & \mref{mTV}\\
-\acref{ac5} & \mref{mHH}\\
-\acref{ac6} & \mref{mDT},\mref{mDO}\\
+\acref{ac4} & \mref{mDO}\\
+\acref{ac5} & \mref{mSR}\\
+\acref{ac6} & \mref{mDO},\mref{mSR}\\
 \acref{ac7} & \mref{mIV}\\
 \bottomrule
 \end{tabular}
