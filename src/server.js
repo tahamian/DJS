@@ -103,14 +103,7 @@ currentSong = music[0]
 musicIndex = 1
 choices = music.slice(musicIndex, musicIndex + 5)
 albumPaths = []
-md.getMetaData(choices, (data) => {
-	console.log('get meta')
-	metadata = data
-	library.saveAlbumArt(metadata)
-	for (var i = 0; i < choices.length; i++) {
-		albumPaths.push('/public/' + choices[i] + '.png')
-	}
-})
+updateMetaData(() => {})
 
 // Start playing the first song
 player.play(currentSong, done)
@@ -174,6 +167,7 @@ io.sockets.on('connection', function (socket) {
 
 		io.sockets.emit('update-votes', voteData)
 	})
+
 	/**
 	*@function soocket.on()
 	*@param {String} 'disconnect' - String parameter for the socket library that disconnects the server so it can be updated
@@ -240,13 +234,16 @@ function tallyVotes() {
 	// Pick the next 5 choices to vote on
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
-	var sendData = {
-		choices: choices,
-		metadata: metadata
-	}
-	io.sockets.emit('update-songs', sendData)
+	updateMetaData(() => {
+		var sendData = {
+			vhoices: choices,
+			metadata: metadata
+		}
 
-	return maxSong
+		io.sockets.emit('update-songs', sendData)
+
+		return maxSong
+	})
 }
 /**
  * This is a function that generates a unique user ID for every new user
@@ -256,16 +253,20 @@ function generateNewID() {
 	return users++
 }
 
-function updateMetaData() {
-	// CALLBACK!!!
-	md.getMetaData(choices, (data) => {
-		metadata = data
-		library.saveAlbumArt(data)
-		
-		albumPaths = []
-		for (var i = 0; i < choices.length; i++) {
-			albumPaths.push('/public/' + choices[i] + '.png')
-		}
+function updateMetaData(done) {
+
+	library.clearAlbumArt(albumPaths, () => {
+		md.getMetaData(choices, (data) => {
+			metadata = data
+			library.saveAlbumArt(data)
+			
+			albumPaths = []
+			for (var i = 0; i < choices.length; i++) {
+				albumPaths.push('/public/' + choices[i] + '.png')
+			}
+
+			done()
+		})
 	})
 
 }
