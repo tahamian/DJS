@@ -26,7 +26,8 @@ var express = require('express'),
 	commandLineArgs = require('command-line-args'),
 	player = require('./player.js'),
 	library = require('./library.js'),
-	args = require('./args.js')
+	args = require('./args.js'),
+	md = require('./metadata.js')
 
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -97,10 +98,19 @@ app.use('/public', express.static(__dirname + '/public'))
 *@type {number} musicIndex - the music index is set to 1
 *@type {Array} choices - this is selects how many choices of music that the user will be able to vote for and what music
 */
-var currentSong, musicIndex, choices
+var currentSong, musicIndex, choices, metadata, albumPaths
 currentSong = music[0]
 musicIndex = 1
 choices = music.slice(musicIndex, musicIndex + 5)
+albumPaths = []
+md.getMetaData(choices, (data) => {
+	console.log('get meta')
+	metadata = data
+	library.saveAlbumArt(metadata)
+	for (var i = 0; i < choices.length; i++) {
+		albumPaths.push('/public/' + choices[i] + '.png')
+	}
+})
 
 // Start playing the first song
 player.play(currentSong, done)
@@ -119,7 +129,11 @@ io.sockets.on('connection', function (socket) {
 			console.log('User: ' + data + ' reconnected.')
 		}
 
-		socket.emit('update-songs', choices)
+		var sendData = {
+			'choices': choices,
+			'albumPaths': albumPaths
+		}
+		socket.emit('update-songs', sendData)
 	})
 
 	/**
@@ -158,7 +172,7 @@ io.sockets.on('connection', function (socket) {
 			voteData.push(votes[i].song)
 		}
 
-		socket.emit('update-votes', voteData)
+		io.sockets.emit('update-votes', voteData)
 	})
 	/**
 	*@function soocket.on()
@@ -226,7 +240,11 @@ function tallyVotes() {
 	// Pick the next 5 choices to vote on
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
-	io.sockets.emit('update-songs', choices)
+	var sendData = {
+		choices: choices,
+		metadata: metadata
+	}
+	io.sockets.emit('update-songs', sendData)
 
 	return maxSong
 }
@@ -236,4 +254,18 @@ function tallyVotes() {
  */
 function generateNewID() {
 	return users++
+}
+
+function updateMetaData() {
+	// CALLBACK!!!
+	md.getMetaData(choices, (data) => {
+		metadata = data
+		library.saveAlbumArt(data)
+		
+		albumPaths = []
+		for (var i = 0; i < choices.length; i++) {
+			albumPaths.push('/public/' + choices[i] + '.png')
+		}
+	})
+
 }

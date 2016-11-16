@@ -43,8 +43,10 @@ var id = Cookies.get('id')
      *@param {String} 'update-songs' - String that is used by socket.on that updates the song list
      *@param {Array} data - an array of the song titles
     */
-    socket.on('update-songs', (data) => {
-        console.log('Updating the songs:\n' + data)															//updates the new songs
+    socket.on('update-songs', (sendData) => {													//updates the new songs
+
+        var data = sendData.choices,
+            albumPaths = sendData.albumPaths
 
         // Clear all current songs
         $('#list-div').empty()
@@ -90,6 +92,12 @@ var id = Cookies.get('id')
             var count = $('<p />')
                 .text('0')
                 .addClass('vote-count')
+                .appendTo(container)
+
+            var albumart = $('<img>')
+                .attr('src', albumPaths [i])
+                .attr('height', 80)
+                .attr('width', 80)
                 .appendTo(container)
 
             // Append the div to the list1

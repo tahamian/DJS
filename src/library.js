@@ -31,8 +31,22 @@ var path = require('path')
 function getSongs(p) {
 	return fs.readdirSync(p)
 }
+
+function saveAlbumArt(data) {
+	console.log('saveAlbumArt')
+	for (var i = 0; i < data.length; i++) {
+		var rawData = data [i].picture
+		var savePath = __dirname + '/public/' + data [i].fileName + '.png'
+
+		fs.writeFile(savePath, rawData, 'base64', (err) => {
+			if (err) console.log('IconHelper: fs.WriteFile() error\n' + err)
+		})
+	}
+}
+
 /**
  * @exports server
  *  {getSongs} getsongs - function that gets the songs in an array
  */
 exports.getSongs = getSongs
+exports.saveAlbumArt = saveAlbumArt
