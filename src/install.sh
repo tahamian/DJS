@@ -5,12 +5,16 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew update
 brew install git
 
+# Install node
+brew update
+brew install node
+
 # Clone REPO
-git clone ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+git clone ruby -e "https://gitlab.cas.mcmaster.ca/velechva/DJS.git"
 cd DJS/src
 
 # NPM Install
-npm install --save express args chao command-line-args cookie-parser express-handlebars jsodoc mocha omxdirector play-sound player selenium-webdriver socket.io ws
+npm install --save express args command-line-args cookie-parser express-handlebars jsdoc mocha omxdirector play-sound player socket.io ws
 
 # Create run file
 echo "node server.js" > run.sh
