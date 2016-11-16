@@ -10,7 +10,7 @@ brew update
 brew install node
 
 # Clone REPO
-git clone ruby -e "https://gitlab.cas.mcmaster.ca/velechva/DJS.git"
+git clone "https://gitlab.cas.mcmaster.ca/velechva/DJS.git"
 cd DJS/src
 
 # NPM Install
