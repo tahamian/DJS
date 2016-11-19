@@ -43,7 +43,7 @@ function saveAlbumArt(data) {
 	for (let i = 0; i < data.length; i++) {
 
 		var rawData = data [i].picture
-		var savePath = __dirname + '/public/' + data [i].fileName + '.png'
+		var savePath = __dirname + '/public/artwork/' + data [i].fileName + '.png'
 
 		fs.writeFile(savePath, rawData, 'base64', (err) => {
 			if (err) console.log('IconHelper: fs.WriteFile() error\n' + err)

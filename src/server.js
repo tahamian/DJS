@@ -64,8 +64,6 @@ fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
 })
 
-
-
 //This sets the location of the webserver (right now set to port 3000)
 var port = process.env.PORT || 3000
 server.listen(port)
@@ -90,7 +88,7 @@ app.get('/', (req, res) => {
 *@param (express) - this for the express library for static files like home.js
 *@param {String} '/public' - the location of home.js
 */
-app.use('/public', express.static(__dirname + '/public'))
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 
 /**
@@ -103,7 +101,7 @@ currentSong = music[0]
 musicIndex = 1
 choices = music.slice(musicIndex, musicIndex + 5)
 albumPaths = []
-updateMetaData(() => {})
+updateMetaData(() => { })
 
 // Start playing the first song
 player.play(currentSong, done)
@@ -126,6 +124,7 @@ io.sockets.on('connection', function (socket) {
 			'choices': choices,
 			'albumPaths': albumPaths
 		}
+
 		socket.emit('update-songs', sendData)
 	})
 
@@ -259,10 +258,10 @@ function updateMetaData(done) {
 		md.getMetaData(choices, (data) => {
 			metadata = data
 			library.saveAlbumArt(data)
-			
+
 			albumPaths = []
 			for (var i = 0; i < choices.length; i++) {
-				albumPaths.push('/public/' + choices[i] + '.png')
+				albumPaths.push('/public/artwork/' + choices[i] + '.png')
 			}
 
 			done()

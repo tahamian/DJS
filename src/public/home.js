@@ -98,6 +98,7 @@ var id = Cookies.get('id')
                 .attr('src', albumPaths [i])
                 .attr('height', 80)
                 .attr('width', 80)
+                .addClass('artwork')
                 .appendTo(container)
 
             // Append the div to the list1
