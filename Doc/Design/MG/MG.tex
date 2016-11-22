@@ -171,7 +171,7 @@ The following are modules implemented in DJS. The modules are placed into a hier
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Server
-\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Args 
+\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Args \textcolor{red}{Consider renaming - CM}
 \item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Home
 \item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Library
 \item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Player
@@ -203,7 +203,7 @@ The following are modules implemented in DJS. The modules are placed into a hier
 
 \multirow{3}{0.3\textwidth}{Software Decision Module}
 & \\
-& M2 \\
+& M2 \textcolor{red}{I don't see how your server module doesn't satisfy your requirements - CM} \\
 \bottomrule
 
 
@@ -239,7 +239,7 @@ The system was built to fulfill the requirements created during the design proce
 
 
 \begin{description}
-\item[Secrets:]Allows music to be located by the server and invloves user input.
+\item[Secrets:]Allows music to be located by the server and invloves user input. \textcolor{red}{This needs to be noun! also, should be one thing - CM}
 \item[Services:]From user input the directory is specified and all music located in the folder will be available to play on the system.
 \item[Implemented By:] args.js
 \end{description}
@@ -248,7 +248,7 @@ The system was built to fulfill the requirements created during the design proce
 
 
 \begin{description}
-\item[Secrets:]Song options are displayed to the user. Total Votes for each indivdual song is displayed.Updates client UI when needed and assigns a cookie to connected user.
+\item[Secrets:]Song options are displayed to the user. Total Votes for each indivdual song is displayed.Updates client UI when needed and assigns a cookie to connected user. \textcolor{red}{Same as above! - CM}
 \item[Services:]Uses an array passed from the library module to display the five options on the client side. Cookies is set and a unique identifer is used to distinguish votes from each user.
 \item[Implemented By:] home.js
 \end{description}
@@ -275,7 +275,7 @@ The system was built to fulfill the requirements created during the design proce
 
 
 \begin{description}
-\item[Secrets:]Tallys the votes casted for each individual song.
+\item[Secrets:]Tallys the votes casted for each individual song. \textcolor{red}{All these should be redone - CM} \\
 \item[Services:]Counts the number of votes from an array and returns the song with the maxmium amount of votes.
 \item[Implemented By:] voter.js
 \end{description}
@@ -361,6 +361,7 @@ R11 & \mref{mSR}, \mref{mDO}\\
 
 
 The DJS system was design to adhere to the principle of all Use Hierarchies having directed acyclic graphs (DAGS) which avoids cyclic dependencies. In addition, since all modules are connected to the Hardware-Hiding Module which interfaces with system hardware it has been shown separately.
+\textcolor{red}{I prefer tree structures, but this looks okay. - CM} \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{MG7}
