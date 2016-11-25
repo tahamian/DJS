@@ -39,15 +39,23 @@ function getSongs(p) {
  */
 function saveAlbumArt(data) {
 
+	console.log(data.length);
+
 	// For each album art
 	for (let i = 0; i < data.length; i++) {
 
 		var rawData = data [i].picture
 		var savePath = __dirname + '/public/artwork/' + data [i].fileName + '.png'
 
+		/**
 		fs.writeFile(savePath, rawData, 'base64', (err) => {
+				console.log('Saving album art for: ' + data [i].fileName)
 			if (err) console.log('IconHelper: fs.WriteFile() error\n' + err)
 		})
+		**/
+
+		fs.writeFileSync(savePath);
+		console.log('Saving album art for: ' + data[i].fileName)
 
 	}
 }
