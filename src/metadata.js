@@ -18,10 +18,14 @@ var fs = require('fs')
 function getMetaData(list, done) {
     var data = []
 
-    for (let i = 0; i < list.length; i++) {
+    save(list, data, 0 , list.length, done)
+}
 
-        var readableStream = fs.createReadStream(__dirname + '/music/' + list [i]),
-            parser = mm(readableStream, (err, metadata) => {
+function save(list, data, start, end, done) {
+
+    if (start < end) {
+        var readableStream = fs.createReadStream(__dirname + '/music/' + list[start])
+        var parser = mm(readableStream, (err, metadata) => {
             if (err) throw err
 
             data.push({
@@ -30,19 +34,14 @@ function getMetaData(list, done) {
                 artist: metadata.artist,
                 picture: metadata.picture [0].data,
                 format: metadata.picture [0].format,
-                fileName: list [i]
+                fileName: list [start]
             })
 
             readableStream.close()
 
-            check(i)
-
+            save(list, data, start + 1, end, done)
         })
-    }
-
-    function check(i) {
-        if (i == list.length - 1) done(data)
-    }
+    } else done(data)
 
 }
 
