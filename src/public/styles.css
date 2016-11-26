@@ -10,15 +10,12 @@ body {
   font-family: 'Droid Sans', sans-serif;
 }
 
-.wrap {
-  width:800px;
-  margin:0 auto;
-  text-align:left;
-  color:#989A8F;
+#page-wrap {
+  text-align: left;
+  width: 800px;
+  margin: 0 auto;
 }
-.boxed{
-  
-}
+
 .vote-count {
   display: -webkit-vote-count;
   display: -moz-vote-count;
@@ -32,26 +29,16 @@ body {
   font-size:20px;
   color:#fff;
   line-height:60px;
-  text-align:center;
   background:#989A8F;
-  margin-left:10px;
-  margin-top:10px;
+  margin-left:-20px;
+  text-align: center;
 }
 
-.list-group-item {
-  background-color:#EAE9E4;
-  border: 1px solid green ;
-  width: 1px;
-  border: 1px solid #989A8F;
-  padding: 10px 40px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  color: #989A8F;
-  font-size: 14px;
-  text-decoration: none;
-  vertical-align: middle;
-  font-size:17px;
+.list-group-item.list-group-item-action.button{
+  width: 200px;
+  text-align: center;
+  margin-left:-100px;
+
 
 }
 
@@ -59,9 +46,19 @@ body {
   padding:5px;
   height: 200px;
   width: 220px;
+  text-align: center;
+  margin-left:-107px;
+
 }
 
 .list-item-div {
   margin-top:50px;
   width: 200px;
+  background-color: #ba68c8;
+  border: 6px solid blue;
+  padding: 10px 140px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  color: #989A8F;
 }
