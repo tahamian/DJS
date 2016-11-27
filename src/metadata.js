@@ -32,8 +32,10 @@ function save(list, data, start, end, done) {
                 title: metadata.title,
                 album: metadata.album,
                 artist: metadata.artist,
-                picture: metadata.picture [0].data,
-                format: metadata.picture [0].format,
+                // Add the artwork. If the file doesn't have artwork, use the default
+                picture: metadata.picture [0].data ? metadata.picture [0].data : DEFAULT_PICTURE,
+                // File format of the artwork
+                format: metadata.picture [0].format ? metadata.picture [0].format : DEFAULT_FORMAT,
                 fileName: list [start]
             })
 

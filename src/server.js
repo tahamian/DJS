@@ -10,7 +10,6 @@
  * @summary A concise summary.
  */
 
-
 /**
  * Library Imports
  * @type {*}
@@ -90,7 +89,6 @@ app.get('/', (req, res) => {
 */
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
-
 /**
 *@type {String} currentSong - This variable picks the song to be played, this is also an Envoirnmental Variable because it changes the song that is currently being played
 *@type {number} musicIndex - the music index is set to 1
@@ -126,6 +124,15 @@ io.sockets.on('connection', function (socket) {
 		}
 
 		socket.emit('update-songs', sendData)
+
+		var voteData = []
+
+		for (var i = 0; i < votes.length; i++) {
+			voteData.push(votes[i].song)
+		}
+		
+		socket.emit('update-votes', voteData)
+
 	})
 
 	/**

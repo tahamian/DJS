@@ -9,6 +9,7 @@
 * [x] player.js
 * [x] MP3 metadata? (look at JavaScript-ID3-Reader)
 * [ ] Add metadata info to the web client
+* [ ] What happens during the 'last round' of songs?
 
 ## Testing
 

@@ -67,7 +67,7 @@ function saveAlbumArt(data) {
 function clearAlbumArt(albumPaths, done) {
 
 	for(var i = 0; i < albumPaths.length; i++) {
-		fs.unlinkSync(albumPaths [i])
+		fs.unlinkSync(__dirname + albumPaths [i])
 	}
 
 	done()

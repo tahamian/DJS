@@ -1,0 +1,64 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700);
+
+body {
+  text-align:center;
+  background: url(bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Droid Sans', sans-serif;
+}
+
+#page-wrap {
+  text-align: left;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.vote-count {
+  display: -webkit-vote-count;
+  display: -moz-vote-count;
+  display: vote-count;
+  -webkit-vote-count:vertical;
+  -moz-vote-count-orient:vertical;
+  vote-count-orient:vertical;
+  width:60px;
+  height:60px;
+  border-radius:60px;
+  font-size:20px;
+  color:#fff;
+  line-height:60px;
+  background:#989A8F;
+  margin-left:-20px;
+  text-align: center;
+}
+
+.list-group-item.list-group-item-action.button{
+  width: 200px;
+  text-align: center;
+  margin-left:-100px;
+
+
+}
+
+.artwork{
+  padding:5px;
+  height: 200px;
+  width: 220px;
+  text-align: center;
+  margin-left:-107px;
+
+}
+
+.list-item-div {
+  margin-top:50px;
+  width: 200px;
+  background-color: #ba68c8;
+  border: 6px solid blue;
+  padding: 10px 140px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  color: #989A8F;
+}
