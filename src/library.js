@@ -54,7 +54,7 @@ function saveAlbumArt(data) {
 		})
 		**/
 
-		fs.writeFileSync(savePath);
+		fs.writeFileSync(savePath, rawData, 'base64')
 		console.log('Saving album art for: ' + data[i].fileName)
 
 	}
