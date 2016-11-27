@@ -68,6 +68,7 @@ var id = Cookies.get('id')
              */
             var button = $('<button  />')
                 .addClass('list-group-item list-group-item-action')
+                .addClass('button')
                 .appendTo(container) // Append to the song list
                 .text(data[i]) // Song title
                 .click(function () { // Click function to emit a vote event to the server

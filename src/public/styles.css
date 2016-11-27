@@ -1,15 +1,4 @@
-@import "compass/css3";
-
-* {
-  margin:0;
-  padding:0;
-}
-
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700);
-
-html, body {
-  height: 100%;
-}
 
 body {
   text-align:center;
@@ -18,21 +7,15 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  @include filter-gradient(#5d4660, #f7eec7, vertical);
-  $experimental-support-for-svg: true;
-  @include background-image(linear-gradient(top, #5d4660    0%,#f7eec7 100%));
   font-family: 'Droid Sans', sans-serif;
 }
 
-.wrap {
-  width:800px;
-  margin:0 auto;
-  text-align:left;
-  color:#989A8F;
+#page-wrap {
+  text-align: left;
+  width: 800px;
+  margin: 0 auto;
 }
-.boxed{
-  
-}
+
 .vote-count {
   display: -webkit-vote-count;
   display: -moz-vote-count;
@@ -46,36 +29,36 @@ body {
   font-size:20px;
   color:#fff;
   line-height:60px;
-  text-align:center;
   background:#989A8F;
-  margin-left:70px;
-  margin-top:10px;
+  margin-left:-20px;
+  text-align: center;
 }
 
-.list-group-item {
-  background-color:#EAE9E4;
-  height:75px;
-    border: 1px solid green ;
+.list-group-item.list-group-item-action.button{
+  width: 200px;
+  text-align: center;
+  margin-left:-100px;
+
 
 }
 
 .artwork{
-  margin-top:50px;
   padding:5px;
+  height: 200px;
+  width: 220px;
+  text-align: center;
+  margin-left:-107px;
+
 }
 
 .list-item-div {
   margin-top:50px;
-    .button {
-   border: 1px solid #989A8F;
-   padding: 10px 40px;
-   -webkit-border-radius: 6px;
-   -moz-border-radius: 6px;
-   border-radius: 6px;
-   color: #989A8F;
-   font-size: 14px;
-   text-decoration: none;
-   vertical-align: middle;
-    font-size:17px;
-   }
+  width: 200px;
+  background-color: #ba68c8;
+  border: 6px solid blue;
+  padding: 10px 140px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  color: #989A8F;
 }
