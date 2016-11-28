@@ -44,16 +44,19 @@ var options = commandLineArgs(args.options)
  */
 var musicPath = __dirname + '/music'
 if (options.musicDir) musicPath = options.musicDir
+
 /**
  * @member {String} music - This is a varaible that gets the pathname
  */
 var music = library.getSongs(musicPath)
+
 /**
  *
  * @member {Array} votes - an array for the number of votes per song
  *This is also a state variable because the highest number of votes in the array is the next song
  */
 var votes = []
+
 /**
  * @member {number} users - this variable reads the file users.db and retrves the user list
 *This is also a state varaible the users can chose a song but can change their decsion until the song is finished
@@ -63,8 +66,9 @@ fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
 })
 
-//This sets the location of the webserver (right now set to port 3000)
+// This sets the location of the webserver (default is 3000)
 var port = process.env.PORT || 3000
+// Start server
 server.listen(port)
 console.log('Server running on port: ' + port)
 
@@ -82,7 +86,7 @@ app.get('/', (req, res) => {
 
 /**
 *@method app,use()
-* Allows users to load resources in the '/public' folder
+* Serves a folder with public resources that clients can request
 *@param {String} '/public' - the location of home.js
 *@param (express) - this for the express library for static files like home.js
 *@param {String} '/public' - the location of home.js
@@ -105,17 +109,17 @@ updateMetaData(() => { })
 player.play(currentSong, done)
 
 io.sockets.on('connection', function (socket) {
-	socket.on('connect-request', function (data) {
 
+	socket.on('connect-request', function (data) {
 		// If the user does not have an ID cookie set, create one
 		if (!data) {
 			var newID = generateNewID()
 			socket.emit('connect-response', newID)
 			fs.writeFile('users.db', users)
-			console.log('New connection with ID: ' + newID)
+			if (options.verbose) console.log('New connection with ID: ' + newID)
 			// Otherwise just use the existing ID
 		} else {
-			console.log('User: ' + data + ' reconnected.')
+			if (options.verbose) console.log('User: ' + data + ' reconnected.')
 		}
 
 		var sendData = {
@@ -124,14 +128,8 @@ io.sockets.on('connection', function (socket) {
 		}
 
 		socket.emit('update-songs', sendData)
-
-		var voteData = []
-
-		for (var i = 0; i < votes.length; i++) {
-			voteData.push(votes[i].song)
-		}
 		
-		socket.emit('update-votes', voteData)
+		socket.emit('update-votes', getVoteData())
 
 	})
 
@@ -143,7 +141,7 @@ io.sockets.on('connection', function (socket) {
 	*@param {function} - Contains the userID and the name of the song
 	**/
 	socket.on('vote', function (data) {
-		console.log('Vote incoming from: ' + data.id)
+		if (options.verbose) console.log('Vote incoming from: ' + data.id)
 		var id = data.id
 		var song = data.song
 		var idFound = false
@@ -161,17 +159,12 @@ io.sockets.on('connection', function (socket) {
 				'song': song
 			})
 		}
-		console.log(JSON.stringify(votes))
+		if (options.verbose) console.log(JSON.stringify(votes))
+
 		/**
 		*@member {Array} voterData - holds the amount of votes per song
 		*/
-		var voteData = []
-
-		for (var i = 0; i < votes.length; i++) {
-			voteData.push(votes[i].song)
-		}
-
-		io.sockets.emit('update-votes', voteData)
+		io.sockets.emit('update-votes', getVoteData())
 	})
 
 	/**
@@ -189,7 +182,7 @@ io.sockets.on('connection', function (socket) {
  * calls function to call the tallyvote method and resets the votes
  */
 function done() {
-	console.log('done function')
+	if (options.verbose) console.log('done function')
 	currentSong = tallyVotes()
 	votes = []
 }
@@ -275,4 +268,14 @@ function updateMetaData(done) {
 		})
 	})
 
+}
+
+function getVoteData() {
+	var voteData = []
+
+	for (var i = 0; i < votes.length; i++) {
+		voteData.push(votes[i].song)
+	}
+
+	return voteData
 }

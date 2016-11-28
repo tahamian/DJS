@@ -10,12 +10,11 @@
  * @summary A concise summary.
  */
 
-$(function() {
-/**
-*@member {String} id - is the value of the user id that will be used to store cookie information
-*/
-var id = Cookies.get('id')
-
+$(function () {
+    /**
+    *@member {String} id - is the value of the user id that will be used to store cookie information
+    */
+    var id = Cookies.get('id')
 
     var socket = io.connect()
 
@@ -36,36 +35,28 @@ var id = Cookies.get('id')
         Cookies.set('id', data)
     })
 
-
     /**
      * @function socket.on()
      *Update the UI to include the new songs
      *@param {String} 'update-songs' - String that is used by socket.on that updates the song list
      *@param {Array} data - an array of the song titles
     */
-    socket.on('update-songs', (sendData) => {													//updates the new songs
+    socket.on('update-songs', (sendData) => { //updates the new songs
 
-        var data = sendData.choices,
-            albumPaths = sendData.albumPaths
+        var data = sendData.choices
+        var albumPaths = sendData.albumPaths
 
         // Clear all current songs
         $('#list-div').empty()
 
         // For each new song, create a list element and append it
         $.each(data, function (i) {
-            /**
-             * @member {any}
-             *
-             * Create a div that contains elements for one song:
-             * a button and a vote total display
-             */
+
+            // Container div for a song element
             var container = $('<div />')
                 .addClass('list-item-div')
-            /**
-             * @member {jQuery}
-             *
-             * Create a button
-             */
+
+            // Button
             var button = $('<button  />')
                 .addClass('list-group-item')
                 .addClass('list-group-item-action')
@@ -78,26 +69,20 @@ var id = Cookies.get('id')
                         'song': data[i]
                     })
                 })
-            /**
-             * @member {any}
-             *
-             * Creates a line break
-             */
+
+            // Line break
             var brk = $('<br />')
                 .appendTo(container)
-            /**
-             * @var {any}
-             *
-             * Create a <p> that holds the current vote total for this song
-             */
 
+            // Vote count
             var count = $('<p />')
                 .text('0')
                 .addClass('vote-count')
                 .appendTo(container)
 
+            // Artwork
             var albumart = $('<img>')
-                .attr('src', albumPaths [i])
+                .attr('src', albumPaths[i])
                 .attr('height', 80)
                 .attr('width', 80)
                 .addClass('artwork')
@@ -109,6 +94,7 @@ var id = Cookies.get('id')
         })
 
     })
+    
     /**
      * @function socket.on()
     * socket library is used to update songs
