@@ -36,6 +36,10 @@ app.set('view engine', 'handlebars')
  */
 var options = commandLineArgs(args.options)
 
+if (options.verbose) {
+	library.setVerbose(true)
+}
+
 /**
 
  * @type {String} musicPath - This is a varaible that sets the pathname

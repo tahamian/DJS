@@ -21,6 +21,14 @@ var fs = require('fs')
  */
 var path = require('path')
 
+let verbose = false
+
+function setVerbose(value) {
+    if (value != true && value != false) return
+
+    verbose = value
+}
+
 /**
  * @function getSongs
  * Return the next n song choices (the number n of song choices is set in server.js)
@@ -39,7 +47,7 @@ function getSongs(p) {
  */
 function saveAlbumArt(data) {
 
-	console.log(data.length);
+	if (verbose) console.log(data.length);
 
 	// For each album art
 	for (let i = 0; i < data.length; i++) {
@@ -47,15 +55,8 @@ function saveAlbumArt(data) {
 		var rawData = data [i].picture
 		var savePath = __dirname + '/public/artwork/' + data [i].fileName + '.png'
 
-		/**
-		fs.writeFile(savePath, rawData, 'base64', (err) => {
-				console.log('Saving album art for: ' + data [i].fileName)
-			if (err) console.log('IconHelper: fs.WriteFile() error\n' + err)
-		})
-		**/
-
 		fs.writeFileSync(savePath, rawData, 'base64')
-		console.log('Saving album art for: ' + data[i].fileName)
+		if (verbose) console.log('Saving album art for: ' + data[i].fileName)
 
 	}
 }
