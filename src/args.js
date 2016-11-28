@@ -6,9 +6,8 @@
  */
 
 /**
-	* @function options
+	* @member options
 	* Creates the command line flags
-    *
 	* @return A JSON object that contains the flag options
 */
 const options = [

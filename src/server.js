@@ -239,7 +239,7 @@ function tallyVotes() {
 	choices = music.slice(musicIndex, musicIndex + 5)
 	updateMetaData(() => {
 		var sendData = {
-			vhoices: choices,
+			choices: choices,
 			metadata: metadata
 		}
 
@@ -249,6 +249,7 @@ function tallyVotes() {
 	})
 }
 /**
+ * @function generateNewID
  * This is a function that generates a unique user ID for every new user
  *@returns {number} users - Returns the user plus one
  */
@@ -256,6 +257,11 @@ function generateNewID() {
 	return users++
 }
 
+/**
+ * @function updateMetaData
+ * Updates the metadata for the new song choices
+ * @param done {callback} Callback function
+ */
 function updateMetaData(done) {
 
 	library.clearAlbumArt(albumPaths, () => {
@@ -274,6 +280,16 @@ function updateMetaData(done) {
 
 }
 
+/**
+ * @function getVoteData
+ * Compile the vote data to be sent to the web clients
+ * @return {array} Vote data of the form:
+ * [
+ *   {
+ * 	   id: ID, song: SONG 
+ *   }
+ * ]
+ */
 function getVoteData() {
 	var voteData = []
 
