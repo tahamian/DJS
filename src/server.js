@@ -15,6 +15,7 @@
  * @type {*}
  */
 
+// REQUIRE
 var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
@@ -40,31 +41,17 @@ if (options.verbose) {
 	library.setVerbose(true)
 }
 
-/**
-
- * @type {String} musicPath - This is a varaible that sets the pathname
- *
- * Set the music directory as either the default, or the -m flag, if applicable
- */
+// Set the music path - defaults to './music' but can be changed with the
+// -d flag
 var musicPath = __dirname + '/music'
 if (options.musicDir) musicPath = options.musicDir
 
-/**
- * @member {String} music - This is a varaible that gets the pathname
- */
 var music = library.getSongs(musicPath)
 
-/**
- *
- * @member {Array} votes - an array for the number of votes per song
- *This is also a state variable because the highest number of votes in the array is the next song
- */
+// Stores all the votes during the current round of voting
 var votes = []
 
-/**
- * @member {number} users - this variable reads the file users.db and retrves the user list
-*This is also a state varaible the users can chose a song but can change their decsion until the song is finished
- */
+// How many unique users have connected to this server before
 var users
 fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
@@ -74,12 +61,11 @@ fs.readFile('users.db', (err, data) => {
 var port = process.env.PORT || 3000
 // Start server
 server.listen(port)
-console.log('Server running on port: ' + port)
+if (options.verbose) console.log('Server running on port: ' + port)
 
 /**
  * @function get
  * Default routing function - returns the home page
- *
  * @param {String} - Endpoint (/)
  * @param req - HTML Request object
  * @param res - HTML Response object
@@ -89,18 +75,17 @@ app.get('/', (req, res) => {
 })
 
 /**
-*@method app,use()
+* @function app,use()
 * Serves a folder with public resources that clients can request
-*@param {String} '/public' - the location of home.js
-*@param (express) - this for the express library for static files like home.js
-*@param {String} '/public' - the location of home.js
+* @param {String} '/public' - the location of home.js
+* @param (express) - this for the express library for static files like home.js
 */
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
 /**
-*@type {String} currentSong - This variable picks the song to be played, this is also an Envoirnmental Variable because it changes the song that is currently being played
-*@type {number} musicIndex - the music index is set to 1
-*@type {Array} choices - this is selects how many choices of music that the user will be able to vote for and what music
+* @type {String} currentSong - This variable picks the song to be played, this is also an Envoirnmental Variable because it changes the song that is currently being played
+* @type {number} musicIndex - the music index is set to 1
+* @type {Array} choices - this is selects how many choices of music that the user will be able to vote for and what music
 */
 var currentSong, musicIndex, choices, metadata, albumPaths
 currentSong = music[0]
@@ -126,6 +111,7 @@ io.sockets.on('connection', function (socket) {
 			if (options.verbose) console.log('User: ' + data + ' reconnected.')
 		}
 
+		// Data to sned to the client about the song choices
 		var sendData = {
 			'choices': choices,
 			'albumPaths': albumPaths
@@ -138,11 +124,11 @@ io.sockets.on('connection', function (socket) {
 	})
 
 	/**
-	*@function soocket()
-	*A user has voted for a song. We have to first make sure that this user
-	*hasn't voted yet!!
-	*@param {Array} - Contains the array of votes per song
-	*@param {function} - Contains the userID and the name of the song
+	* @function soocket()
+	* A user has voted for a song. We have to first make sure that this user
+	* hasn't voted yet!!
+	* @param {Array} - Contains the array of votes per song
+	* @param {function} - Contains the userID and the name of the song
 	**/
 	socket.on('vote', function (data) {
 		if (options.verbose) console.log('Vote incoming from: ' + data.id)
@@ -172,16 +158,16 @@ io.sockets.on('connection', function (socket) {
 	})
 
 	/**
-	*@function soocket.on()
-	*@param {String} 'disconnect' - String parameter for the socket library that disconnects the server so it can be updated
-	*@param {function} data - Contains the userID and the name of the song
+	* @function soocket.on()
+	* @param {String} 'disconnect' - String parameter for the socket library that disconnects the server so it can be updated
+	* @param {function} data - Contains the userID and the name of the song
 	**/
 	socket.on('disconnect', function (data) {
 	})
 
 })
 /**
-*@function done()
+* @function done()
  * when a song is finished the function is called
  * calls function to call the tallyvote method and resets the votes
  */
@@ -192,7 +178,7 @@ function done() {
 }
 
 /**
-*@function tallyVotes()
+* @function tallyVotes()
  *This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
  * Then it gets the title of the song with the most votes and returns that value
  * @returns {String} maxsong - Retruns the title of the song
@@ -251,7 +237,7 @@ function tallyVotes() {
 /**
  * @function generateNewID
  * This is a function that generates a unique user ID for every new user
- *@returns {number} users - Returns the user plus one
+ * @returns {number} users - Returns the user plus one
  */
 function generateNewID() {
 	return users++

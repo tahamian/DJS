@@ -8,7 +8,7 @@ var fs = require('fs'),
  * @param list {[String]} - array of music file paths
  * @param done(metadata) { function } callback that contains the result
  * 
- * Returns metadata in the callback with the following form:
+ * @return Returns metadata in the callback with the following form:
  * [
  *     { title, album, artist, picture, format }
  * ]

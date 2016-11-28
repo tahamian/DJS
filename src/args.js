@@ -1,9 +1,9 @@
 /**
- * @module args
- * @version 1.0
- *
- * Options for command line arguments
- */
+* @file Provides options for command line arguments
+* @module args
+* @version 1.0
+* @summary Provides options for command line arguments
+*/
 
 /**
 	* @member options

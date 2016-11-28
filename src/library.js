@@ -75,10 +75,6 @@ function clearAlbumArt(albumPaths, done) {
 
 }
 
-/**
- * @exports server
- *  {getSongs} getsongs - function that gets the songs in an array
- */
 exports.getSongs = getSongs
 exports.saveAlbumArt = saveAlbumArt
 exports.clearAlbumArt = clearAlbumArt

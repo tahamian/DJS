@@ -1,13 +1,8 @@
 /**
-*@file This module is for the UI
-*<p> Assumptions
-* <ul style="list-style: none;">
-*  <li>User h browser can fun javascript
-*  <li>
-* </ul>
+ * @file Script for the main webpage
  * @module home
  * @version 1.0
- * @summary A concise summary.
+ * @summary Script for the main webpage
  */
 
 $(function () {
