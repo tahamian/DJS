@@ -127,7 +127,9 @@ io.sockets.on('connection', function (socket) {
 
 		socket.emit('update-songs', sendData)
 		
-		socket.emit('update-votes', getVoteData())
+		getVoteData((voteData) => {
+			io.sockets.emit('update-votes', voteData)
+		})
 
 	})
 
@@ -162,7 +164,9 @@ io.sockets.on('connection', function (socket) {
 		/**
 		*@member {Array} voterData - holds the amount of votes per song
 		*/
-		io.sockets.emit('update-votes', getVoteData())
+		getVoteData((voteData) => {
+			io.sockets.emit('update-votes', voteData)
+		})
 	})
 
 	/**
@@ -232,9 +236,10 @@ function tallyVotes() {
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
 	updateMetaData(() => {
+
 		var sendData = {
 			choices: choices,
-			metadata: metadata
+			albumPaths: albumPaths
 		}
 
 		io.sockets.emit('update-songs', sendData)
@@ -284,12 +289,12 @@ function updateMetaData(done) {
  *   }
  * ]
  */
-function getVoteData() {
+function getVoteData(done) {
 	var voteData = []
 
 	for (var i = 0; i < votes.length; i++) {
 		voteData.push(votes[i].song)
 	}
 
-	return voteData
+	done(voteData)
 }
