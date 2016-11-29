@@ -46,7 +46,6 @@ function getSongs(p) {
  * @param {[ metadata ]} List of metadata items as returned by metadata.js
  */
 function saveAlbumArt(data) {
-
 	if (verbose) console.log(data.length);
 
 	// For each album art
@@ -66,7 +65,7 @@ function saveAlbumArt(data) {
  * Clear all the album art that is currently located in the public folder
  */
 function clearAlbumArt(albumPaths, done) {
-
+	// Maybe we should just clear ALL artwork?
 	for(var i = 0; i < albumPaths.length; i++) {
 		fs.unlinkSync(__dirname + albumPaths [i])
 	}
@@ -78,3 +77,4 @@ function clearAlbumArt(albumPaths, done) {
 exports.getSongs = getSongs
 exports.saveAlbumArt = saveAlbumArt
 exports.clearAlbumArt = clearAlbumArt
+exports.setVerbose = setVerbose

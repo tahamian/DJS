@@ -18,7 +18,7 @@ var fs = require('fs'),
 function getMetaData(list, done) {
     var data = []
 
-    save(list, data, 0 , list.length, done)
+    save(list, data, 0, list.length, done)
 }
 
 function save(list, data, start, end, done) {
@@ -29,14 +29,14 @@ function save(list, data, start, end, done) {
             if (err) throw err
 
             data.push({
-                title: metadata.title,
-                album: metadata.album,
-                artist: metadata.artist,
+                title: (metadata.tile != undefined) ? metadata.title : 'title',
+                album: (metadata.album != undefined) ? metadata.album: 'album',
+                artist: (metadata.artist != undefined) ? metadata.artist : 'artist',
                 // Add the artwork. If the file doesn't have artwork, use the default
-                picture: metadata.picture [0].data ? metadata.picture [0].data : DEFAULT_PICTURE,
+                picture: (metadata.picture.length > 0) ? metadata.picture [0].data : defaultPicture(),
                 // File format of the artwork
-                format: metadata.picture [0].format ? metadata.picture [0].format : DEFAULT_FORMAT,
-                fileName: list [start]
+                format: (metadata.picture.length > 0) ? metadata.picture [0].format: defaultFormat(),
+                fileName: list[start]
             })
 
             readableStream.close()
@@ -45,6 +45,14 @@ function save(list, data, start, end, done) {
         })
     } else done(data)
 
+}
+
+function defaultPicture() {
+    return fs.readFileSync(__dirname + '/public/artwork/default.png', 'base64')
+}
+
+function defaultFormat() {
+    return '.png'
 }
 
 exports.getMetaData = getMetaData

@@ -15,7 +15,6 @@
  * @type {*}
  */
 
-// REQUIRE
 var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
@@ -27,7 +26,8 @@ var express = require('express'),
 	player = require('./player.js'),
 	library = require('./library.js'),
 	args = require('./args.js'),
-	md = require('./metadata.js')
+	md = require('./metadata.js'),
+	errorHandler = require('./error-handler.js')
 
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -37,8 +37,12 @@ app.set('view engine', 'handlebars')
  */
 var options = commandLineArgs(args.options)
 
-if (options.verbose) {
+var verbose = false
+if (options.verbose === null) verbose = true
+
+if (verbose) {
 	library.setVerbose(true)
+	console.log('Logging in verbose mode')
 }
 
 // Set the music path - defaults to './music' but can be changed with the
@@ -59,9 +63,13 @@ fs.readFile('users.db', (err, data) => {
 
 // This sets the location of the webserver (default is 3000)
 var port = process.env.PORT || 3000
+
+// Error handling
+server.on('error', errorHandler.errorCallback)
+
 // Start server
 server.listen(port)
-if (options.verbose) console.log('Server running on port: ' + port)
+if (verbose) console.log('Server running on port: ' + port)
 
 /**
  * @function get
@@ -105,10 +113,10 @@ io.sockets.on('connection', function (socket) {
 			var newID = generateNewID()
 			socket.emit('connect-response', newID)
 			fs.writeFile('users.db', users)
-			if (options.verbose) console.log('New connection with ID: ' + newID)
+			if (verbose) console.log('New connection with ID: ' + newID)
 			// Otherwise just use the existing ID
 		} else {
-			if (options.verbose) console.log('User: ' + data + ' reconnected.')
+			if (verbose) console.log('User: ' + data + ' reconnected.')
 		}
 
 		// Data to sned to the client about the song choices
@@ -131,7 +139,7 @@ io.sockets.on('connection', function (socket) {
 	* @param {function} - Contains the userID and the name of the song
 	**/
 	socket.on('vote', function (data) {
-		if (options.verbose) console.log('Vote incoming from: ' + data.id)
+		if (verbose) console.log('Vote incoming from: ' + data.id)
 		var id = data.id
 		var song = data.song
 		var idFound = false
@@ -149,7 +157,7 @@ io.sockets.on('connection', function (socket) {
 				'song': song
 			})
 		}
-		if (options.verbose) console.log(JSON.stringify(votes))
+		if (verbose) console.log(JSON.stringify(votes))
 
 		/**
 		*@member {Array} voterData - holds the amount of votes per song
@@ -172,7 +180,7 @@ io.sockets.on('connection', function (socket) {
  * calls function to call the tallyvote method and resets the votes
  */
 function done() {
-	if (options.verbose) console.log('done function')
+	if (verbose) console.log('done function')
 	currentSong = tallyVotes()
 	votes = []
 }
