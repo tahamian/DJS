@@ -13,8 +13,8 @@ brew install node
 git clone "https://gitlab.cas.mcmaster.ca/velechva/DJS.git"
 cd DJS/src
 
-# NPM Install
-npm install --save express args command-line-args cookie-parser express-handlebars jsdoc mocha omxdirector play-sound player socket.io ws
+# Install Node Packages
+npm install
 
 # Create run file
 echo "node server.js" > run.sh

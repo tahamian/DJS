@@ -126,7 +126,7 @@ io.sockets.on('connection', function (socket) {
 		}
 
 		socket.emit('update-songs', sendData)
-		
+
 		getVoteData((voteData) => {
 			io.sockets.emit('update-votes', voteData)
 		})
@@ -285,7 +285,7 @@ function updateMetaData(done) {
  * @return {array} Vote data of the form:
  * [
  *   {
- * 	   id: ID, song: SONG 
+ * 	   id: ID, song: SONG
  *   }
  * ]
  */
