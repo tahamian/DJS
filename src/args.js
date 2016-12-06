@@ -1,14 +1,13 @@
 /**
-* @file Provides options for command line arguments
+* @file arg.js
+* Provides options for command line arguments
 * @module args
 * @version 1.0
-* @summary Provides options for command line arguments
 */
 
 /**
-	* @member options
-	* Creates the command line flags
-	* @return A JSON object that contains the flag options
+ * @member options {Object} Array of flag options
+ * @return A JSON object that contains the flag options
 */
 const options = [
     // -m flag to select a custom music directory

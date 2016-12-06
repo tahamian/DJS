@@ -7,22 +7,29 @@
 * </ul>
 * @module library
 * @version 1.0
-* @summary A concise summary.
 */
 
 /**
- *Varaible sets the path using the require()
+ * File system library
  * @member {String} fs
  */
 var fs = require('fs')
 /**
- * Variable gets the path using the require()
+ * Path library
  * @member {String} path
  */
 var path = require('path')
 
+/**
+ * @member verbose {boolean} determines if verbose logging is enabled
+*/
 let verbose = false
 
+/**
+ * Set the verbose flag
+ * @function setVerbose
+ * @param value {boolean} verbose value
+*/
 function setVerbose(value) {
     if (value != true && value != false) return
 
@@ -30,8 +37,8 @@ function setVerbose(value) {
 }
 
 /**
- * @function getSongs
  * Return the next n song choices (the number n of song choices is set in server.js)
+ * @function getSongs
  * @param (String) - the pathname of where the music is
  * @return (Array) - a list of n songs that will be the new voting options
 */
@@ -40,11 +47,11 @@ function getSongs(p) {
 }
 
 /**
- * @function saveAlbumArt
  * Save all the album art data in the public folder so that the client can
  * load and display them
+ * @function saveAlbumArt
  * @param {[ metadata ]} List of metadata items as returned by metadata.js
- */
+*/
 function saveAlbumArt(data) {
 	if (verbose) console.log(data.length);
 
@@ -61,9 +68,11 @@ function saveAlbumArt(data) {
 }
 
 /**
- * @function clearAlbumArt
  * Clear all the album art that is currently located in the public folder
- */
+ * @function clearAlbumArt
+ * @param albumPaths {String []} array of paths to clear
+ * @param done {callback} callback function
+*/
 function clearAlbumArt(albumPaths, done) {
 	// Maybe we should just clear ALL artwork?
 	for(var i = 0; i < albumPaths.length; i++) {

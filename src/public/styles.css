@@ -1,10 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700);
 
 body {
-    text-align:center;
-    /*background: url(bg.jpg) no-repeat center center fixed;*/
-    background-size: cover;
-    font-family: 'Droid Sans', sans-serif;
+	text-align:center;
+	/*background: url(bg.jpg) no-repeat center center fixed;*/
+	background-size: cover;
+	font-family: 'Droid Sans', sans-serif;
 }
 
 .vote-count {
@@ -24,16 +24,16 @@ body {
 }
 
 .artwork {
-    padding: 5px;
-    height: 200px;
-    width: 200px;
-    text-align: center;
+	padding: 5px;
+	height: 200px;
+	width: 200px;
+	text-align: center;
 
-    float: left;
+	float: left;
 }
 
 .vote-button {
-    width: 200px;
+	width: 200px;
 }
 
 .list-item-div {
@@ -47,6 +47,6 @@ body {
 }
 
 .button {
-    width: 200px;
-    text-align: center;
+	width: 200px;
+	text-align: center;
 }

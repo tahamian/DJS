@@ -1,4 +1,6 @@
 /**
+ * @file voter.js
+ * Handles voting logic
  * @module voter
  * @version 1.0
  */
@@ -16,10 +18,10 @@ function tallyVotes(choices, votes) {
 			'votes': 0
 		})
 	}
-	
+
 	for (var i = 0; i < votes.length; i++) {
 		var song = votes[i].song
-		
+
 		for (var j = 0; j < tallies.length; j++) {
 			if (tallies[j].song == song){
 				tallies[j].votes++
