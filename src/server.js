@@ -21,7 +21,7 @@ var express = require('express'),
 	commandLineArgs = require('command-line-args'),
 	player = require('./player.js'),
 	library = require('./library.js'),
-	args = require('./args.js'),
+	args = require('./flags.js'),
 	md = require('./metadata.js'),
 	errorHandler = require('./error-handler.js')
 
