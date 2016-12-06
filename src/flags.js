@@ -1,5 +1,5 @@
 /**
-* @file arg.js
+* @file flags.js
 * Provides options for command line arguments
 * @module args
 * @version 1.0
