@@ -1,3 +1,14 @@
+/**
+ * @file error-handler.js
+ * Handles errors
+ * @module error-handler
+*/
+
+/**
+ * Function that is called when Node.JS experiences an error.
+ * @function errorCallback
+ * @param err {Error} Node.JS error
+*/
 function errorCallback(err) {
 
 	if (String(err).indexOf('EADDRINUSE') != -1) {
@@ -10,7 +21,7 @@ function errorCallback(err) {
 					'Ensure that the directory exists and can be accessed.' +
 				    'Administrative priviledges may be needed.')
 	}
-	
+
 }
 
 exports.errorCallback = errorCallback
