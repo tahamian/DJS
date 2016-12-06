@@ -12,12 +12,12 @@ var fs = require('fs'),
  * @function getMetaData
  * @param list {String} - array of music file paths
  * @param done(metadata) { function } callback that contains the result
- * @return Returns metadata in the callback with the following form:
- * [
- *     { title, album, artist, picture, format }
- * ]
- * format: File extension of the albumart
- * picture: Raw bin64 picture data
+ * @return {Object} Returns metadata in the callback with the following form:<br>
+ * [<br>
+ *   &emsp;  { title, album, artist, picture, format } <br>
+ * ] <br><br>
+ * format: File extension of the albumart <br>
+ * picture: Raw bin64 picture data <br>
  */
 function getMetaData(list, done) {
 	var data = []
@@ -52,10 +52,12 @@ function save(list, data, start, end, done) {
 
 }
 
+// Default picture for songs that don't have artwork
 function defaultPicture() {
 	return fs.readFileSync(__dirname + '/public/artwork/default.png', 'base64')
 }
 
+// Default picture format for songs that don't have artwork
 function defaultFormat() {
 	return '.png'
 }

@@ -24,12 +24,12 @@
 ## Robustness
 
 * [x] Handle songs with empty artwork
-* [ ] Handle empty directory
+* [x] Handle empty directory
 * [ ] Handle non-png files
 
 ## Etc
 
-* [ ] Comments
+* [x] Comments
 * [x] ADD FAMILY FRIENDLY MUSIC!!
 
 ## Documentation

@@ -8,7 +8,7 @@
  * @module server
  * @version 1.0
  * @summary A concise summary.
-*/
+ */
 
 // Library imports
 var express = require('express'),
@@ -45,16 +45,15 @@ if (verbose) {
 	console.log('Logging in verbose mode')
 }
 
-// Set the music path - defaults to './music' but can be changed with the
-// -d flag
 /**
- * @member musicPath {String} path of the music folder
+ * @member musicPath {String} path of the music folder<br>
+ * Defaults to ./music, but can be changed with the -d flag
 */
 var musicPath = __dirname + '/music'
 if (options.musicDir) musicPath = options.musicDir
 
 /**
- * @member music {String []} array of song paths
+ * @member {array} music array of song paths
 */
 var music = library.getSongs(musicPath)
 
@@ -75,9 +74,9 @@ fs.readFile('users.db', (err, data) => {
 var port = process.env.PORT || 3000
 
 /**
- * Handles error handling
+ * Re-route error handling
  * @function on
- * @param event {String} error
+ * @param error {String} error
  * @param callback {callback} callback function
 */
 server.on('error', errorHandler.errorCallback)
@@ -89,7 +88,7 @@ if (verbose) console.log('Server running on port: ' + port)
 /**
  * Default routing function - returns the home page
  * @function get
- * @param {String} - Endpoint (/)
+ * @param {String} / Endpoint
  * @param req - HTML Request object
  * @param res - HTML Response object
  */
@@ -100,7 +99,7 @@ app.get('/', (req, res) => {
 /**
 * Serves a folder with public resources that clients can request
 * @function use
-* @param {String} '/public' - the location of home.js
+* @param {String} /public Endpoint
 * @param (express) - this for the express library for static files like home.js
 */
 app.use('/public', express.static(path.join(__dirname, 'public')))
@@ -120,16 +119,32 @@ updateMetaData(() => { })
 // Start playing the first song
 player.play(currentSong, done)
 
+/**
+* Function called when the server first runs and socket.io is prepared.<br>
+* Contains function definitions for websocket event handlers
+* @function on
+* @param {String} connection
+* @param {function} callback(socket) callback function <br><br>
+**/
 io.sockets.on('connection', function (socket) {
 
+	/**
+	 * Function called when a user connects to the server's websocket
+	 * @function on
+	 * @param {String} connect-request
+	 * @param {function} callback(data) callback function<br><br>
+	 * data: ID cookie from the user's browser (if any)
+	**/
 	socket.on('connect-request', function (data) {
 		// If the user does not have an ID cookie set, create one
 		if (!data) {
 			var newID = generateNewID()
+
 			socket.emit('connect-response', newID)
 			fs.writeFile('users.db', users)
+
 			if (verbose) console.log('New connection with ID: ' + newID)
-			// Otherwise just use the existing ID
+		// Otherwise just use the existing ID
 		} else {
 			if (verbose) console.log('User: ' + data + ' reconnected.')
 		}
@@ -151,8 +166,9 @@ io.sockets.on('connection', function (socket) {
 	/**
 	* A user has voted for a song.
 	* @function on
-	* @param {Array} - Contains the array of votes per song
-	* @param {function} - Contains the userID and the name of the song
+	* @param {String} vote
+	* @param {function} callback(data) callback function<br><br>
+	* data: name of item that the user voted for
 	**/
 	socket.on('vote', function (data) {
 		if (verbose) console.log('Vote incoming from: ' + data.id)
@@ -199,7 +215,7 @@ function done() {
 *This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
 * Then it gets the title of the song with the most votes and returns that value
 * @function tallyVotes
- * @returns {String} maxsong - Retruns the title of the song
+ * @returns {String} maxsong Returns the title of the song
  */
 function tallyVotes() {
 
@@ -265,7 +281,7 @@ function generateNewID() {
 /**
  * Updates the metadata for the new song choices
  * @function updateMetaData
- * @param done {callback} Callback function
+ * @param {callback} done callback function
  */
 function updateMetaData(done) {
 
@@ -288,12 +304,13 @@ function updateMetaData(done) {
 /**
  * Compile the vote data to be sent to the web clients
  * @function getVoteData
- * @return {array} Vote data of the form:
- * [
- *   {
- * 	   id: ID, song: SONG
- *   }
- * ]
+ * @param {function} done callback function
+ * @return {array} Vote data of the form: <br>
+ * [ <br>
+ *  &emsp; { id, song } <br>
+ * ] <br><br>
+ * id: string<br>
+ * song: string<br>
  */
 function getVoteData(done) {
 	var voteData = []

@@ -11,7 +11,7 @@ const PREDICTION = {
 
 describe('Read MetaData()', function(done) {
     it('Reads the metadata for Drake.mp3', () => {
-        
+
         md.getMetaData(SONGNAME, (metadata) => {
             expect(metadata [0]).to.equal(PREDICTION)
             done()

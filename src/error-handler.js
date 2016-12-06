@@ -1,11 +1,16 @@
 /**
  * @file error-handler.js
- * Handles errors
+ * Handles errors caught by Node.JS. Prints user-friendly error messages.
  * @module error-handler
 */
 
 /**
- * Function that is called when Node.JS experiences an error.
+ * Function that is called when Node.JS experiences an error.<br><br>
+ * Catches the following errors:
+ * <ul>
+ * <li>EADDRINUSE</li>
+ * <li>ENOENT</li>
+ * </ul>
  * @function errorCallback
  * @param err {Error} Node.JS error
 */

@@ -39,8 +39,8 @@ function setVerbose(value) {
 /**
  * Return the next n song choices (the number n of song choices is set in server.js)
  * @function getSongs
- * @param (String) - the pathname of where the music is
- * @return (Array) - a list of n songs that will be the new voting options
+ * @param (String) the pathname of where the music is
+ * @return (Array) a list of n songs that will be the new voting options
 */
 function getSongs(p) {
 	return fs.readdirSync(p)
@@ -50,7 +50,8 @@ function getSongs(p) {
  * Save all the album art data in the public folder so that the client can
  * load and display them
  * @function saveAlbumArt
- * @param {[ metadata ]} List of metadata items as returned by metadata.js
+ * @param metadata {array} List of metadata items of the form:<br>
+ * [<br>&emsp;{picture, fileName},<br>&emsp;{picture, fileName}<br>]
 */
 function saveAlbumArt(data) {
 	if (verbose) console.log(data.length);
@@ -61,6 +62,7 @@ function saveAlbumArt(data) {
 		var rawData = data [i].picture
 		var savePath = __dirname + '/public/artwork/' + data [i].fileName + '.png'
 
+        // Write album art data to file
 		fs.writeFileSync(savePath, rawData, 'base64')
 		if (verbose) console.log('Saving album art for: ' + data[i].fileName)
 
