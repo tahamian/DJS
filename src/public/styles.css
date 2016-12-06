@@ -10,12 +10,17 @@ body {
 .vote-count {
     width: 60px;
     height: 60px;
-    font-size: 15px;
-    font-weight: bolder;
+    font-size: 25px;
     margin: 0 auto;
     margin-top: 80px;
     text-align: center;
     display: inline-block;
+    border-radius:60px;
+    font-size:20px;
+    color:#fff;
+    line-height:60px;
+    background:#989A8F;
+  text-align: center;
 }
 
 .artwork {
@@ -36,7 +41,7 @@ body {
     height: 300px;
     padding: 20px 20px 20px 20px;
     text-align: center;
-    border: 1px black;
+    border: 1px #e5e5e5;
     border-style: solid;
     margin-bottom: 50px;
 }
