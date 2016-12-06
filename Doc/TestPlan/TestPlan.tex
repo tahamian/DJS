@@ -58,12 +58,10 @@ The test plan document is a helpful tool for many large scale projects since it 
 The project, "DJS",is a democratic voting system which allows users to vote for music. Thus testing can cover many areas such as: client methods (ie: update song client, etc), server methods (ie: create Cookie), data structures, and sorting algorithms. 
 
 \subsection{Acronyms, Abbreviations, and Symbols}
-	
-N/A
 
 \subsection{Overview of Document}
 \textcolor{red}{Making an issue to href something MAY be a better idea - CM} \\
-	This is the test plan document for the project DJS, which is a reconstruction of the application PlayMyWay (href this).
+This is the test plan document for the project DJS, which is a reconstruction of the application PlayMyWay \href{https://github.com/malithsen/playmyway}.
 The test plan uses the functional and non-functional requirements to detect any errors in the project DJS.
 The document goes over various techniques for testing such as Manual and automated testing, structural and
 functional testing, static and dynamic testing, fault testing.
@@ -71,8 +69,7 @@ functional testing, static and dynamic testing, fault testing.
 \section{Plan}
 	
 \subsection{Software Description}
-\textcolor{red}{WAY to low level when mentioned .js files. Speak more to modules for example - CM} \\
-The server running DJS is using nodejs with multiple libraries which includes : express, handlebars, express--handlebars, and socket.io. The implementation of DJS has been modularized into three aspects.The player.js file plays the music, server.js hosts the website, votes.js helps with voting, and library.js which returns list of songs. 
+The server running DJS is using nodejs with multiple libraries which includes : express, handlebars, express--handlebars, and socket.io. The implementation of DJS has been modularized into eight modules. The module Server.js is used for hosting the webpage, and uses the modules voter.js, player.js, metadata.js, home.js, library.js, args.js, and error-handler.js. server.js is the main module using every other module. Server.js uses Library.js to get an N amount of songs, the number N is set in the module server.js, the number has been preset to 5. All library.js does is get a list of songs that are to be displayed on the webpage to be voted for, and the songs are selected randomly. The same idea can be applied to metadata.js, except metadata.js gets the metadata of the songs selected by library.js, and saves the album in a folder called artwork. Voter.js also relies on server.js voter.js counts the amount of votes and server.js selects the song with the highest amount of votes. Home.js is used to display the webpage by server.js all the information like artwork, title of the song, and number of votes are all displayed using home.js. Sever.js uses player.js to just play audio to the speakers of the system. Error-handler.js is used by server.js for catching errors and determines what message to print to the terminal. Args.js is used by server.js when the user runs server.js with certain command line arguments.
 
 \subsection{Test Team}
 All project members will participate and be responsible for writing and executing tests.
@@ -770,7 +767,7 @@ How test will be performed: User will try and look at other user information on 
 	
 \section{Comparison to Existing Implementation}	
 \textcolor{red}{This is NOT just comparing the projects. It is detailing how to parallel test the two to be sure your project matches the other's (and subsequently your) requirements - CM} \\
-The product DJS is a dynamic voting system which allows user to vote for certain songs. The previously implemented open source project called PlayMyWay lacked in well documented code. Comparing the two products is beneficial to DJS since it allows the product to evolve. The changes that might occur however are dependent on the project's progress and would require the scope to change. The modification to the scope would help develop and implement core features in DJS. The requirements that may add extra features will only be incorporated if time permits. The subsection of requirements such as look and feel, performance, security, and accuracy still need improvements. The section for look and feel for example is only partially implemented in the proof of concept. The requirement of displaying the total number of votes for each song will only be added if time permits. Another example, the performance requirement of loading buttons and quickly is still waiting to be implemented.  However, since most core requirements such as playing music and voting have been fulfilled most requirements suggested from before and others will be developed. Although most requirements are important  the list may also be narrowed down to help create more time for more ideal requirements such as total votes. Thus, after comparing DJS with the original implementation it demonstrates the similarities and the small differences still left to be negated  
+The product DJS is a dynamic voting system which allows user to vote for songs. The previously implemented open source project called PlayMyWay lacked in well documented code. Comparing the two products is beneficial to DJS since it allows the product to evolve. The changes that might occur however are dependent on the project's progress and would require the scope to change. The modification to the scope would help develop and implement core features in DJS. The requirements that may add extra features will only be incorporated if time permits. The subsection of requirements such as look and feel, performance, security, and accuracy still need improvements. The section for look and feel for example is only partially implemented in the proof of concept. The requirement of displaying the total number of votes for each song will only be added if time permits. Another example, the performance requirement of loading buttons and quickly is still waiting to be implemented.  However, since most core requirements such as playing music and voting have been fulfilled most requirements suggested from before and others will be developed. Although most requirements are important  the list may also be narrowed down to help create more time for more ideal requirements such as total votes. Thus, after comparing DJS with the original implementation it demonstrates the similarities and the small differences still left to be negated.
 				
 \section{Unit Testing Plan}
 		
