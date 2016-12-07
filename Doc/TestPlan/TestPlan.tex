@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{color}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -17,14 +18,16 @@
 \author{Team 12 , DJS
 		\\ Amandeep Panesar panesas2
 		\\ Taha Mian miantm
-		\\ Victor velech
+		\\ Victor velechva
 }
 
 \date{\today}
 
-
-
 \begin{document}
+
+\newcommand{\acceptableRating}{\textcolor{blue}{7.5 }}
+\newcommand{\numberOfSongs}{\textcolor{blue}{5 }}
+\newcommand{\numberOfStressTestClients}{\textcolor{blue}{300 }}
 
 \maketitle
 
@@ -38,7 +41,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-OCT 28 & 1.0 & Rev0\\
+OCT 28 & 0.1 & Rev0\\
+DEC 6 & 1.0 & Rev1\\
 
 \bottomrule
 \end{tabularx}
@@ -47,7 +51,6 @@ OCT 28 & 1.0 & Rev0\\
 \newpage
 
 \pagenumbering{arabic}
-
 
 \section{General Information}
 
@@ -61,7 +64,7 @@ The project, "DJS",is a democratic voting system which allows users to vote for 
 
 \subsection{Overview of Document}
 \textcolor{red}{Making an issue to href something MAY be a better idea - CM} \\
-This is the test plan document for the project DJS, which is a reconstruction of the application PlayMyWay \href{https://github.com/malithsen/playmyway}.
+This is the test plan document for the project DJS, which is a reconstruction of the application PlayMyWay: \url{https://github.com/malithsen/playmyway}.
 The test plan uses the functional and non-functional requirements to detect any errors in the project DJS.
 The document goes over various techniques for testing such as Manual and automated testing, structural and
 functional testing, static and dynamic testing, fault testing.
@@ -69,24 +72,31 @@ functional testing, static and dynamic testing, fault testing.
 \section{Plan}
 	
 \subsection{Software Description}
-The server running DJS is using nodejs with multiple libraries which includes : express, handlebars, express--handlebars, and socket.io. The implementation of DJS has been modularized into eight modules. The module Server.js is used for hosting the webpage, and uses the modules voter.js, player.js, metadata.js, home.js, library.js, args.js, and error-handler.js. server.js is the main module using every other module. Server.js uses Library.js to get an N amount of songs, the number N is set in the module server.js, the number has been preset to 5. All library.js does is get a list of songs that are to be displayed on the webpage to be voted for, and the songs are selected randomly. The same idea can be applied to metadata.js, except metadata.js gets the metadata of the songs selected by library.js, and saves the album in a folder called artwork. Voter.js also relies on server.js voter.js counts the amount of votes and server.js selects the song with the highest amount of votes. Home.js is used to display the webpage by server.js all the information like artwork, title of the song, and number of votes are all displayed using home.js. Sever.js uses player.js to just play audio to the speakers of the system. Error-handler.js is used by server.js for catching errors and determines what message to print to the terminal. Args.js is used by server.js when the user runs server.js with certain command line arguments.
+The server running DJS is using nodejs with multiple libraries which includes : express, handlebars, express--handlebars, and socket.io. The implementation of DJS has been modularized into eight modules. The module Server.js is used for hosting the webpage, and uses the modules voter.js, player.js, metadata.js, home.js, library.js, args.js, and error-handler.js. server.js is the main module using every other module. Server.js uses Library.js to get an N amount of songs, the number N is set in the module server.js, the number has been preset to \numberOfSongs. All library.js does is get a list of songs that are to be displayed on the webpage to be voted for, and the songs are selected randomly. The same idea can be applied to metadata.js, except metadata.js gets the metadata of the songs selected by library.js, and saves the album in a folder called artwork. Voter.js also relies on server.js voter.js counts the amount of votes and server.js selects the song with the highest amount of votes. Home.js is used to display the webpage by server.js all the information like artwork, title of the song, and number of votes are all displayed using home.js. Sever.js uses player.js to just play audio to the speakers of the system. Error-handler.js is used by server.js for catching errors and determines what message to print to the terminal. Args.js is used by server.js when the user runs server.js with certain command line arguments.
 
 \subsection{Test Team}
 All project members will participate and be responsible for writing and executing tests.
 
 \subsection{Automated Testing Approach}
 \textcolor{red}{Speak to the why, where and how you will run automatic tests - CM} \\
-The automated testing will be implemented by using javascript libaries and custom unit testing function created in javascript.
+
+\textcolor{blue}{
+Automated testing will be done through white-box unit tests and system-wide black-box tests. White-box unit testing will be used to test the output of various functions in the server, library, player, metadata, args, and error-handler modules.
+White-box system-wide testing will be done to ensure that the system fulfills the more broad functional requirements, and that the server and client are able to work together correctly. The testing suite will automatically connect to the server with a web browser instance, vote for songs, and check that the resulting webpage data is correct.
+}
+
 \subsection{Testing Tools}
 \textcolor{red}{Should the reader know these? What are they for, purpose? I know Karma includes many features, which will you use? - CM} \\
-The following testing libraries will be use: Selenium, Mocha, Karma, and Protractor. 
+
+\textcolor{blue}{
+Unit testing will be done with Mocha.JS, a unit testing
+library for Node.JS and Javascript.
+System testing will be done with Selenium-Webdriver, a library that simulates a web browser, connects to the server,
+simulates user interaction, and gathers information about the resulting webpage, to determine proper functionality. Specifically, the Webdriver will connect to the server, and determine if the UI elements display songs, with clickable buttons, album art, and a vote count that is initially zero. The webdriver will cast a vote for the first song, and see if the vote-count reflects this by incrementing from 0 to 1.
+}
 
 \subsection{Testing Schedule}
 \textcolor{red}{Poor formatting, poor use of Gantt charts - CM} \\
-Webpage should be operational by Oct 21/16
-Server should be able to handle multiple users Oct 28/16
-Voting system works by Oct 23/16
-Songs in queue by Oct 25/16
 
 
 \section{System Test Description}
@@ -109,7 +119,7 @@ Songs in queue by Oct 25/16
 
 \textbf{Output: } & The server should serve the users request and load a webpage with a title and five buttons underneath.\\
 
-\textbf{Test Procedure:  } &   The web page should be loaded and the title along with 5 buttons should be displayed to the user.\\
+\textbf{Test Procedure:  } &   The web page should be loaded and the title along with \numberOfSongs buttons should be displayed to the user.\\
 \hline
 \end{tabularx}
 \end{table}
@@ -288,7 +298,7 @@ Songs in queue by Oct 25/16
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{Check If 5 Random Songs Picked}}\\
+\multicolumn{2}{|c|}{\textbf{Check If \numberOfSongs Random Songs Picked}}\\
 \hline
 \textbf{Type: } & Structural, Dynamic, Automated Testing\\
 
@@ -331,353 +341,300 @@ Songs in queue by Oct 25/16
 		
 \paragraph{Appearance Tests}
 
-\begin{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Interface is aesthetically pleasing}}}\\
+\hline
+\textbf{Type: } & Structural, Static, Manual\\
+\textbf{Initial State: } & At least 20 users take a feedback survey\\
+\textbf{Input: } & User rates web page based on the aesthetics (from 1 to 10) on a custom survey\\
+\textbf{Output: } & Average results of survey \\
+\textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance. The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
-\item{Non-Functional Requirement Test 1\\}
-
-Type: Structural, Static, Manual \\
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: Users rate the web page on the ascetics of from a rating of one to 10. \\
-					
-Output/Result: The overall average of the results should be over 7.5. \\
-					
-How test will be performed: Users will take a short survey rating the Appearance, the results of multiple users will be
-tabulated. The overall user average score will be taken, must have 20 plus users. \\
-
-\end{enumerate}
 \paragraph{Style Tests}
-
-\begin{enumerate}			
-\item{Non-Functional Requirement Test 2\\}
-
-Type: Structural, Manual, Static etc.
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input:  Users rate the web page on the ascetics of from a rating of one to 10. \\
-					
-Output:  The overall average of the results should be over 7.5. \\
-					
-How test will be performed: Users will take a short survey rating the Style, the results of multiple users will be
-tabulated. The overall user average score will be taken, must have 20 plus users. \\
-
-\end{enumerate}
 
 
 \subsubsection{Usability and Humanity Requirements}
 
 \paragraph{Ease of Use Requirements Test}
 
-\begin{enumerate}
-
-\item{ Non-Functional Requirement Test 3\\}
-
-Type: Structural, Static, Manual
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: Users rate the web page on the Ease of Use from a rating of 1 to 10. \\
-					
-Output/Result: The overall average of the results should be over 7.5. \\
-					
-How test will be performed: Users will take a short survey rating the Ease of Use, the results of multiple users will be
-tabulated. The overall user average score will be taken, must have 20 plus users. \\
-
-\end{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Interface is easy to use}}}\\
+\hline
+\textbf{Type: } & Structural, Static, Manual\\
+\textbf{Initial State: } & At least 20 users take a feedback survey\\
+\textbf{Input: } & User rates web page based on the ease of use (from 1 to 10) on a custom survey\\
+\textbf{Output: } & Average results of survey \\
+\textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Understandability and Politeness Requirements Test}
 
-\begin{enumerate}
-
-\item{Non-Functional Requirement Test 4\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: Users rate the tutorial on the web page that shows how it works on the  of from a rating of 1 to 10. \\
-					
-Output: The overall average of the results should be over 7.5. \\
-					
-How test will be performed: Users will take a short survey rating the tutorial, the results of multiple users will be
-tabulated. The overall user average score will be taken, must have 20 plus user survey. \\
-\end{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Help Manual is helpful and understandable}}}\\
+\hline
+\textbf{Type: } & Structural, Static, Manual\\
+\textbf{Initial State: } & At least 20 users take a feedback survey\\
+\textbf{Input: } & User rates the effectiveness of the survey\\
+\textbf{Output: } & Average results of survey \\
+\textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Accessibility Requirements Test}
 
-\begin{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page is loadable on a local WiFi connection}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & The web page is loaded on the device from local WiFi \\
+\textbf{Test Procedure:  } & The web page will be loaded from five different devices on two local Wireless networks. All devices should connect and display the webpage \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
-\item{Non-Functional Requirement Test 5\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Web page is not loaded from a device that has Internet using local Wifi \\
-					
-Input/Condition: Users should be able to access the web page from local Wifi. \\
-					
-Output: The Web page is loaded on the device from local Wifi. \\
-					
-How test will be performed: The Web page will be loaded from 5 different local Wifi's every time the web page should load   \\
-
-\end{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page functions on all HTML5 web browsers}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & The web page is loaded on the device from local WiFi \\
+\textbf{Test Procedure:  } & The web page will be loaded on at least 5 different browsers (all of which support HTML5). The voting mechanism should be functional on all devices \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \subsubsection{Performance Requirements}
 
 \paragraph{Speed and Latency Requirements Test}
 
-\begin{enumerate}
-
-\item{ Non-Functional Requirement Test 6\\}
-
-Type: Structural, Dynamic, Manual
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: There should be very little latency in loading the web page and making a vote \\
-					
-Output/Result: Web page should be loaded, Vote should be counted. \\
-					
-How test will be performed: It should take no longer than 3 seconds for the web page to load and to cast a vote, the time will be approximate so a stop watch will be enough to measure the latency times. \\
-\end{enumerate}
-
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page must load within 3 seconds}}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Manual\\
+\textbf{Initial State: } & Web page is loaded from a device connected to the same WiFi network. The server must be running on an x86-54 based, OS X or Linux system\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & It should take no longer than three seconds for the web page to load and cast a vote \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Precision Test}
 
-\begin{enumerate}
-
-					
-\item{Non-Functional Requirement Test 7\\}
-
-Type: Structural, Manual, Dynamic
-					
-Initial State: Server is running \\
-					
-Input/Condition: The song with the most votes should be played next \\
-					
-Output: The song with the most votes is played next \\
-					
-How test will be performed: track the amount of votes and the songs for more than 50 song changes
-and make sure that they are correct \\
-\end{enumerate}
-
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Song with most votes is always selected to play next}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Automated\\
+\textbf{Initial State: } & Server is running, users are connected\\
+\textbf{Input: } & User Votes are inputted to the voter module\\
+\textbf{Output: } & Vote choice is determined and returned by the voter module \\
+\textbf{Test Procedure:  } & The highest voted song (or any of the highest rated, in the case of a tie for first place) should be selected. Automated testing done in test-voter module \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Reliability and Availability Requirement Test}
 
-\begin{enumerate}
-
-\item{Non-Functional Requirement Test 8\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Server is running \\
-					
-Input/Condition: Server continues to run \\
-					
-Output: Server should constantly be playing music \\
-					
-How test will be performed: Let the server continuously run for a length period of time and check
-put a mic next to it and detect whether or not the speaker playing music. Sound should be coming 
-from the speaker all the time grace period of 50 seconds for in between songs \\
-\end{enumerate}
-
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should constantly be playing music}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Server is not running\\
+\textbf{Input: } & Start the server\\
+\textbf{Output: } & Audio output to speakers \\
+\textbf{Test Procedure:  } & Music should begin playing initially, and continue to play without any user interaction until all music in music directory have been played \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Robustness Requirements Test}
 
-\begin{enumerate}
-
-\item{Non-Functional Requirement Test 9\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Server is running \\
-					
-Input/Condition: Server plays next song(s) \\
-					
-Output: Next song(s) being played is from the sever only \\
-					
-How test will be performed: Users will take a short survey rating the tutorial, the results of multiple users will be
-tabulated. The overall user average score will be taken, must have 20 plus user survey. \\
-\end{enumerate}
-
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server handles songs with empty album art metadata}}}\\
+\hline
+\textbf{Type: } & Structural, Automated/Manual, Static\\
+\textbf{Initial State: } & Server is running\\
+\textbf{Input: } & Songs with empty metadata are in the music folder\\
+\textbf{Output: } & Data sent to webpage \\
+\textbf{Test Procedure:  } & Songs with no album artwork should not crash the system, and should display a 'default' album art picture on the webpage. Automated testing is done in the test-metadata module \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Capacity Requirements Test}
 
-\begin{enumerate}
-
-\item{Non-Functional Requirement Test 10\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Server is Running \\
-					
-Input/Condition: The system storage must be above 32 GB  \\
-					
-Output: The storage space is above 32 GB \\
-					
-How test will be performed: Inspect the system storage space (different for every OS) \\
-\end{enumerate}
-
 \paragraph{Scalability Requirements Test}
 
-\begin{enumerate}
-
-\item{Non-Functional Requirement Test 11\\}
-
-Type: Structural, Manual, Static 
-					
-Initial State: Server is running \\
-					
-Input/Condition: Users using the server \\
-					
-Output: At least 300 users at a time \\
-					
-How test will be performed:Using Post man to generate multiple users 300 is max limit. \\
-
-\end{enumerate}
-
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should handle at least \numberOfStressTestClients users at a time}}}\\
+\hline
+\textbf{Type: } & Structural, Automated, Static\\
+\textbf{Initial State: } & Server is running\\
+\textbf{Input: } & \numberOfStressTestClients clients, generated by selenium-webdriver, connect to the server\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & Server performance should not be significantly affected. Voting and music playback should still function \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Longevity Requirements Test}
 
-\begin{enumerate}
-
-
-\item{Non-Functional Requirement Test 12\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Sever not running \\
-					
-Input/Condition: run the server \\
-					
-Output: Server should continue to run unless manual turn off \\
-					
-How test will be performed: leave server on for a lengthy period of time and then time the amount it
-on for and come back and see if its still working \\
-
-\end{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should continue to run unless manually turned off}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Server is not running\\
+\textbf{Input: } & Run the server\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & Server should run continuously for at least 20 minutes without user interaction, then terminated by the user \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \subsubsection{Operational and Environmental Requirements}
 
 \paragraph{Requirements for Interfacing with Adjacent Systems Test}
 
-\begin{enumerate}
-
-\item{Non-Functional Requirement Test 13\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Web page is not loaded from a device that has Internet \\
-					
-Input/Condition: Web page is loaded from a device that has Internet \\
-					
-Output: The web browser should fluently communicate with the server and record user interaction.  \\
-					
-How test will be performed: Users will take a short survey rating the tutorial, the results of multiple users will be
-tabulated. The overall user average score will be taken, must have 20 plus user survey.    \\
-
-\end{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page functions on all HTML5 web browsers}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & The web page is loaded on the device from local WiFi \\
+\textbf{Test Procedure:  } & The web page will be loaded on at least 5 different browsers (all of which support HTML5). The voting mechanism should be functional on all devices \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \paragraph{Productization Requirements Test}
 
-\begin{enumerate}
-
-
-\item{Non-Functional Requirement Test 14\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Server not installed \\
-					
-Input/Condition: Runnable is installed \\
-					
-Output: Server is installed on system \\
-					
-How test will be performed: Runnable will be excecuted on multiple systems minimum 5 with different specs,
-and each time should yeild installation sucessful \\
-\end{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server is installable on Mac OS and Linux through the given terminal commands}}}\\
+\hline
+\textbf{Type: } & Static, Manual, Structural\\
+\textbf{Initial State: } & Mac OS machine without the server installed\\
+\textbf{Input: } & Server is installed via the install command given in the README\\
+\textbf{Output: } & Server is functional \\
+\textbf{Test Procedure:  } & All other test requirements should be passed on this system \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \subsubsection{Maintainability and Support Requirements}
 
 \paragraph{Access Requirements Test}
 
-\begin{enumerate}
-
-
-\item{Non-Functional Requirement Test 15\\}
-
-Type: Structural, Manual, Dynamic
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: User clicks to vote \\
-					
-Output: Add one song voted for and total number of voters \\
-					
-How test will be performed: The total number of voters should not increase everytime a voter clicks
-on another song. The amount of votes per song should change respective of the song last selected\\
-
-
-\item{Non-Functional Requirement Test 16\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Server is running, and user has been registered \\
-					
-Input/Condition: device is restarted or local wifi is restarted \\
-					
-Output: server should still hold user information \\
-					
-How test will be performed: A voter will load web page once vote and then restart there phone
-and then load the web page again the total votes should not change, then do the same thing
-but this time restart the wifi connection total votes should be constant \\
-\item{Non-Functional Requirement Test 17\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: Web page is loaded from a device not on local wifi \\
-					
-Output: Web page should not load web page \\
-					
-How test will be performed: will try and connect to the web page from another wifi connection \\
-\end{enumerate}
-
 \paragraph{Privacy Requirements Test}
 
-\begin{enumerate}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Restarting the device or browser should not allow voting twice}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Dynamic\\
+\textbf{Initial State: } & Web page is loaded from a device on a local network. A vote is issued, then the device is restarted and reconnected\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & The second vote should replace the initial vote on the server \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Webpage is only accessible from a local network}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Attempt to load web page from outside the local network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & HTML response \\
+\textbf{Test Procedure:  } & The server should not be accessible from an outside network \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
-\item{Non-Functional Requirement Test 18\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Server is running \\
-					
-Input/Condition: User loads the web page  \\
-					
-Output: There should be no information about the server page to a user \\
-					
-How test will be performed: The sever will be running and a user will try and access the administrators webpage access should be denied \\
-
-\item{Non-Functional Requirement Test 19\\}
-
-Type: Structural, Manual, Static
-					
-Initial State: Web page is loaded from a device that has Internet \\
-					
-Input/Condition: User information is stored \\
-					
-Output: Other users should not have access to this information \\
-					
-How test will be performed: User will try and look at other user information on administrator page permission should be denied  \\
-\end{enumerate}
-
-
-
-
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Users should have no access to other user data}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Connect to server\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & HTML Response \\
+\textbf{Test Procedure:  } & The HTML response should contain no data about other users, other than how many votes have been totalled for each song \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \section{Tests for Proof of Concept}
 
@@ -767,7 +724,10 @@ How test will be performed: User will try and look at other user information on 
 	
 \section{Comparison to Existing Implementation}	
 \textcolor{red}{This is NOT just comparing the projects. It is detailing how to parallel test the two to be sure your project matches the other's (and subsequently your) requirements - CM} \\
-The product DJS is a dynamic voting system which allows user to vote for songs. The previously implemented open source project called PlayMyWay lacked in well documented code. Comparing the two products is beneficial to DJS since it allows the product to evolve. The changes that might occur however are dependent on the project's progress and would require the scope to change. The modification to the scope would help develop and implement core features in DJS. The requirements that may add extra features will only be incorporated if time permits. The subsection of requirements such as look and feel, performance, security, and accuracy still need improvements. The section for look and feel for example is only partially implemented in the proof of concept. The requirement of displaying the total number of votes for each song will only be added if time permits. Another example, the performance requirement of loading buttons and quickly is still waiting to be implemented.  However, since most core requirements such as playing music and voting have been fulfilled most requirements suggested from before and others will be developed. Although most requirements are important  the list may also be narrowed down to help create more time for more ideal requirements such as total votes. Thus, after comparing DJS with the original implementation it demonstrates the similarities and the small differences still left to be negated.
+
+\textcolor{blue}{
+It is not possible to parallel test with the currently existing implementation. PlayMyWay, the project which we based ours on, does not have any automated testing suite, and is not currently in working form. The software is buggy and the server does not satisfy any of the main functional requirements in its current form, due to the software bugs, making a direct comparison impossible.
+}
 				
 \section{Unit Testing Plan}
 		
