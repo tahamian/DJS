@@ -4,9 +4,9 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{color}
-\title{SE 3XA3: Development Plan\\Title of Project}
+\title{SE 3XA3: Development Plan\\DJS}
 
-\author{Team 12, DJS
+\author{Team 12, DJ NODE
 		\\ Victor Velenchovsky - velech
 		\\ Amandeep Panesar - panesas2
 		\\ Taha Mian - miantm
@@ -24,7 +24,8 @@
 \midrule
 28/9/2016 & Amandeep & Added Git Workflow\\
 29/9/2016 & Taha Mian & Added development plans\\
-30/9/2016 & Victor Velenchovsky  & Worked on Gantt Chart, Coding Style, and Technology \\
+30/9/2016 & Victor Velenchovsky  & Worked on Gantt Chart, Coding Style\\
+\textcolor{blue}{06/11/2016} & \textcolor{blue}{Amandeep} & \textcolor{blue}{Revision 1 Update}\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -32,50 +33,63 @@
 \newpage
 
 \maketitle
+\section{\textcolor{blue}{Abstract}}
 \textcolor{red}{ This can be included in an Abstract section - CM} \\
-Good planning is an essential part of solving any problem, also an essential part of the engineering process. To work as a team efficiently and effectively we have to have develop \textcolor{red}{ Fix typo - CM} plans that we should follow, and assign roles to each member.
+Good planning is an essential part of solving any problem, also an essential part of the engineering process. To work as a team efficiently this document will \textcolor{blue}{help outline the development plan for the project}.\textcolor{red}{ Fix typo - CM} 
 
 \section{Team Meeting Plan}
 \textcolor{red}{Include more details regarding time, duration, roles, follow-up material.. etc. - CM} \\
-The team meetings will be held every week on Thursday at Thode Library. In the meetings the group will discuss problems, milestones due, and plan a schedule for the following week. If a team member fails to meet with the group or does not complete deliverables the team member will have to buy coffee for the team.
+The team meetings will be held every Thursday at \textcolor{blue}{3:00 PM in} Thode Library. \textcolor{blue}{The duration of the meetings will be roughly around one hour or the amount of time it will take to resolve any issues.}In the meetings the group will discuss problems, milestones due, and plan a schedule for the following week. \textcolor{blue}{The beginning of the meeting all group members will list their concerns. The issues listed will be recorded by the note taker. The meeting leader will then review the list and go through each issue with the group members for potential solutions.After all issues are dealt with the meeting will adjourn and the follow up meeting will address new issues or brainstorm new solutions for problems that remain from the last meeting.} Also if a team member fails to meet with the group or does not complete deliverables the team member will have to buy coffee for the team.
 \section{Team Communication Plan}
-The team will mainly communicate which each other through a group chat in facebook \textcolor{red}{ Facebook is a proper noun - CM}. The group chat will be used to notify the group any time someone commits on GitLab. We also have contact information such as phone numbers if anything urgent comes up. \textcolor{red}{What constitutes SMS or phone communication?  - CM} 
+The team will mainly communicate which each other through a group chat in \textcolor{blue}{Facebook} \textcolor{red}{ Facebook is a proper noun - CM}. The group chat will be used to notify the group any time someone commits on GitLab. We also have contact information such as phone numbers if anything urgent comes up \textcolor{blue}{such as missing deliverables one day before the due date}. \textcolor{red}{What constitutes SMS or phone communication?  - CM} 
 \section{Team Member Roles}
 Team member roles will be governed by these rules:
 \begin{enumerate}
-\item There will be no team leader in our group, because we believe in equality. \textcolor{red}{ Designating a Team Leader does not imply inequality, reword rationale towards something closer to having equal skillset or how you plan of team governing this project - CM} 
+\item There will be no team leader in our group \textcolor{blue}{since all members have equal skillsets and will be learning web technologies for the first time. Furthermore, since the team will have no group leader the work will not be dependent on what the team leader has decided and will be done equally amongst the team members.} \textcolor{red}{ Designating a Team Leader does not imply inequality, reword rationale towards something closer to having equal skillset or how you plan of team governing this project - CM} 
 \item We will have a scribe in the group and that will be Amandeep Panesar.
 \item We will try and make sure the work is evenly spread as possible between group members.
 \begin{itemize}
 \item Victor specializes in Javascript and Git. He will focus on both back end design and implementation.
 \item Amandeep specializes in documentation and using a server. He will focus more on the design and implementing a server.
-\item Taha specializes in LaTex and Javascript. He will focus on more of the front end design and implementation and the documentation \textcolor{red}{Avoid using more than 2 ands when listing things. Use a comma instead and finish with \textit{and} - CM} 
+\item Taha specializes in LaTex and Javascript. He will focus on more of the front end design\textcolor{blue}{,} implementation, and documentation \textcolor{red}{Avoid using more than 2 ands when listing things. Use a comma instead and finish with \textit{and} - CM} 
 \end{itemize}
 \end{enumerate}
 \section{Git Workflow Plan}
 \textcolor{red}{Find a commonly used Git Workflow type and use that. Also, how will you handle pull requests?  - CM} \\
-The team will begin working on the open source project on Gitlab with the single repository. The contributors for the project will attempt to commit often and will only push refined code to the master branch. However, the development code will be implemented in private branches which will be merged when bugs, and problematic code is fixed. In addition, the code should have frequent commits with small changes to avoid merge conflicts and large rollbacks.
+The team will begin working on the open source project on Gitlab with the single repository. 
+\textcolor{blue}{
+The git repository will be using the workflow described \href{https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows}{here} and will always have the master branch as the most stable version. In addition, more branches will be created that develop a module or functionality. A branch with a new feature will only be merged with the master branch if the added feature is stable. Thus, the master branch will always be the most stable version of the project and can be cloned or viewied by other developers or stakeholders without any problems. } The contributors for the project will attempt to commit often and will only push refined code to the master branch. Furthermore, the code should have frequent commits with small changes to avoid merge conflicts and large rollbacks.
 \section{Proof of Concept Demonstration Plan}
 \textcolor{red}{Give more detail into the difficulties of reaching this milestone and how to work to preventing failure  - CM} \\
-The proof of concept demonstation will display the server and the front end of the system. The front end of the project will only allow you to pick and play one song and will not include the voting aspect of the project. For the server aspect of the demonstration the song selected will play through the external speakers. The goal of this demonstration is to get the frontend client communicating with the server side and will allow us to verify that the project is feasible.
+The proof of concept demonstation will display the server and the front end of the system. The front end of the project will only allow you to pick and play one song and will not include the voting aspect of the project.\textcolor{blue}{ In addition, difficulties may arrise from our lack of knowledge about web developlments and along with server and client setup. Since none of the team members has done web development the group has decided to do multiple online tutorials. One more problem that may arrise is the mcmaster hotspot blocking all ports which would make our server unreachable. The solution proposed by group memebers so far is to use a portable hotspot which would connect both clients and the server.} For the server aspect of the demonstration the song selected will play through the external speakers. The goal of this demonstration is to get the frontend client communicating with the server side and will allow us to verify that the project is feasible.
 \section{Technology}
 \textcolor{red}{When mentioning a software name, it is common to type it verbatim as the developers would use it. For example, Node.js and Express - CM} \\
-The software will be designed with primarily Node.JS (\textcolor{red}{ Restructure sentence - CM} ) and traditional web technologies.
+\textcolor{blue}{
+The software will be designed using the following technologies:}
+\begin{itemize}
+\item \textcolor{blue}{Node.js}
+\item \textcolor{blue}{Express}
+\item \textcolor{blue}{Handlebars}
+\item \textcolor{blue}{Bootstrap}
+\item \textcolor{blue}{Socket.io}
+\item \textcolor{blue}{HTML}
+\end{itemize}\textcolor{blue}{The server side will most likely use technologies such as Node.js and Express while the client side will use HTML and Bootstrap.} 
+
 
 \textcolor{red}{ Format the below into a list - CM}  \\
-Server: Express.JS
-Back-end: Javascript (via Node.JS)
-Web-app: HTML/CSS/JS as well as jQuery/AngularJS/Handlebars
-UI: Bootstrap
+
 
 \section{Coding Style}
 We will be using the Javascript coding style found \href{http://javascript.crockford.com/code.html}{here.}
-We are using this coding convention because the code looks clear and concise with minimal whitespaces making it to read debug the code \textcolor{red}{Restructure sentence - CM} . Its imporant for code to have a long life cycle and this is one of the most standard ways to present javascript code \textcolor{red}{Typo and restructure - CM} .
+\textcolor{blue}{
+The reason behind using this coding convention is because the code will look clear and consice. In addition, by using minimal whitespaces the code will be easier to read and debug. Furthermore, since this type of coding style is standard way of writing javascript the project will have better readability and a longer life cycle.}
+\textcolor{red}{Restructure sentence - CM}  \textcolor{red}{Typo and restructure - CM} 
 
 \section{Project Schedule}
 \textcolor{red}{ Color tasks based on classification, provide more detail on project milestones - CM} \\
-\href{run:GanttChart.gan}{Click here to view Gantt Chart}
+\href{run:GanttChart.gan}{\textcolor{blue}{Click here to view Gantt Chart}}
 
 \section{Project Review}
-
+\textcolor{blue}{
+\indent \indent Looking back, the DJS project received good reviews and was a success when compared to applicable metrics. The implementation of the project fulfilled the scope and features required and exceeded the outcome the team expected.Furthermore, the documentation provides helpful information that allows other developers and stakeholders insight towards DJS. Also the documentation is clear and concise which allows answers to any question about implementation, design, and other qualities. In addition, the DJ NODE team was satisfied with the outcome and grateful for the opportunity to learn a new technology and also the strategies to manage team projects. The success of DJS is also caused by team collaboration and the drive to create something each member might use in the real world. Also, the communication, and schedule allowed the team to stay on track and create a successful product. One element that the team agrees that would change if creating the application again was the use of the Gantt chart application. Although the chart was updated the Gantt application was never used and was mostly copied from a Google Calendar instead (Google Calendar received daily updates while Gantt was updated every two weeks because of the ease of use of Google Calendar). Finally, the DJS team fulfilled all commitments made in the documentation and would make no significant change to revisions since it would not add any benefit to the readers.}
 \end{document}
