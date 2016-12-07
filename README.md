@@ -70,6 +70,9 @@ cd DJS/src
 # Install Node Packages
 npm install
 
+# Make Music Directory
+mkdir music
+
 # Create run file
 echo "node server.js" > run
 chmod 777 run.sh
