@@ -14,7 +14,7 @@ Team Members:
 
 ## Installation on MacOS
 
-DJS is easy to install on Mac via the following terminal commandLineArgs
+DJS is easy to install on Mac via the following terminal commands
 
 ```bash
 # Install Homebrew
@@ -35,14 +35,17 @@ cd DJS/src
 # Install Node Packages
 npm install
 
+# Make Music Directory
+mkdir music
+
 # Create run file
-echo "node server.js" > run.sh
+echo "node server.js" > run
 chmod 777 run.sh
 ```
 
 ## Installation on Linux
 
-Linux requires an additional step to install:
+DJS can be installed on Linux as well, with the following commands:
 
 ```bash
 sudo apt-get update
@@ -50,8 +53,12 @@ sudo apt-get update
 # Install GIT
 sudo apt-get install git
 
-# Install Node.JS
-sudo apt-get install node
+# Install Curl
+sudo apt-get intall curl
+
+# Install NodeJS
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install nodejs
 
 # Install mplayer
 sudo apt-get install mplayer
@@ -64,7 +71,7 @@ cd DJS/src
 npm install
 
 # Create run file
-echo "node server.js" > run.sh
+echo "node server.js" > run
 chmod 777 run.sh
 ```
 
