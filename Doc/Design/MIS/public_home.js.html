@@ -27,134 +27,132 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-*@file This module is for the UI
-*&lt;p> Assumptions
-* &lt;ul style="list-style: none;">
-*  &lt;li>User h browser can fun javascript
-*  &lt;li>
-* &lt;/ul>
- * @module home
- * @version 1.0
- * @summary A concise summary.
- */
-
-$(function() {
-/**
-*@member {String} id - is the value of the user id that will be used to store cookie information
+* @file home.js:
+* Script for client-side HTML page - handles socket connections, cookie
+* management, and updating UI elements
+* @module home
+* @version 1.0
 */
-var id = Cookies.get('id')
 
+/**
+ * JQuery function that runs when the page is loaded
+ * @function $
+*/
+$(function() {
+	var id = Cookies.get('id')
 
-    var socket = io.connect()
+	var socket = io.connect()
 
-    if (!id) {
-        socket.emit('connect-request', null)
-    } else {
-        socket.emit('connect-request', id)
-    }
+	if (!id) {
+		socket.emit('connect-request', null)
+	} else {
+		socket.emit('connect-request', id)
+	}
 
-    /**
-     * @function socket.on()
-     *Finalize the connection by setting the ID cookie
-     *@param {String} 'connect-response' - String that is used by socket.on that updates the the cookies when a user clicks
-     *@param {Array} data - an array of the song titles
-     */
-    socket.on('connect-response', (data) => {
-        Cookies.remove('id')
-        Cookies.set('id', data)
-    })
+	/**
+	 * Response socket when establishing a connection to the server. Sets the
+	 * ID cookie
+	 * @function on
+	 * @param event {String} connect-response
+	 * @param callback {callback} callback function
+	 * @param data {String} User ID
+	*/
+	socket.on('connect-response', (data) => {
+		Cookies.remove('id')
+		Cookies.set('id', data)
+	})
 
+	/**
+	 * Update the UI with new song data
+	 * @function on
+	 * @param event {String} update-songs
+	 * @param callback {callback} callback function
+	 * @param sendData String of song data elements
+	*/
+	socket.on('update-songs', (sendData) => { //updates the new songs
 
-    /**
-     * @function socket.on()
-     *Update the UI to include the new songs
-     *@param {String} 'update-songs' - String that is used by socket.on that updates the song list
-     *@param {Array} data - an array of the song titles
-    */
-    socket.on('update-songs', (data) => {
-        console.log('Updating the songs:\n' + data)															//updates the new songs
+		var data = sendData.choices
+		var albumPaths = sendData.albumPaths
 
-        // Clear all current songs
-        $('#list-div').empty()
+		// Clear all current songs
+		$('#list-div').empty()
 
-        // For each new song, create a list element and append it
-        $.each(data, function (i) {
-            /**
-             * @member {any}
-             *
-             * Create a div that contains elements for one song:
-             * a button and a vote total display
-             */
-            var container = $('&lt;div />')
-                .addClass('list-item-div')
-            /**
-             * @member {jQuery}
-             *
-             * Create a button
-             */
-            var button = $('&lt;button  />')
-                .addClass('list-group-item list-group-item-action')
-                .appendTo(container) // Append to the song list
-                .text(data[i]) // Song title
-                .click(function () { // Click function to emit a vote event to the server
-                    socket.emit('vote', {
-                        'id': Cookies.get('id'),
-                        'song': data[i]
-                    })
-                })
-            /**
-             * @member {any}
-             *
-             * Creates a line break
-             */
-            var brk = $('&lt;br />')
-                .appendTo(container)
-            /**
-             * @var {any}
-             *
-             * Create a &lt;p> that holds the current vote total for this song
-             */
+		// For each new song, create a list element and append it
+		$.each(data, function (i) {
 
-            var count = $('&lt;p />')
-                .text('0')
-                .addClass('vote-count')
-                .appendTo(container)
+			// Container div for a song element
+			var container = $('&lt;div />')
+				.addClass('list-item-div')
 
-            // Append the div to the list1
-            container.appendTo($('#list-div'))
+			// Button
+			var button = $('&lt;button  />')
+				.addClass('list-group-item')
+				.addClass('list-group-item-action')
+				.addClass('vote-button')
+				.appendTo(container) // Append to the song list
+				.text(data[i]) // Song title
+				.click(function () { // Click function to emit a vote event to the server
+					socket.emit('vote', {
+						'id': Cookies.get('id'),
+						'song': data[i]
+					})
+				})
 
-        })
+			// Line break
+			var brk = $('&lt;br />')
+				.appendTo(container)
 
-    })
-    /**
-     * @function socket.on()
-    * socket library is used to update songs
-    *@param {String} 'update-votes' - String that is used by socket.on that updates the votes
-    *@param {Array} data - an array of the song titles
-     */
-    socket.on('update-votes', (data) => {
+			// Vote count
+			var count = $('&lt;p />')
+				.text('0')
+				.addClass('vote-count')
+				.appendTo(container)
 
-        // List of all the container items
-        var listItems = document.getElementById('list-div').childNodes
+			// Artwork
+			var albumart = $('&lt;img>')
+				.attr('src', albumPaths[i])
+				.attr('height', 80)
+				.attr('width', 80)
+				.addClass('artwork')
+				.appendTo(container)
 
-        // Reset all current vote counts to 0
-        for (var i = 0; i &lt; listItems.length; i++) {
-            listItems[i].childNodes[2].innerHTML = '0'
-        }
+			// Append the div to the list1
+			container.appendTo($('#list-div'))
 
-        // For each vote item
-        for (var i = 0; i &lt; data.length; i++) {
-            var currentSong = data[i]
+		})
 
-            // Find the correct html element and update the DOM
-            for (var j = 0; j &lt; listItems.length; j++) {
-                if (listItems[j].childNodes[0].innerHTML == data[i]) {
-                    listItems[j].childNodes[2].innerHTML = parseInt(listItems[j].childNodes[2].innerHTML) + 1
-                }
-            }
-        }
+	})
 
-    })
+	/**
+	 * Update the vote counts. Called whenever the server recieves a new vote
+	 * @function on
+	 * @param event {String} update-votes
+	 * @param callback {callback} callback function
+	 * @param data Array of vote items
+	*/
+	socket.on('update-votes', (data) => {
+
+		// List of all the container items
+		var listItems = document.getElementById('list-div').childNodes
+
+		// Reset all current vote counts to 0
+		for (var i = 0; i &lt; listItems.length; i++) {
+			listItems[i].childNodes[2].innerHTML = '0'
+		}
+
+		// For each vote item
+		for (var i = 0; i &lt; data.length; i++) {
+			var currentSong = data[i]
+
+			// Find the correct html element and update the DOM
+			for (var j = 0; j &lt; listItems.length; j++) {
+				if (listItems[j].childNodes[0].innerHTML == data[i]) {
+					listItems[j].childNodes[2].innerHTML = parseInt(listItems[j].childNodes[2].innerHTML) + 1
+				}
+			}
+		}
+
+	})
 })
 </code></pre>
         </article>
@@ -166,13 +164,13 @@ var id = Cookies.get('id')
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-args.html">args</a></li><li><a href="module-home.html">home</a></li><li><a href="module-library.html">library</a></li><li><a href="module-player.html">player</a></li><li><a href="module-server.html">server</a></li><li><a href="module-voter.html">voter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-error-handler.html">error-handler</a></li><li><a href="module-flags.html">flags</a></li><li><a href="module-home.html">home</a></li><li><a href="module-library.html">library</a></li><li><a href="module-metadata.html">metadata</a></li><li><a href="module-player.html">player</a></li><li><a href="module-server.html">server</a></li><li><a href="module-voter.html">voter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Nov 13 2016 23:52:13 GMT-0500 (Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Dec 06 2016 15:45:51 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

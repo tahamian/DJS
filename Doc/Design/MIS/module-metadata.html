@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: player</title>
+    <title>JSDoc: Module: metadata</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: player</h1>
+    <h1 class="page-title">Module: metadata</h1>
 
     
 
@@ -38,7 +38,8 @@
     <div class="container-overview">
     
         
-            <div class="description">player.jsMusic player<p> Assumptions<ul style="list-style: none;"> <li>There has to be a media player installed on the server</ul></div>
+            <div class="description">metadata.js
+Provides metadata information from music files</div>
         
 
         
@@ -60,9 +61,6 @@
 
 <dl class="details">
 
-    
-    <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>1.0</li></ul></dd>
     
 
     
@@ -90,7 +88,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="player.js.html">player.js</a>, <a href="player.js.html#line1">line 1</a>
+        <a href="metadata.js.html">metadata.js</a>, <a href="metadata.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -131,82 +129,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="~play-sound"><span class="type-signature">(inner) </span>play-sound<span class="type-signature"> :Object</span></h4>
-
-
-
-
-<div class="description">
-    library
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="player.js.html">player.js</a>, <a href="player.js.html#line14">line 14</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -216,14 +138,15 @@
 
     
 
-    <h4 class="name" id="~play"><span class="type-signature">(inner) </span>play<span class="signature">(song, done)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~getMetaData"><span class="type-signature">(inner) </span>getMetaData<span class="signature">(list, done(metadata))</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
 
 
 <div class="description">
-    This function Plays a song
+    Returns an array of metadata elements that each contain:
+title, artist, album, albumart
 </div>
 
 
@@ -259,13 +182,13 @@
 
         <tr>
             
-                <td class="name"><code>song</code></td>
+                <td class="name"><code>list</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">String</span>
 
 
             
@@ -275,14 +198,14 @@
 
             
 
-            <td class="description last">Complete path of the song file</td>
+            <td class="description last">array of music file paths</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>done</code></td>
+                <td class="name"><code>done(metadata)</code></td>
             
 
             <td class="type">
@@ -298,7 +221,7 @@
 
             
 
-            <td class="description last">callback function to be called when song is done playing</td>
+            <td class="description last">callback that contains the result</td>
         </tr>
 
     
@@ -339,7 +262,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="player.js.html">player.js</a>, <a href="player.js.html#line19">line 19</a>
+        <a href="metadata.js.html">metadata.js</a>, <a href="metadata.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -362,6 +285,33 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Returns metadata in the callback with the following form:<br>
+[<br>
+  &emsp;  { title, album, artist, picture, format } <br>
+] <br><br>
+format: File extension of the albumart <br>
+picture: Raw bin64 picture data <br>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 

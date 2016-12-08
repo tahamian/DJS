@@ -27,23 +27,18 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-*@file This is the file that sets up the server and is to be run in nodejs
-*&lt;p> Assumptions:
-*  &lt;li>When the server is started the first song from the library will be playing this song will be chosen at random
-*  &lt;li>All votes are set to 0 when the server is started
-*  &lt;li> Every user has only one unique ID when voting
-* &lt;/ul>
+ * @file This is the file that sets up the server and is to be run in nodejs
+ * &lt;p> Assumptions:
+ *  &lt;li>When the server is started the first song from the library will be playing this song will be chosen at random
+ *  &lt;li>All votes are set to 0 when the server is started
+ *  &lt;li> Every user has only one unique ID when voting
+ * &lt;/ul>
  * @module server
  * @version 1.0
  * @summary A concise summary.
  */
 
-
-/**
- * Library Imports
- * @type {*}
- */
-
+// Library imports
 var express = require('express'),
 	app = express(),
 	server = require('http').createServer(app),
@@ -54,55 +49,74 @@ var express = require('express'),
 	commandLineArgs = require('command-line-args'),
 	player = require('./player.js'),
 	library = require('./library.js'),
-	args = require('./args.js')
+	args = require('./flags.js'),
+	md = require('./metadata.js'),
+	errorHandler = require('./error-handler.js')
 
+// Set the tempalting engine to be handlebars
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 /**
- * @member {commandLineArgs}optins - variable that takes in the command line arugment
+ * @member options {args.options} variable that dictates command line arguments
  */
 var options = commandLineArgs(args.options)
 
 /**
+ * @member verbose {boolean} determines if verbose logging is enabled
+*/
+var verbose = false
+if (options.verbose === null) verbose = true
 
- * @type {String} musicPath - This is a varaible that sets the pathname
- *
- * Set the music directory as either the default, or the -m flag, if applicable
- */
+if (verbose) {
+	library.setVerbose(true)
+	console.log('Logging in verbose mode')
+}
+
+/**
+ * @member musicPath {String} path of the music folder&lt;br>
+ * Defaults to ./music, but can be changed with the -d flag
+*/
 var musicPath = __dirname + '/music'
 if (options.musicDir) musicPath = options.musicDir
+
 /**
- * @member {String} music - This is a varaible that gets the pathname
- */
+ * @member {array} music array of song paths
+*/
 var music = library.getSongs(musicPath)
-/**
- *
- * @member {Array} votes - an array for the number of votes per song
- *This is also a state variable because the highest number of votes in the array is the next song
- */
+
+// Stores all the votes during the current round of voting
 var votes = []
+
 /**
- * @member {number} users - this variable reads the file users.db and retrves the user list
-*This is also a state varaible the users can chose a song but can change their decsion until the song is finished
- */
+ * @member users {int} how many unique users have connected to this server
+*/
 var users
 fs.readFile('users.db', (err, data) => {
 	users = parseInt(data)
 })
 
-
-
-//This sets the location of the webserver (right now set to port 3000)
+/**
+ * @member port {int} port that the server runs on
+*/
 var port = process.env.PORT || 3000
-server.listen(port)
-console.log('Server running on port: ' + port)
 
 /**
- * @function get
+ * Re-route error handling
+ * @function on
+ * @param error {String} error
+ * @param callback {callback} callback function
+*/
+server.on('error', errorHandler.errorCallback)
+
+// Start server
+server.listen(port)
+if (verbose) console.log('Server running on port: ' + port)
+
+/**
  * Default routing function - returns the home page
- *
- * @param {String} - Endpoint (/)
+ * @function get
+ * @param {String} / Endpoint
  * @param req - HTML Request object
  * @param res - HTML Response object
  */
@@ -111,54 +125,81 @@ app.get('/', (req, res) => {
 })
 
 /**
-*@method app,use()
-* Allows users to load resources in the '/public' folder
-*@param {String} '/public' - the location of home.js
-*@param (express) - this for the express library for static files like home.js
-*@param {String} '/public' - the location of home.js
+* Serves a folder with public resources that clients can request
+* @function use
+* @param {String} /public Endpoint
+* @param (express) - this for the express library for static files like home.js
 */
-app.use('/public', express.static(__dirname + '/public'))
-
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 /**
-*@type {String} currentSong - This variable picks the song to be played, this is also an Envoirnmental Variable because it changes the song that is currently being played
-*@type {number} musicIndex - the music index is set to 1
-*@type {Array} choices - this is selects how many choices of music that the user will be able to vote for and what music
+* @member {String} currentSong - This variable picks the song to be played, this is also an Envoirnmental Variable because it changes the song that is currently being played
+* @member {number} musicIndex - the music index is set to 1
+* @member {Array} choices - this is selects how many choices of music that the user will be able to vote for and what music
 */
-var currentSong, musicIndex, choices
+var currentSong, musicIndex, choices, metadata, albumPaths
 currentSong = music[0]
 musicIndex = 1
 choices = music.slice(musicIndex, musicIndex + 5)
+albumPaths = []
+updateMetaData(() => { })
 
 // Start playing the first song
 player.play(currentSong, done)
 
+/**
+* Function called when the server first runs and socket.io is prepared.&lt;br>
+* Contains function definitions for websocket event handlers
+* @function on
+* @param {String} connection
+* @param {function} callback(socket) callback function &lt;br>&lt;br>
+**/
 io.sockets.on('connection', function (socket) {
-	socket.on('connect-request', function (data) {
 
+	/**
+	 * Function called when a user connects to the server's websocket
+	 * @function on
+	 * @param {String} connect-request
+	 * @param {function} callback(data) callback function&lt;br>&lt;br>
+	 * data: ID cookie from the user's browser (if any)
+	**/
+	socket.on('connect-request', function (data) {
 		// If the user does not have an ID cookie set, create one
 		if (!data) {
 			var newID = generateNewID()
+
 			socket.emit('connect-response', newID)
 			fs.writeFile('users.db', users)
-			console.log('New connection with ID: ' + newID)
-			// Otherwise just use the existing ID
+
+			if (verbose) console.log('New connection with ID: ' + newID)
+		// Otherwise just use the existing ID
 		} else {
-			console.log('User: ' + data + ' reconnected.')
+			if (verbose) console.log('User: ' + data + ' reconnected.')
 		}
 
-		socket.emit('update-songs', choices)
+		// Data to sned to the client about the song choices
+		var sendData = {
+			'choices': choices,
+			'albumPaths': albumPaths
+		}
+
+		socket.emit('update-songs', sendData)
+
+		getVoteData((voteData) => {
+			io.sockets.emit('update-votes', voteData)
+		})
+
 	})
 
 	/**
-	*@function soocket()
-	*A user has voted for a song. We have to first make sure that this user
-	*hasn't voted yet!!
-	*@param {Array} - Contains the array of votes per song
-	*@param {function} - Contains the userID and the name of the song
+	* A user has voted for a song.
+	* @function on
+	* @param {String} vote
+	* @param {function} callback(data) callback function&lt;br>&lt;br>
+	* data: name of item that the user voted for
 	**/
 	socket.on('vote', function (data) {
-		console.log('Vote incoming from: ' + data.id)
+		if (verbose) console.log('Vote incoming from: ' + data.id)
 		var id = data.id
 		var song = data.song
 		var idFound = false
@@ -176,43 +217,33 @@ io.sockets.on('connection', function (socket) {
 				'song': song
 			})
 		}
-		console.log(JSON.stringify(votes))
+		if (verbose) console.log(JSON.stringify(votes))
+
 		/**
 		*@member {Array} voterData - holds the amount of votes per song
 		*/
-		var voteData = []
-
-		for (var i = 0; i &lt; votes.length; i++) {
-			voteData.push(votes[i].song)
-		}
-
-		socket.emit('update-votes', voteData)
-	})
-	/**
-	*@function soocket.on()
-	*@param {String} 'disconnect' - String parameter for the socket library that disconnects the server so it can be updated
-	*@param {function} data - Contains the userID and the name of the song
-	**/
-	socket.on('disconnect', function (data) {
+		getVoteData((voteData) => {
+			io.sockets.emit('update-votes', voteData)
+		})
 	})
 
 })
 /**
-*@function done()
  * when a song is finished the function is called
  * calls function to call the tallyvote method and resets the votes
- */
+ * @function done
+*/
 function done() {
-	console.log('done function')
+	if (verbose) console.log('done function')
 	currentSong = tallyVotes()
 	votes = []
 }
 
 /**
-*@function tallyVotes()
- *This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
- * Then it gets the title of the song with the most votes and returns that value
- * @returns {String} maxsong - Retruns the title of the song
+*This function gets all the votes for every song and selects the song with the highest votes then resets the vote count to zero.
+* Then it gets the title of the song with the most votes and returns that value
+* @function tallyVotes
+ * @returns {String} maxsong Returns the title of the song
  */
 function tallyVotes() {
 
@@ -254,16 +285,69 @@ function tallyVotes() {
 	// Pick the next 5 choices to vote on
 	musicIndex += 5
 	choices = music.slice(musicIndex, musicIndex + 5)
-	io.sockets.emit('update-songs', choices)
+	updateMetaData(() => {
 
-	return maxSong
+		var sendData = {
+			choices: choices,
+			albumPaths: albumPaths
+		}
+
+		io.sockets.emit('update-songs', sendData)
+
+		return maxSong
+	})
 }
 /**
  * This is a function that generates a unique user ID for every new user
- *@returns {number} users - Returns the user plus one
+ * @function generateNewID
+ * @returns {number} users - Returns the user plus one
  */
 function generateNewID() {
 	return users++
+}
+
+/**
+ * Updates the metadata for the new song choices
+ * @function updateMetaData
+ * @param {callback} done callback function
+ */
+function updateMetaData(done) {
+
+	library.clearAlbumArt(albumPaths, () => {
+		md.getMetaData(choices, (data) => {
+			metadata = data
+			library.saveAlbumArt(data)
+
+			albumPaths = []
+			for (var i = 0; i &lt; choices.length; i++) {
+				albumPaths.push('/public/artwork/' + choices[i] + '.png')
+			}
+
+			done()
+		})
+	})
+
+}
+
+/**
+ * Compile the vote data to be sent to the web clients
+ * @function getVoteData
+ * @param {function} done callback function
+ * @return {array} Vote data of the form: &lt;br>
+ * [ &lt;br>
+ *  &amp;emsp; { id, song } &lt;br>
+ * ] &lt;br>&lt;br>
+ * id: string&lt;br>
+ * song: string&lt;br>
+ */
+function getVoteData(done) {
+	var voteData = []
+
+	for (var i = 0; i &lt; votes.length; i++) {
+		voteData.push(votes[i].song)
+	}
+
+	done(voteData)
 }
 </code></pre>
         </article>
@@ -275,13 +359,13 @@ function generateNewID() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-args.html">args</a></li><li><a href="module-home.html">home</a></li><li><a href="module-library.html">library</a></li><li><a href="module-player.html">player</a></li><li><a href="module-server.html">server</a></li><li><a href="module-voter.html">voter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-error-handler.html">error-handler</a></li><li><a href="module-flags.html">flags</a></li><li><a href="module-home.html">home</a></li><li><a href="module-library.html">library</a></li><li><a href="module-metadata.html">metadata</a></li><li><a href="module-player.html">player</a></li><li><a href="module-server.html">server</a></li><li><a href="module-voter.html">voter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Nov 13 2016 23:52:13 GMT-0500 (Eastern Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Dec 06 2016 15:45:51 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: player.js</title>
+    <title>JSDoc: Source: error-handler.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: player.js</h1>
+    <h1 class="page-title">Source: error-handler.js</h1>
 
     
 
@@ -27,38 +27,37 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @file player.js
- * Music player
- *&lt;p> Assumptions
- * &lt;ul style="list-style: none;">
- *  &lt;li>There has to be a media player installed on the server
+ * @file error-handler.js
+ * Handles errors caught by Node.JS. Prints user-friendly error messages.
+ * @module error-handler
+*/
+
+/**
+ * Function that is called when Node.JS experiences an error.&lt;br>&lt;br>
+ * Catches the following errors:
+ * &lt;ul>
+ * &lt;li>EADDRINUSE&lt;/li>
+ * &lt;li>ENOENT&lt;/li>
  * &lt;/ul>
- * @module player
- * @version 1.0
- * @summary A concise summary.
- *
+ * @function errorCallback
+ * @param err {Error} Node.JS error
 */
+function errorCallback(err) {
 
-/**
- * @member {Object} play-sound library
- */
-var player = require('play-sound')(opts = {})
+	if (String(err).indexOf('EADDRINUSE') != -1) {
+		console.log('ERROR: Node.JS is already running in another process.' +
+				    'Kill all node processes and then restart the server.')
+	}
 
-/**
- * This function Plays a song
- * @function play
- * @param {string} song - Complete path of the song file
- * @param {function} done callback function to be called when song is done playing
-*/
-function play(song, done) {
-	songPath = __dirname + '/music/' + song
-	console.log('Playing song: ' + song)
-	player.play(songPath, function(err) {
-		done()
-	})
+	if(String(err).indexOf('ENOENT' != -1)) {
+		console.log('ERROR: COuld not find or open the music directory.' +
+					'Ensure that the directory exists and can be accessed.' +
+				    'Administrative priviledges may be needed.')
+	}
+
 }
 
-exports.play = play
+exports.errorCallback = errorCallback
 </code></pre>
         </article>
     </section>

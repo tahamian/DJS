@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: player.js</title>
+    <title>JSDoc: Source: flags.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: player.js</h1>
+    <h1 class="page-title">Source: flags.js</h1>
 
     
 
@@ -27,38 +27,31 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @file player.js
- * Music player
- *&lt;p> Assumptions
- * &lt;ul style="list-style: none;">
- *  &lt;li>There has to be a media player installed on the server
- * &lt;/ul>
- * @module player
- * @version 1.0
- * @summary A concise summary.
- *
+* @file flags.js
+* Provides options for command line arguments
+* @module flags
+* @version 1.0
 */
 
 /**
- * @member {Object} play-sound library
- */
-var player = require('play-sound')(opts = {})
+ * @member options {Object} Array of flag options &lt;br>&lt;br>
+ * -m : Select a custom music directory &lt;br>
+ * &amp;emsp; Usage: node server.js -m path/to/music/folder &lt;br>&lt;br>
+ * -v : Run server with verbose logging. Useful for debugging errors or seeing
+ *      activity &lt;br>
+ * &amp;emsp; Usage: node server.js -v
+*/
+const options = [
+    // -m flag to select a custom music directory
+    { name: 'musicDir', alias: 'm', type:String, defaultOption: null },
+    // -v flag enables verbose console logging
+    { name: 'verbose',   alias: 'v', type:String}
+]
 
 /**
- * This function Plays a song
- * @function play
- * @param {string} song - Complete path of the song file
- * @param {function} done callback function to be called when song is done playing
+*@exports home
 */
-function play(song, done) {
-	songPath = __dirname + '/music/' + song
-	console.log('Playing song: ' + song)
-	player.play(songPath, function(err) {
-		done()
-	})
-}
-
-exports.play = play
+exports.options = options
 </code></pre>
         </article>
     </section>
