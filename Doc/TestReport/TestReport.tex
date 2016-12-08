@@ -1,11 +1,12 @@
 \documentclass[12pt, titlepage]{article}
-
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
+\usepackage{color}
 \hypersetup{
     colorlinks,
-    citecolor=black,
+    citecolor=blue,
     filecolor=black,
     linkcolor=red,
     urlcolor=blue
@@ -14,7 +15,7 @@
 
 \title{SE 3XA3: Test Report\\Title of Project}
 
-\author{Team \#, Team Name
+\author{Team , Team Name
 		\\ Student 1 name and macid
 		\\ Student 2 name and macid
 		\\ Student 3 name and macid
@@ -33,7 +34,7 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[H]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -65,10 +66,222 @@ This document ...
 This section will not be appropriate for every project.
 
 \section{Unit Testing}
+The specific modules used for Unit testing can be found in the test folder which is in the src folder. The results for these tests can also be found in the same folder \href{run:../../src/test/Test-Report-001-12-1-2016.PNG}{which is also linked here}.
 
 \section{Changes Due to Testing}
 
 \section{Automated Testing}
+
+
+Automated Testing was done through a combination of Mocha.JS (for unit testing) and Selenium-Webdriver (for system-wide testing).
+
+
+Mocha.JS tested various pure functions throughout the codebase, based on a predefined set of input and output test vectors.
+
+
+Selenium-Webdriver was used to produce a firefox instance, simulate a connection to the server, simulate user interaction, and analyze the HTML output to ensure the server is producing the correct data, and that the web client is receiving and parsing the data correctly.
+        
+\subsection{Specific System Tests}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Reads songs from music folder}}\\
+\hline
+\textbf{Initial State: } & Library module called to read songs from a folder\\
+\textbf{Input: } & Folder with songs\\
+\textbf{Output: } & List of all the songs in the folder\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Reads metadata from a song}}\\
+\hline
+\textbf{Initial State: } & Metadata module called to read the metadata from a music file\\
+\textbf{Input: } & Music file\\
+\textbf{Output: } & Correct metadata information extracted from file\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Voting System returns highest voted item}}\\
+\hline
+\textbf{Initial State: } & Multiple users cast their votes, voter module is called\\
+\textbf{Input: } & List of votes\\
+\textbf{Output: } & Returns highest rated item\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Voting System handles an empty songs array}}\\
+\hline
+\textbf{Initial State: } & Voter module is called\\
+\textbf{Input: } & Empty array of songs, non-empty array of votes\\
+\textbf{Output: } & Returns empty string\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Voting System handles an empty votes array}}\\
+\hline
+\textbf{Initial State: } & Voter module is called\\
+\textbf{Input: } & Empty array of votes, non-empty array of songs\\
+\textbf{Output: } & Returns empty string\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Webpage Title is Loaded}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & Correct title of browser window is displayed\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Loads the first button}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & First button has the correct name\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Loads the second button}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & Second button has the correct name\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Loads the third button}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & Third button has the correct name\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Initially sets first vote to zero}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & First vote-count element has a value of 0\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Initially sets second vote to zero}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & Second vote-count element has a value of 0\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Initially sets third vote to zero}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & Third vote-count element has a value of 0\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Votes for an item when a user clicks a button}}\\
+\hline
+\textbf{Initial State: } & Server is running, browser directed to webpage, a vote button is clicked\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & Vote count for the corresponding button has a value of 1\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+
+
+
 		
 \section{Trace to Requirements}
 		
