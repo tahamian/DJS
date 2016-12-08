@@ -7,6 +7,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{color}
 \graphicspath{ {images/} }
 \usepackage{float}
 \usepackage{hyperref}
@@ -68,11 +69,11 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-9/11/16 & 1.0 & Started Sections 1,3,7\\
-11/11/16 & 1.1 & Finsihed Sections 1,3,7 Starting Sections 2,5,6\\
-12/11/16 & 1.2 & Finished All Sections\\ 
-13/11/16 & 1.3 & Review \\
-
+9/11/16 & 0.1 & Started Sections 1,3,7\\
+11/11/16 & 0.1 & Finsihed Sections 1,3,7 Starting Sections 2,5,6\\
+12/11/16 & 0.2 & Finished All Sections\\ 
+13/11/16 & 0.3 & Review \\
+\textcolor{blue}{06/12/16} & \textcolor{blue}{1.0} &\textcolor{blue}{Rev1}\\
 \bottomrule
 
 \end{tabularx}
@@ -93,7 +94,7 @@ This Module Guide (MG) document will provide a modular decomposition of the syst
 \subsection{Design Principle}
 The design principles employed in DJS are Information Hiding and Encapsulation. The use of both these development guidelines help each module hide secrets from the entire system. Encapsulation also allows data and functions to be accessed by certain modules and keeps the data and implementation safe from misuse or interference.
 \subsection{MIS Module}
-It is important to mention that the modules described in MIS are more generalized but refer to the same modules in this document. The Server module mentioned in the MIS document is the Hardware Hiding module in the MG document. Furthermore, the Home module is the combination of Display Options Module and Display Total Votes. In addition, the Args module refers to the Input and Tally modules in this document. Finally, the other modules mentioned in the MIS remain the same and are equal to the ones mentioned in this document.
+It is important to mention that the modules described in MIS are more generalized but refer to the same modules in this document. The Controller module mentioned in the MIS document is the Hardware Hiding module in the MG document. Furthermore, the Home module is the combination of Display Options Module and Display Total Votes. In addition, the Args module refers to the Input and Tally modules in this document. Finally, the other modules mentioned in the MIS remain the same and are equal to the ones mentioned in this document.
 
 \subsection{Structure}
 This MG document is organized in the following manner:
@@ -170,8 +171,8 @@ The following are modules implemented in DJS. The modules are placed into a hier
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Server
-\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Args \textcolor{red}{Consider renaming - CM}
+\item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Controller
+\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] \textcolor{blue}{Flags} \textcolor{red}{Consider renaming - CM}
 \item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Home
 \item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Library
 \item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Player
@@ -203,7 +204,7 @@ The following are modules implemented in DJS. The modules are placed into a hier
 
 \multirow{3}{0.3\textwidth}{Software Decision Module}
 & \\
-& M2 \textcolor{red}{I don't see how your server module doesn't satisfy your requirements - CM} \\
+& M2 \\
 \bottomrule
 
 
@@ -214,7 +215,7 @@ The following are modules implemented in DJS. The modules are placed into a hier
 
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
-The system was built to fulfill the requirements created during the design process. The server class in the DJS system calls and connects all components of the program which are then served to the end user. The requirements pertaining to appearance and usability are fulfilled by the home class which deals with creating the outline for the client side. The Library Module however does the background task of creating a list of five options the user can pick from. The result is then parsed into the Home Module which formats and places the five options as specified. In addition, while the options are being generated the user is assigned a unique identifier which is then saved on the users browser using cookies and is implemented in the Home Module and Server Module. The user will then cast a vote for their favourite song which is sent to the server using the Home Module. This input module allows the server class to then initiate the Voter Module which totals all votes for every distinct option. After tallying the votes the software then decides on what song was voted the most and instantiates the Player Module. The server class allows the Player Module to execute if there is no song currently being played which in turn plays the option with the most votes. While those modules are running in the background the Server Module is updating the counter in the home class to provide the user feedback on which song is the most voted and will most likely be played. The client side will also have a user help page which can provide instructions for the user if necessary. However, since the options are listed and are buttons the operation of the system should be intuitive and will only have static input (vote for song 1,2,3,4,or 5 no user text input). In addition, in order to satisfy the requirement of a song should always be played the project has set some defaults. The defaults are required when all options have equal or no votes since no clear majority exists. The default when this situation occurs is to pick a random song instead. Another requirement that is satisfied is keeping the graphical interface clean and simple which allows for intuitive control. The result of this allows only song titles to be shown which also helps avoid contradiction in cultural and political requirements.
+The system was built to fulfill the requirements created during the design process. The server class in the DJS system calls and connects all components of the program which are then served to the end user. The requirements pertaining to appearance and usability are fulfilled by the home class which deals with creating the outline for the client side. The Library Module however does the background task of creating a list of five options the user can pick from. The result is then parsed into the Home Module which formats and places the five options as specified. In addition, while the options are being generated the user is assigned a unique identifier which is then saved on the users browser using cookies and is implemented in the Home Module and Controller Module. The user will then cast a vote for their favourite song which is sent to the server using the Home Module. This input module allows the server class to then initiate the Voter Module which totals all votes for every distinct option. After tallying the votes the software then decides on what song was voted the most and instantiates the Player Module. The server class allows the Player Module to execute if there is no song currently being played which in turn plays the option with the most votes. While those modules are running in the background the Controller Module is updating the counter in the home class to provide the user feedback on which song is the most voted and will most likely be played. The client side will also have a user help page which can provide instructions for the user if necessary. However, since the options are listed and are buttons the operation of the system should be intuitive and will only have static input (vote for song 1,2,3,4,or 5 no user text input). In addition, in order to satisfy the requirement of a song should always be played the project has set some defaults. The defaults are required when all options have equal or no votes since no clear majority exists. The default when this situation occurs is to pick a random song instead. Another requirement that is satisfied is keeping the graphical interface clean and simple which allows for intuitive control. The result of this allows only song titles to be shown which also helps avoid contradiction in cultural and political requirements.
 
 
 \section{Module Decomposition} \label{SecMD}
@@ -235,11 +236,11 @@ The system was built to fulfill the requirements created during the design proce
 
 \subsection{Behaviour-Hiding Module}
 
-\subsubsection{Args(\mref{mAS})}
+\subsubsection{Flags(\mref{mAS})}
 
 
 \begin{description}
-\item[Secrets:]Allows music to be located by the server and invloves user input. \textcolor{red}{This needs to be noun! also, should be one thing - CM}
+\item[Secrets:]\textcolor{blue}{The data structure and algorithm used to locate user specified music.} \textcolor{red}{This needs to be noun! also, should be one thing - CM}
 \item[Services:]From user input the directory is specified and all music located in the folder will be available to play on the system.
 \item[Implemented By:] args.js
 \end{description}
@@ -248,7 +249,7 @@ The system was built to fulfill the requirements created during the design proce
 
 
 \begin{description}
-\item[Secrets:]Song options are displayed to the user. Total Votes for each indivdual song is displayed.Updates client UI when needed and assigns a cookie to connected user. \textcolor{red}{Same as above! - CM}
+\item[Secrets:]\textcolor{blue}{The algorithms used to display voting options, client interface, and identify users.}\textcolor{red}{Same as above! - CM}
 \item[Services:]Uses an array passed from the library module to display the five options on the client side. Cookies is set and a unique identifer is used to distinguish votes from each user.
 \item[Implemented By:] home.js
 \end{description}
@@ -257,14 +258,14 @@ The system was built to fulfill the requirements created during the design proce
 
 \subsubsection{Library(\mref{mLM})} 
 \begin{description} 
-\item[Secrets:] Reads music folder directory specified from the user. \item[Services:]The module reads from the music directory and picks five songs which are then placed into an array for other modules to manipulate. \item[Implemented By:] library.js 
+\item[Secrets:] \textcolor{blue}{The algorithms and data structures used to read music folder directory}. \item[Services:]The module reads from the music directory and picks five songs which are then placed into an array for other modules to manipulate. \item[Implemented By:] library.js 
 \end{description} 
 
 \subsubsection{Player(\mref{mPM})}
 
 
 \begin{description}
-\item[Secrets:] Plays the music from input.
+\item[Secrets:] \textcolor{blue}{The algorithms and data structures used to play music}.
 \item[Services:]Uses the input parameter and plays the associated music with the default os sound player.
 \item[Implemented By:]player.js
 \end{description}
@@ -275,7 +276,7 @@ The system was built to fulfill the requirements created during the design proce
 
 
 \begin{description}
-\item[Secrets:]Tallys the votes casted for each individual song. \textcolor{red}{All these should be redone - CM} \\
+\item[Secrets:]\textcolor{blue}{The algorithms used to tally votes for each individual song} \textcolor{red}{All these should be redone - CM} \\
 \item[Services:]Counts the number of votes from an array and returns the song with the maxmium amount of votes.
 \item[Implemented By:] voter.js
 \end{description}
@@ -291,12 +292,12 @@ The system was built to fulfill the requirements created during the design proce
 
 \subsection{Software Decision Module}
 
-\subsubsection{Server (\mref{mSR})}
+\subsubsection{Controller(\mref{mSR})}
 
 
 \begin{description}
-\item[Secrets:] Initiates all other modules and creates important variables which are manipulated by the system during the routine process.Also determines what song to play when no votes are given and creates unique user id's. 
-\item[Services:]Calls all modules and keeps the server runing using the express library. The unique id's are created using a counter and if no songs are picked the default song at index 0 is picked.
+\item[Secrets:] \textcolor{blue}{Application context and logic}
+\item[Services:] \textcolor{blue}{Maps controllers together}
 \item[Implemented By:] server.js
 \end{description}
 
