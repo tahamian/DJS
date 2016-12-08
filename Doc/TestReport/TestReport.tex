@@ -334,8 +334,6 @@ All functional tests passed.
 \hline
 \multicolumn{2}{|c|}{\textbf{Check If \numberOfSongs Random Songs Picked}}\\
 
-
-\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \textbf{Type: } & Structural, Dynamic, Automated Testing\\
 
@@ -393,7 +391,7 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 
 
 \section{Nonfunctional Requirements Evaluation}
-\subsubsection{Look and Feel Requirements}
+\subsection{Look and Feel Requirements}
 
 \paragraph{Appearance Tests}
 
@@ -401,13 +399,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Interface is aesthetically pleasing}}}\\
+\multicolumn{2}{|c|}{\textbf{User Interface is aesthetically pleasing}}\\
 \hline
 \textbf{Type: } & Structural, Static, Manual\\
 \textbf{Initial State: } & At least 20 users take a feedback survey\\
 \textbf{Input: } & User rates web page based on the aesthetics (from 1 to 10) on a custom survey\\
 \textbf{Output: } & Average results of survey \\
 \textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance. The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -415,8 +414,27 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 
 \paragraph{Style Tests}
 
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{User Interface is aesthetically pleasing}} \\
+\hline
+\textbf{Type: } & Structural, Manual, Static etc. \\
+\textbf{Initial State: } & Web page is loaded from a device that has Internet \\
+\textbf{Input: } &  Users rate the web page on the ascetics of from a rating of one to 10. \\
+\textbf{Output: } &  The overall average of the results should be over \acceptableRating. \\
+\textbf{How test will be performed: } & Users will take a short survey rating the Style, the results of multiple users will be
+tabulated. The overall user average score will be taken, must have 20 plus users. \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
 
-\subsubsection{Usability and Humanity Requirements}
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\subsection{Usability and Humanity Requirements}
 
 \paragraph{Ease of Use Requirements Test}
 
@@ -424,13 +442,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Interface is easy to use}}}\\
+\multicolumn{2}{|c|}{\textbf{User Interface is easy to use}}\\
 \hline
 \textbf{Type: } & Structural, Static, Manual\\
 \textbf{Initial State: } & At least 20 users take a feedback survey\\
 \textbf{Input: } & User rates web page based on the ease of use (from 1 to 10) on a custom survey\\
 \textbf{Output: } & Average results of survey \\
 \textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -442,13 +461,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Help Manual is helpful and understandable}}}\\
+\multicolumn{2}{|c|}{\textbf{User Help Manual is helpful and understandable}}\\
 \hline
 \textbf{Type: } & Structural, Static, Manual\\
 \textbf{Initial State: } & At least 20 users take a feedback survey\\
 \textbf{Input: } & User rates the effectiveness of the survey\\
 \textbf{Output: } & Average results of survey \\
 \textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -460,13 +480,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page is loadable on a local WiFi connection}}}\\
+\multicolumn{2}{|c|}{\textbf{Web page is loadable on a local WiFi connection}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & The web page is loaded on the device from local WiFi \\
 \textbf{Test Procedure:  } & The web page will be loaded from five different devices on two local Wireless networks. All devices should connect and display the webpage \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -476,19 +497,21 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page functions on all HTML5 web browsers}}}\\
+\multicolumn{2}{|c|}{\textbf{Web page functions on all HTML5 web browsers}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & The web page is loaded on the device from local WiFi \\
 \textbf{Test Procedure:  } & The web page will be loaded on at least 5 different browsers (all of which support HTML5). The voting mechanism should be functional on all devices \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
+
 \end{tabularx}
 \end{table}
 \end{center}
 
-\subsubsection{Performance Requirements}
+\subsection{Performance Requirements}
 
 \paragraph{Speed and Latency Requirements Test}
 
@@ -496,14 +519,17 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page must load within 3 seconds}}}\\
+\multicolumn{2}{|c|}{\textbf{Web page must load within 3 seconds}}\\
 \hline
 \textbf{Type: } & Structural, Dynamic, Manual\\
 \textbf{Initial State: } & Web page is loaded from a device connected to the same WiFi network. The server must be running on an x86-54 based, OS X or Linux system\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & N/A \\
 \textbf{Test Procedure:  } & It should take no longer than three seconds for the web page to load and cast a vote \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
+
 \hline
+
 \end{tabularx}
 \end{table}
 \end{center}
@@ -514,13 +540,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Song with most votes is always selected to play next}}}\\
+\multicolumn{2}{|c|}{\textbf{Song with most votes is always selected to play next}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Automated\\
 \textbf{Initial State: } & Server is running, users are connected\\
 \textbf{Input: } & User Votes are inputted to the voter module\\
 \textbf{Output: } & Vote choice is determined and returned by the voter module \\
 \textbf{Test Procedure:  } & The highest voted song (or any of the highest rated, in the case of a tie for first place) should be selected. Automated testing done in test-voter module \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -532,13 +559,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should constantly be playing music}}}\\
+\multicolumn{2}{|c|}{\textbf{Server should constantly be playing music}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & Server is not running\\
 \textbf{Input: } & Start the server\\
 \textbf{Output: } & Audio output to speakers \\
 \textbf{Test Procedure:  } & Music should begin playing initially, and continue to play without any user interaction until all music in music directory have been played \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -550,19 +578,19 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server handles songs with empty album art metadata}}}\\
+\multicolumn{2}{|c|}{\textbf{Server handles songs with empty album art metadata}}\\
 \hline
 \textbf{Type: } & Structural, Automated/Manual, Static\\
 \textbf{Initial State: } & Server is running\\
 \textbf{Input: } & Songs with empty metadata are in the music folder\\
 \textbf{Output: } & Data sent to webpage \\
 \textbf{Test Procedure:  } & Songs with no album artwork should not crash the system, and should display a 'default' album art picture on the webpage. Automated testing is done in the test-metadata module \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
 \end{center}
 
-\paragraph{Capacity Requirements Test}
 
 \paragraph{Scalability Requirements Test}
 
@@ -570,13 +598,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should handle at least \numberOfStressTestClients users at a time}}}\\
+\multicolumn{2}{|c|}{\textbf{Server should handle at least \numberOfStressTestClients users at a time}}\\
 \hline
 \textbf{Type: } & Structural, Automated, Static\\
 \textbf{Initial State: } & Server is running\\
 \textbf{Input: } & \numberOfStressTestClients clients, generated by selenium-webdriver, connect to the server\\
 \textbf{Output: } & N/A \\
 \textbf{Test Procedure:  } & Server performance should not be significantly affected. Voting and music playback should still function \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -588,59 +617,56 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should continue to run unless manually turned off}}}\\
+\multicolumn{2}{|c|}{\textbf{Server should continue to run unless manually turned off}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & Server is not running\\
 \textbf{Input: } & Run the server\\
 \textbf{Output: } & N/A \\
 \textbf{Test Procedure:  } & Server should run continuously for at least 20 minutes without user interaction, then terminated by the user \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
 \end{center}
 
-\subsubsection{Operational and Environmental Requirements}
+\subsection{Operational and Environmental Requirements}
 
 \paragraph{Requirements for Interfacing with Adjacent Systems Test}
 
-\begin{center}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page functions on all HTML5 web browsers}}}\\
+\multicolumn{2}{|c|}{\textbf{Web page functions on all HTML5 web browsers}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & The web page is loaded on the device from local WiFi \\
 \textbf{Test Procedure:  } & The web page will be loaded on at least 5 different browsers (all of which support HTML5). The voting mechanism should be functional on all devices \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
-\end{center}
 
 \paragraph{Productization Requirements Test}
 
-\begin{center}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server is installable on Mac OS and Linux through the given terminal commands}}}\\
+\multicolumn{2}{|c|}{\textbf{Server is installable on Mac OS and Linux through the given terminal commands}}\\
 \hline
 \textbf{Type: } & Static, Manual, Structural\\
 \textbf{Initial State: } & Mac OS machine without the server installed\\
 \textbf{Input: } & Server is installed via the install command given in the README\\
 \textbf{Output: } & Server is functional \\
 \textbf{Test Procedure:  } & All other test requirements should be passed on this system \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
-\end{center}
 
-\subsubsection{Maintainability and Support Requirements}
-
-\paragraph{Access Requirements Test}
+\subsection{Maintainability and Support Requirements}
 
 \paragraph{Privacy Requirements Test}
 
@@ -648,13 +674,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Restarting the device or browser should not allow voting twice}}}\\
+\multicolumn{2}{|c|}{\textbf {Restarting the device or browser should not allow voting twice}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Dynamic\\
 \textbf{Initial State: } & Web page is loaded from a device on a local network. A vote is issued, then the device is restarted and reconnected\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & N/A \\
 \textbf{Test Procedure:  } & The second vote should replace the initial vote on the server \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -664,13 +691,14 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Webpage is only accessible from a local network}}}\\
+\multicolumn{2}{|c|}{\textbf{Webpage is only accessible from a local network}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & Attempt to load web page from outside the local network\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & HTML response \\
 \textbf{Test Procedure:  } & The server should not be accessible from an outside network \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
@@ -680,20 +708,23 @@ Automated testing was done with a combination of Mocha.JS, a unit testing framew
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
 \hline
-\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Users should have no access to other user data}}}\\
+\multicolumn{2}{|c|}{\textbf{Users should have no access to other user data}}\\
 \hline
 \textbf{Type: } & Structural, Manual, Static\\
 \textbf{Initial State: } & Connect to server\\
 \textbf{Input: } & N/A\\
 \textbf{Output: } & HTML Response \\
 \textbf{Test Procedure:  } & The HTML response should contain no data about other users, other than how many votes have been totalled for each song \\
+\textbf{Result: } & \textcolor{green}{PASS}\\
 \hline
 \end{tabularx}
 \end{table}
 \end{center}
 
 \section{Comparison to Existing Implementation}	
+The existing implementation (PlayMyWay) does not have a test suite. The software is currently in a broken state, so a direct comparison was strictly impossible.\\
 
+We were able to analyze the User Interface from screenshots on the Github repo. The interface did not appear as appealing or intuitive as ours. Their app has font the runs off screen in a way that appears very unprofessional. In comparison, our app has word-wrap for long file names.\\
 
 \section{Unit Testing}
 The specific modules used for Unit testing can be found in the test folder which is in the src folder. The results for these tests can also be found in the same folder \href{run:../../src/test/Test-Report-001-12-1-2016.PNG}{which is also linked here}.
