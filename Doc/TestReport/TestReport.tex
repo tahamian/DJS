@@ -241,11 +241,6 @@ All functional tests passed.
 \end{table}
 \end{center}
 
-
-
-
-
-
 \subsubsection{Server-side Backend}
 
 
@@ -391,17 +386,394 @@ All functional tests passed.
 \end{table}
 \end{center}
 
-
-
-
 \subsection{Automated Testing}
-
 
 Automated testing was done with a combination of Mocha.JS, a unit testing framework Node.JS, and Selenium-Webdriver. The test cases are located in the test folder, located \href{https://gitlab.cas.mcmaster.ca/velechva/DJS/tree/master/src/test}{here}. 
 
 
 
 \section{Nonfunctional Requirements Evaluation}
+\subsubsection{Look and Feel Requirements}
+
+\paragraph{Appearance Tests}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Interface is aesthetically pleasing}}}\\
+\hline
+\textbf{Type: } & Structural, Static, Manual\\
+\textbf{Initial State: } & At least 20 users take a feedback survey\\
+\textbf{Input: } & User rates web page based on the aesthetics (from 1 to 10) on a custom survey\\
+\textbf{Output: } & Average results of survey \\
+\textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance. The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Style Tests}
+
+
+\subsubsection{Usability and Humanity Requirements}
+
+\paragraph{Ease of Use Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Interface is easy to use}}}\\
+\hline
+\textbf{Type: } & Structural, Static, Manual\\
+\textbf{Initial State: } & At least 20 users take a feedback survey\\
+\textbf{Input: } & User rates web page based on the ease of use (from 1 to 10) on a custom survey\\
+\textbf{Output: } & Average results of survey \\
+\textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Understandability and Politeness Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{User Help Manual is helpful and understandable}}}\\
+\hline
+\textbf{Type: } & Structural, Static, Manual\\
+\textbf{Initial State: } & At least 20 users take a feedback survey\\
+\textbf{Input: } & User rates the effectiveness of the survey\\
+\textbf{Output: } & Average results of survey \\
+\textbf{Test Procedure:  } & At least 20 users will take a short survey rating the appearance The results will be tabulated and an average calculated. The average must be atleast \acceptableRating \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Accessibility Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page is loadable on a local WiFi connection}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & The web page is loaded on the device from local WiFi \\
+\textbf{Test Procedure:  } & The web page will be loaded from five different devices on two local Wireless networks. All devices should connect and display the webpage \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page functions on all HTML5 web browsers}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & The web page is loaded on the device from local WiFi \\
+\textbf{Test Procedure:  } & The web page will be loaded on at least 5 different browsers (all of which support HTML5). The voting mechanism should be functional on all devices \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\subsubsection{Performance Requirements}
+
+\paragraph{Speed and Latency Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page must load within 3 seconds}}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Manual\\
+\textbf{Initial State: } & Web page is loaded from a device connected to the same WiFi network. The server must be running on an x86-54 based, OS X or Linux system\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & It should take no longer than three seconds for the web page to load and cast a vote \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Precision Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Song with most votes is always selected to play next}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Automated\\
+\textbf{Initial State: } & Server is running, users are connected\\
+\textbf{Input: } & User Votes are inputted to the voter module\\
+\textbf{Output: } & Vote choice is determined and returned by the voter module \\
+\textbf{Test Procedure:  } & The highest voted song (or any of the highest rated, in the case of a tie for first place) should be selected. Automated testing done in test-voter module \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Reliability and Availability Requirement Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should constantly be playing music}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Server is not running\\
+\textbf{Input: } & Start the server\\
+\textbf{Output: } & Audio output to speakers \\
+\textbf{Test Procedure:  } & Music should begin playing initially, and continue to play without any user interaction until all music in music directory have been played \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Robustness Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server handles songs with empty album art metadata}}}\\
+\hline
+\textbf{Type: } & Structural, Automated/Manual, Static\\
+\textbf{Initial State: } & Server is running\\
+\textbf{Input: } & Songs with empty metadata are in the music folder\\
+\textbf{Output: } & Data sent to webpage \\
+\textbf{Test Procedure:  } & Songs with no album artwork should not crash the system, and should display a 'default' album art picture on the webpage. Automated testing is done in the test-metadata module \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Capacity Requirements Test}
+
+\paragraph{Scalability Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should handle at least \numberOfStressTestClients users at a time}}}\\
+\hline
+\textbf{Type: } & Structural, Automated, Static\\
+\textbf{Initial State: } & Server is running\\
+\textbf{Input: } & \numberOfStressTestClients clients, generated by selenium-webdriver, connect to the server\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & Server performance should not be significantly affected. Voting and music playback should still function \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Longevity Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server should continue to run unless manually turned off}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Server is not running\\
+\textbf{Input: } & Run the server\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & Server should run continuously for at least 20 minutes without user interaction, then terminated by the user \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\subsubsection{Operational and Environmental Requirements}
+
+\paragraph{Requirements for Interfacing with Adjacent Systems Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Web page functions on all HTML5 web browsers}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & User attempts to connect to server hosted on the same WiFi network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & The web page is loaded on the device from local WiFi \\
+\textbf{Test Procedure:  } & The web page will be loaded on at least 5 different browsers (all of which support HTML5). The voting mechanism should be functional on all devices \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\paragraph{Productization Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Server is installable on Mac OS and Linux through the given terminal commands}}}\\
+\hline
+\textbf{Type: } & Static, Manual, Structural\\
+\textbf{Initial State: } & Mac OS machine without the server installed\\
+\textbf{Input: } & Server is installed via the install command given in the README\\
+\textbf{Output: } & Server is functional \\
+\textbf{Test Procedure:  } & All other test requirements should be passed on this system \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\subsubsection{Maintainability and Support Requirements}
+
+\paragraph{Access Requirements Test}
+
+\paragraph{Privacy Requirements Test}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Restarting the device or browser should not allow voting twice}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Dynamic\\
+\textbf{Initial State: } & Web page is loaded from a device on a local network. A vote is issued, then the device is restarted and reconnected\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & N/A \\
+\textbf{Test Procedure:  } & The second vote should replace the initial vote on the server \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Webpage is only accessible from a local network}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Attempt to load web page from outside the local network\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & HTML response \\
+\textbf{Test Procedure:  } & The server should not be accessible from an outside network \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{\textcolor{blue}{Users should have no access to other user data}}}\\
+\hline
+\textbf{Type: } & Structural, Manual, Static\\
+\textbf{Initial State: } & Connect to server\\
+\textbf{Input: } & N/A\\
+\textbf{Output: } & HTML Response \\
+\textbf{Test Procedure:  } & The HTML response should contain no data about other users, other than how many votes have been totalled for each song \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\section{Tests for Proof of Concept}
+
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Run Server}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Manual Testing\\
+
+\textbf{Initial State: } & Nothing Running .\\
+
+\textbf{Input: } & Javascript Files.\\
+
+\textbf{Output: } & Running Server.\\
+
+\textbf{Test Procedure: } & The server should run when the command node file.js is ran. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Play Music}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Manual Testing\\
+
+\textbf{Initial State: } & Server should be running and no music should be played .\\
+
+\textbf{Input: } & Any song from the generated song list.\\
+
+\textbf{Output: } & Music playing.\\
+
+\textbf{Test Procedure: } & Run server and vote for any song. Then after votes have been counted the song with the most votes should be played. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Load Buttons}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Manual Testing\\
+
+\textbf{Initial State: } & Nothing Running .\\
+
+\textbf{Input: } & Javascript Files.\\
+
+\textbf{Output: } & Running Server.\\
+
+\textbf{Test Procedure: } & The server should run when the command node file.js is ran. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Voting System}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Manual Testing\\
+
+\textbf{Initial State: } & The server should be running with the webpage loaded with no votes .\\
+
+\textbf{Input: } & Vote .\\
+
+\textbf{Output: } & Vote for song title .\\
+
+\textbf{Test Procedure: } & The server should out put an array for now which shows the votes in a string array. \\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
 
 \subsection{Usability}
 		
@@ -626,8 +998,6 @@ Selenium-Webdriver was used to produce a firefox instance, simulate a connection
 \section{Trace to Requirements}
 \begin{center}
 \begin{tabular}{| c | c | c | c |}
-\hline
-\multicolumn{4}{|c|}{\textbf{gording}}\\
 \hline
 Wasaddast & sadadup & BOadasdasdai & yeasadsad \\
 \hline
