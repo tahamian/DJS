@@ -58,7 +58,7 @@ DEC 6 & 1.0 & Rev1\\
 The test plan document is a helpful tool for many large scale projects since it allows concise information about testing,verification, and validation geared towards the project. The following test cases were created for future references and allows the project to be implementated with testing and maintenance in mind. The test plan document will be updated before the project is fully implementated to allow for revision and any major changes involved.
 
 \subsection{Scope}
-The project, "DJS",is a democratic voting system which allows users to vote for music. Thus testing can cover many areas such as: client methods (ie: update song client, etc), server methods (ie: create Cookie), data structures, and sorting algorithms. 
+The project, "DJS",is a democratic voting system which allows users to vote for music. Thus testing can cover many areas such as: client methods (ie: update song client, etc), server methods (ie: create Cookie), data structures, and sorting algorithms.
 
 \subsection{Acronyms, Abbreviations, and Symbols}
 
@@ -70,9 +70,29 @@ The document goes over various techniques for testing such as Manual and automat
 functional testing, static and dynamic testing, fault testing.
 
 \section{Plan}
-	
+
 \subsection{Software Description}
-The server running DJS is using nodejs with multiple libraries which includes : express, handlebars, express--handlebars, and socket.io. The implementation of DJS has been modularized into eight modules. The module Server.js is used for hosting the webpage, and uses the modules voter.js, player.js, metadata.js, home.js, library.js, args.js, and error-handler.js. server.js is the main module using every other module. Server.js uses Library.js to get an N amount of songs, the number N is set in the module server.js, the number has been preset to \numberOfSongs. All library.js does is get a list of songs that are to be displayed on the webpage to be voted for, and the songs are selected randomly. The same idea can be applied to metadata.js, except metadata.js gets the metadata of the songs selected by library.js, and saves the album in a folder called artwork. Voter.js also relies on server.js voter.js counts the amount of votes and server.js selects the song with the highest amount of votes. Home.js is used to display the webpage by server.js all the information like artwork, title of the song, and number of votes are all displayed using home.js. Sever.js uses player.js to just play audio to the speakers of the system. Error-handler.js is used by server.js for catching errors and determines what message to print to the terminal. Args.js is used by server.js when the user runs server.js with certain command line arguments.
+The server running DJS is using nodejs with multiple libraries which includes : express,
+handlebars, express--handlebars, and socket.io.
+\textcolor{blue}{The server running DJS is using node.js with multiple libraries which
+consist of the following: express, handlebars, express--handlebars, and socket.io.
+The implementation of DJS has been made into eight modules. The module server.js is used
+for hosting the webpage and uses several modules such as, voter.js, player.js, metadata.js,
+home.js, library.js, args.js, and error-handler.js. However, server.js is the main module
+that is being used in every other module. Server.js uses library.js to get an N amount of
+songs, the number N is set in the module server.js, and in this case the number has been
+pre-set to \numberOfSongs. The function of library.js is to get a list of songs that are to be displayed
+on the webpage to be voted for and the songs are then randomly selected. The same idea can
+be applied to metadata.js, except metadata.js gets the metadata of the songs selected by
+library.js and saves the album in a folder called artwork. Another module, voter.js also
+relies on server.js because voter.js counts the amount of votes and server.js selects the
+song with the highest amount of votes. Furthermore, home.js is used to display the webpage
+by server.js this consists of all the information such as artwork, title of the song, and
+number of votes. Also, server.js uses player.js to just play audio to the speakers of the
+system. Moreover, error-handler.js is used by server.js for catching errors and determines
+what message to print to the terminal. Lastly, args.js is used by server.js when the user
+runs server.js with certain command line arguments.
+}
 
 \subsection{Test Team}
 All project members will participate and be responsible for writing and executing tests.
@@ -81,8 +101,13 @@ All project members will participate and be responsible for writing and executin
 \textcolor{red}{Speak to the why, where and how you will run automatic tests - CM} \\
 
 \textcolor{blue}{
-Automated testing will be done through white-box unit tests and system-wide black-box tests. White-box unit testing will be used to test the output of various functions in the server, library, player, metadata, args, and error-handler modules.
-White-box system-wide testing will be done to ensure that the system fulfills the more broad functional requirements, and that the server and client are able to work together correctly. The testing suite will automatically connect to the server with a web browser instance, vote for songs, and check that the resulting webpage data is correct.
+Automated testing will be done through white-box unit tests and system-wide black-box tests.
+White-box unit testing will be used to test the output of various functions in the server,
+ library, player, metadata, args, and error-handler modules.
+White-box system-wide testing will be done to ensure that the system fulfills the more
+broad functional requirements, and that the server and client are able to work
+together correctly. The testing suite will automatically connect to the server with a
+web browser instance, vote for songs, and check that the resulting webpage data is correct.
 }
 
 \subsection{Testing Tools}
@@ -92,12 +117,31 @@ White-box system-wide testing will be done to ensure that the system fulfills th
 Unit testing will be done with Mocha.JS, a unit testing
 library for Node.JS and Javascript.
 System testing will be done with Selenium-Webdriver, a library that simulates a web browser, connects to the server,
-simulates user interaction, and gathers information about the resulting webpage, to determine proper functionality. Specifically, the Webdriver will connect to the server, and determine if the UI elements display songs, with clickable buttons, album art, and a vote count that is initially zero. The webdriver will cast a vote for the first song, and see if the vote-count reflects this by incrementing from 0 to 1.
+simulates user interaction, and gathers information about the resulting webpage, to determine
+ proper functionality. Specifically, the Webdriver will connect to the server, and determine
+ if the UI elements display songs, with clickable buttons, album art, and a vote count that
+ is initially zero. The webdriver will cast a vote for the first song, and see if the
+ vote-count reflects this by incrementing from 0 to 1.
 }
 
 \subsection{Testing Schedule}
 \textcolor{red}{Poor formatting, poor use of Gantt charts - CM} \\
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{ c | c }
+\textcolor{blue}{Functionality Being Tested} & \textcolor{blue}{To Be Completed by:} \\
+\hline
+\textcolor{blue}{Webpage should be operational} & \textcolor{blue}{Oct 21/16} \\
+\textcolor{blue}{Webpage loads the right metadata and song title} & \textcolor{blue}{Oct 22/16} \\
+\textcolor{blue}{Voting system counts the right amount of votes} & \textcolor{blue}{Oct 23/16} \\
+\textcolor{blue}{Voting sytem selects the right song} & \textcolor{blue}{Oct 23/16} \\
+\textcolor{blue}{Songs in queue} & \textcolor{blue}{Oct 25/16} \\
+\textcolor{blue}{Server should be able to handle multiple users} & \textcolor{blue}{Oct 28/16} \\
+\end{tabularx}
+\end{table}
+\end{center}
 
+\textcolor{green}{This can also be found in the} \href{run:d:/ProjectSchedule/DJSGanttChart.gan}{Gnatt Chart here}.
 
 \section{System Test Description}
 
@@ -338,7 +382,7 @@ simulates user interaction, and gathers information about the resulting webpage,
 \subsection{Tests for Nonfunctional Requirements}
 \textcolor{red}{ I don't like how these are structured. For example, NF Test 1: Initial State: Webpage has not been loaded. Input: User opens the webpage by doing X. Output: Webpage is open. How Test is Preformed: The user will rate on a scale... That is a better test because it is specific and repeatable. Also, make a survey and use symbolic parameters for everything (e.g. stress testing)  - CM} \\
 \subsubsection{Look and Feel Requirements}
-		
+
 \paragraph{Appearance Tests}
 
 \begin{center}
@@ -639,7 +683,7 @@ simulates user interaction, and gathers information about the resulting webpage,
 \section{Tests for Proof of Concept}
 
 
-	
+
 \begin{center}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
@@ -659,7 +703,7 @@ simulates user interaction, and gathers information about the resulting webpage,
 \end{tabularx}
 \end{table}
 \end{center}
-	
+
 \begin{center}
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{| c X |}
@@ -719,28 +763,24 @@ simulates user interaction, and gathers information about the resulting webpage,
 \end{table}
 \end{center}
 
-
-
-	
-\section{Comparison to Existing Implementation}	
+\section{Comparison to Existing Implementation}
 \textcolor{red}{This is NOT just comparing the projects. It is detailing how to parallel test the two to be sure your project matches the other's (and subsequently your) requirements - CM} \\
 
 \textcolor{blue}{
 It is not possible to parallel test with the currently existing implementation. PlayMyWay, the project which we based ours on, does not have any automated testing suite, and is not currently in working form. The software is buggy and the server does not satisfy any of the main functional requirements in its current form, due to the software bugs, making a direct comparison impossible.
 }
-				
+
 \section{Unit Testing Plan}
-		
+
 \subsection{Unit testing of internal functions}
 The implemented unit tests will help examine the product and will allow for clarity. The automated tests will be used to test a multitude of functional and nonfunctional requirements.  Majority of these tests will use the internal functions and variables implemented in the product. All tests will be correlated to core functions utilized in the product to ensure predictable outputs and behaviours for normal, abnormal, and negative scenarios.
-		
-\subsection{Unit testing of output files}		
-The output for the DJS product will be the music playing and the client-side graphical interface. The unit testing for output will be done with the combination of both manual and automated testing. In addition, the testing of output will also include using an external library called selenium which helps javascript simulate clicks and other actions a user would commit. The tests will call functions that create the view and check if the view has appeared. An example would be is checking if the buttons have been loaded. The test for checking if buttons have appeared would involved the selenium library and would simulate buttons clicks. The unit tests will ensure that the proper methods are called and the output is the expected result. 
+
+\subsection{Unit testing of output files}
+The output for the DJS product will be the music playing and the client-side graphical interface. The unit testing for output will be done with the combination of both manual and automated testing. In addition, the testing of output will also include using an external library called selenium which helps javascript simulate clicks and other actions a user would commit. The tests will call functions that create the view and check if the view has appeared. An example would be is checking if the buttons have been loaded. The test for checking if buttons have appeared would involved the selenium library and would simulate buttons clicks. The unit tests will ensure that the proper methods are called and the output is the expected result.
 \bibliographystyle{plainnat}
 
 \bibliography{SRS}
 
 \newpage
-
 
 \end{document}
