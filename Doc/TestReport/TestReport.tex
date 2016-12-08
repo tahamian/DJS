@@ -12,8 +12,11 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\newcommand{\acceptableRating}{\textcolor{blue}{7.5 }}
+\newcommand{\numberOfSongs}{\textcolor{blue}{5 }}
+\newcommand{\numberOfStressTestClients}{\textcolor{blue}{300 }}
 
-\title{SE 3XA3: Test Report\\Title of Project}
+\title{SE 3XA3: Test Report\\DJS}
 
 \author{Team , Team Name
 		\\ Student 1 name and macid
@@ -23,7 +26,6 @@
 
 \date{\today}
 
-\input{../Comments}
 
 \begin{document}
 
@@ -49,9 +51,355 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+\section{Introduction}
+
+This document outlines a report on the various tests that were conducted to verify the functionality of DJS. Test cases can be performed by interest clients to determine the validity of our software, and the robustness of our test suite.
 
 \section{Functional Requirements Evaluation}
+Testing was performed with white box unit testing, black box automated system testing, black box manual system testing, and stress testing.\\
+
+
+Due to the nature of a server/client system, it is difficult to provide a complete test suite to ensure complete functionality of the system. However, an adequate test suite was provided. \\
+
+
+All functional tests passed.
+
+
+\subsubsection{Client-side Graphical Interface}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Webpage Title and Buttons Loaded}}\\
+\hline
+\textbf{Type: } & Functional, Dynamic, Manual Testing\\
+
+
+\textbf{Initial State: } & Web page is not loaded.\\
+
+
+\textbf{Input: } & User's internet browser should navigate to the servers web address.\\
+
+
+\textbf{Output: } & The server should serve the users request and load a webpage with a title and five buttons underneath.\\
+
+
+\textbf{Test Procedure:  } &   The web page should be loaded and the title along with \numberOfSongs buttons should be displayed to the user.\\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Button Includes Song Title}}\\
+\hline
+\textbf{Type: } & Functional, Dynamic, Manual Testing\\
+
+
+\textbf{Initial State: } & Web page is opened on users internet browser.\\
+
+
+\textbf{Input: } & User's internet browser should navigate to the servers web address.\\
+
+
+\textbf{Output: } & The webpage loaded should include five buttons with each button having text. The text inside each button should be of a different unique song title (each button has a song title).\\
+
+
+\textbf{Test Procedure:  } & Load webpage on user internet browser and check if buttons have song titles (if test failed then output should be giberish on button).\\
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+
+
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Vote Causes Button To Be Highlighted}}\\
+\hline
+\textbf{Type: } & Functional, Dynamic, Manual Testing\\
+
+
+\textbf{Initial State: } & Web page is opened on users internet browser and buttons should be present with no prior votes.\\
+
+
+\textbf{Input: } & User clicks on one button from the webpage.\\
+
+
+\textbf{Output: } & The corresponding button selected will be highlighted in some form to indicate a vote has been cast and recorded .\\
+
+
+\textbf{Test Procedure:  } & Load webpage on user internet browser and check if buttons have loaded. Once the buttons are present the tester selects one song and should result in the same button being highlighted.\\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Graphic Object Shows Total Number Of Votes}}\\
+\hline
+\textbf{Type: } & Functional, Dynamic, Manual Testing\\
+
+
+\textbf{Initial State: } & The web address is not loaded. The server has just started.\\
+
+
+\textbf{Input: } & User navigates to web address.\\
+
+
+\textbf{Output: } & The web page should load some graphical object which contains the number of votes for each corresponding button. The number of votes should be zero initially .\\
+
+
+\textbf{Test Procedure:  } & The server should be freshly started. The tester should then navigate to the appropriate web url and load the web page. Once the web page has been loaded the tester can then observe the total number of votes.\\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\subsubsection{Client-side Backend Interface}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Remeber Voted Song}}\\
+\hline
+\textbf{Type: } & Functional, Dynamic, Manual Testing\\
+
+
+\textbf{Initial State: } & One song should have been voted and the internet browser closed.\\
+
+
+\textbf{Input: } & The tester will place a vote on one random song and close the browser. After, the web page should be opened again by the tester and the page loaded.\\
+
+
+\textbf{Output: } & The song title that was picked before closing the internet browser should be highlighted.\\
+
+
+\textbf{Test Procedure: } & The tester will open a internet browser and load the webpage. After the webpage has been loaded the user will cast a vote. The internet browser opened previously will be closed. Then after the tester will reopen the internet browser and the song title that was selected previously should be highlighted.\\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Song List Should Be Valid}}\\
+\hline
+\textbf{Type: } & Functional, Dynamic, Automated Testing\\
+
+
+\textbf{Initial State: } & The web address is loaded. The server has just started.\\
+
+
+\textbf{Input: } & The song titles that appears on website will be the input for the automated testing.Another input would be the music currently available on the server.\\
+
+
+\textbf{Output: } & The unit testing function will return either with true or false. The result of true will indicate that the song list appeared on the web page matches the song titles available on the server.\\
+
+
+\textbf{Test Procedure:  } & The automated test will record each song title generated and displayed on the client side. Furthermore, the songs available to the server will also be recorded. The result is calculated by matching all the songs recorded from the web page to the songs available to the server\\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+
+
+
+
+\subsubsection{Server-side Backend}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Create Cookie To Allow One Vote Per User}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Automated Testing\\
+
+
+\textbf{Initial State: } & The web address is not loaded. The server has just started.\\
+
+
+\textbf{Input: } & A simulated user with random voting pattern that is active every couple of seconds.\\
+
+
+\textbf{Output: } & The unit testing function will return true or false. The testing function will return true when the sum of total votes for each song  equals the number of users connected.Correspondingly the return value of false will suggest that one or more simulated users will have more then one vote.\\
+
+
+\textbf{Test Procedure:  } & The automated test will create a certain number of random users. The server will create a cookie for each user that indicates a unique id to identify each user. The randomly generated users will all vote for one song that is picked randomly and then change all the votes to another random song ( ie. users 1..15 vote for song 1 then vote for song 2). The test function will then check the number of total votes for each song and sum them together which should equal the number of users generated. \\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Reset Votes After Playing Song}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Automated Testing\\
+
+
+\textbf{Initial State: } & The number of total votes for a certain song is above zero.\\
+
+
+\textbf{Input: } & The test function will need the total number of votes right after a certain song has been done playing.\\
+
+
+\textbf{Output: } & The unit test function will return true or false. The test function will return true when the total number of votes after playing a song is zero.\\
+
+
+\textbf{Test Procedure: } & The test procedure will start by having the webpage start with a song with the total number of votes above zero. The test function will then check after the song has played if the total number of votes is equal to zero. \\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Check If Song List Is Unique}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Automated Testing\\
+
+
+\textbf{Initial State: } & The server started and web page loaded.\\
+
+
+\textbf{Input: } & The test function will need the song list that is being sent to the client.\\
+
+
+\textbf{Output: } & The unit test function will return true if the song list sent is unique and has no duplicates.\\
+
+
+\textbf{Test Procedure: } &The test function will use the song list being sent to the client and store it into an array. As the song list for the client updates after a song has been played the new song list will be appended to the array. After the last song has played the test function will check the array to see if the server has sent any duplicate song titles and will result in a true or false value. \\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Check If \numberOfSongs Random Songs Picked}}\\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Automated Testing\\
+
+
+\textbf{Initial State: } & The server started and web page loaded.\\
+
+
+\textbf{Input: } & The test function will need to count the number of songs sent to the client after playing the current song.\\
+
+
+\textbf{Output: } & The unit testing function will return true if the count is equal to five after playing the current song .\\
+
+
+\textbf{Test Procedure: } &The test function will use a counter and check if the counter is equal to five after the current song is done being played. \\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+\begin{center}
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{| c X |}
+\hline
+\multicolumn{2}{|c|}{\textbf{Play Most Voted Song}}\\
+\hline
+\textbf{Type: } & Structural, Dynamic, Automated Testing\\
+
+
+\textbf{Initial State: } & The server started and web page loaded.\\
+
+
+\textbf{Input: } & The test function will need to record the total number of votes and the corresponding song title picked.\\
+
+
+\textbf{Output: } & The unit testing function will return true if the application plays the right song.\\
+
+
+\textbf{Test Procedure: } &The testing function will use a counter and rank the songs by votes and check if the playing is song is equal to the song selected with the most votes. \\
+
+
+\textbf{Result: } & \textcolor{green}{PASS}\\
+\hline
+\end{tabularx}
+\end{table}
+\end{center}
+
+
+
+
+\subsection{Automated Testing}
+
+
+Automated testing was done with a combination of Mocha.JS, a unit testing framework Node.JS, and Selenium-Webdriver. The test cases are located in the test folder, located \href{https://gitlab.cas.mcmaster.ca/velechva/DJS/tree/master/src/test}{here}. 
+
+
 
 \section{Nonfunctional Requirements Evaluation}
 
@@ -63,7 +411,6 @@ This document ...
 	
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
 
 \section{Unit Testing}
 The specific modules used for Unit testing can be found in the test folder which is in the src folder. The results for these tests can also be found in the same folder \href{run:../../src/test/Test-Report-001-12-1-2016.PNG}{which is also linked here}.
@@ -72,12 +419,10 @@ The specific modules used for Unit testing can be found in the test folder which
 
 \section{Automated Testing}
 
+Automated Testing was done through a combination of Mocha.JS (for unit testing) and Selenium-Webdriver (for system-wide testing). \\
 
-Automated Testing was done through a combination of Mocha.JS (for unit testing) and Selenium-Webdriver (for system-wide testing).
 
-
-Mocha.JS tested various pure functions throughout the codebase, based on a predefined set of input and output test vectors.
-
+Mocha.JS tested various pure functions throughout the codebase, based on a predefined set of input and output test vectors. \\
 
 Selenium-Webdriver was used to produce a firefox instance, simulate a connection to the server, simulate user interaction, and analyze the HTML output to ensure the server is producing the correct data, and that the web client is receiving and parsing the data correctly.
         
@@ -278,13 +623,16 @@ Selenium-Webdriver was used to produce a firefox instance, simulate a connection
 \end{table}
 \end{center}
 
-
-
-
-
-		
 \section{Trace to Requirements}
-		
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+\hline
+\multicolumn{4}{|c|}{\textbf{gording}}\\
+\hline
+Wasaddast & sadadup & BOadasdasdai & yeasadsad \\
+\hline
+\end{tabular}
+\end{center}
 \section{Trace to Modules}		
 
 \section{Code Coverage Metrics}
