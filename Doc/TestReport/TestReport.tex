@@ -15,13 +15,15 @@
 \newcommand{\acceptableRating}{\textcolor{blue}{7.5 }}
 \newcommand{\numberOfSongs}{\textcolor{blue}{5 }}
 \newcommand{\numberOfStressTestClients}{\textcolor{blue}{300 }}
-
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
 \title{SE 3XA3: Test Report\\DJS}
 
-\author{Team , Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 12 , DJS
+		\\ Amandeep Panesar panesas2
+		\\ Taha Mian miantm
+		\\ Victor Velechovsky velechva
 }
 
 \date{\today}
@@ -938,15 +940,51 @@ Selenium-Webdriver was used to produce a firefox instance, simulate a connection
 \end{center}
 
 \section{Trace to Requirements}
-\begin{center}
-\begin{tabular}{| c | c | c | c |}
-\hline
-Wasaddast & sadadup & BOadasdasdai & yeasadsad \\
-\hline
-\end{tabular}
-\end{center}
-\section{Trace to Modules}		
+The following table maps each implemented test file to a requirement found in the SRS document \href{run:../../Doc/SRS/SRS.pdf}{\textcolor{blue}{here.}}
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.4\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Test Files} & \textbf{Modules}\\
+\midrule
+test-library.js & FR2, FR5, FR8, FR9\\
+test-metadata.js & FR1,FR7,\\
+test-server.js & FR1, FR2, FR4, FR6, FR11\\
+test-voter.js & FR3, FR8, FR10\\
 
+\bottomrule
+\end{tabular}
+
+\label{TblRT}
+\end{table}
+\section{Trace to Modules}
+The following is a list of the modules described in DJS :
+\begin{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Controller
+\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Flags
+\item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Home
+\item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Library
+\item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Player
+\item [\refstepcounter{mnum} \mthemnum \label{mIV}:] Voter
+\end{description}
+The following is a list of module ids compared with test files: 
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.4\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Test Files} & \textbf{Modules}\\
+\midrule
+test-library.js & \mref{mLM}, \mref{mAS}\\
+test-metadata.js & \mref{mDO}, \mref{mSR}, \mref{mIV}\\
+test-server.js & \mref{mDO},\mref{mSR}, \mref{mAS}\\
+test-voter.js & \mref{mIV}, \mref{mLM} \\
+
+\bottomrule
+\end{tabular}
+
+\label{TblRT}
+\end{table}
 \section{Code Coverage Metrics}
 \indent \indent Reviewing the test requirements matrix, test-module trace, and module-requirements the functional and nonfunctional requirements were satisfied in regards to the test cases that were created. Complete code coverage was acquired with our unit and automated testing. In addition, majority of our testing was done synchronously since many problems arose from concurrent process.  
 \bibliographystyle{plainnat}
