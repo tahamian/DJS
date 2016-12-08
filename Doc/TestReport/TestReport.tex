@@ -15,7 +15,9 @@
 \newcommand{\acceptableRating}{\textcolor{blue}{7.5 }}
 \newcommand{\numberOfSongs}{\textcolor{blue}{5 }}
 \newcommand{\numberOfStressTestClients}{\textcolor{blue}{300 }}
-
+\newcounter{mnum}
+\newcommand{\mthemnum}{M\themnum}
+\newcommand{\mref}[1]{M\ref{#1}}
 \title{SE 3XA3: Test Report\\DJS}
 
 \author{Team 12 , DJS
@@ -946,7 +948,33 @@ Wasaddast & sadadup & BOadasdasdai & yeasadsad \\
 \end{tabular}
 \end{center}
 \section{Trace to Modules}
+The following is a re-iteration of the modules described in DJS :
+\begin{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mSR}:] Controller
+\item [\refstepcounter{mnum} \mthemnum \label{mAS}:] Flags
+\item [\refstepcounter{mnum} \mthemnum \label{mDO}:] Home
+\item [\refstepcounter{mnum} \mthemnum \label{mLM}:] Library
+\item [\refstepcounter{mnum} \mthemnum \label{mPM}:] Player
+\item [\refstepcounter{mnum} \mthemnum \label{mIV}:] Voter
+\end{description}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.4\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Test Files} & \textbf{Modules}\\
+\midrule
+test-library.js & \mref{mLM}, \mref{mAS}\\
+test-metadata.js & \mref{mDO}, \mref{mSR}\\
+test-server.js & \mref{mDO},\mref{mSR}, \mref{mAS}\\
+test-voter.js & \mref{mIV}, \mref{mLM} \\
+
+\bottomrule
+\end{tabular}
+
+\label{TblRT}
+\end{table}
 \section{Code Coverage Metrics}
 
 \bibliographystyle{plainnat}
